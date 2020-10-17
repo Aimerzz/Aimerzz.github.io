@@ -1,0 +1,1447 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='记录一下学完 php 以后和老方一起做的这个人生中的第一个项目，其实它是一切的开始'><title>树莓派人脸识别系统</title>
+    
+    <link rel='canonical' href='https://sunwei.blog/p/%E6%A0%91%E8%8E%93%E6%B4%BE%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB%E7%B3%BB%E7%BB%9F/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='树莓派人脸识别系统'>
+<meta property='og:description' content='记录一下学完 php 以后和老方一起做的这个人生中的第一个项目，其实它是一切的开始'>
+<meta property='og:url' content='https://sunwei.blog/p/%E6%A0%91%E8%8E%93%E6%B4%BE%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB%E7%B3%BB%E7%BB%9F/'>
+<meta property='og:site_name' content='A桑的杂货箱'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='树莓派' /><meta property='article:tag' content='php' /><meta property='article:tag' content='python' /><meta property='article:published_time' content='2018-05-18T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2018-05-18T00:00:00&#43;00:00'/><meta property='og:image' content='https://sunwei.blog/p/%E6%A0%91%E8%8E%93%E6%B4%BE%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB%E7%B3%BB%E7%BB%9F/cover.png' />
+<meta name="twitter:title" content="树莓派人脸识别系统">
+<meta name="twitter:description" content="记录一下学完 php 以后和老方一起做的这个人生中的第一个项目，其实它是一切的开始"><meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:image" content='https://sunwei.blog/p/%E6%A0%91%E8%8E%93%E6%B4%BE%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB%E7%B3%BB%E7%BB%9F/cover.png' /></head><body class="">
+        <div class="container flex on-phone--column align-items--flex-start extended article-page with-toolbar">
+            <aside class="sidebar left-sidebar sticky">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header class="site-info">
+        
+            <figure class="site-avatar">
+                
+
+                
+                    
+                    <img src="/img/avatar1_huda84896c9bf23e2f48c7de4e6ccdd7e8_360249_300x300_resize_box_2.png" width="300"
+                        height="300" class="site-logo" loading="lazy" alt="Avatar">
+                
+
+                <span class="emoji">🍥</span>
+            </figure>
+        
+        <h1 class="site-name"><a href="https://sunwei.blog">A桑的杂货箱</a></h1>
+        <h2 class="site-description">有时候回头看看自己做的东西，感觉充实且鬼畜😂</h2>
+    </header>
+
+    <ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='https://sunwei.blog/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='https://sunwei.blog/about'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='https://sunwei.blog/archives'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+    </ol>
+</aside>
+            <main class="main full-width">
+    <div id="article-toolbar">
+        <a href="https://sunwei.blog" class="back-home">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+            <span>Back</span>
+        </a>
+    </div>
+
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <img srcset="/p/%E6%A0%91%E8%8E%93%E6%B4%BE%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB%E7%B3%BB%E7%BB%9F/cover_hu5ddf1820a179cbdcdf664e6e5a048684_36219_1024x0_resize_box_2.png 1024w, /p/%E6%A0%91%E8%8E%93%E6%B4%BE%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB%E7%B3%BB%E7%BB%9F/cover_hu5ddf1820a179cbdcdf664e6e5a048684_36219_2000x0_resize_box_2.png 2000w"
+                    src="/p/%E6%A0%91%E8%8E%93%E6%B4%BE%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB%E7%B3%BB%E7%BB%9F/cover_hu5ddf1820a179cbdcdf664e6e5a048684_36219_2000x0_resize_box_2.png" width="1251" height="337" loading="lazy"
+                    alt="Featured image of post 树莓派人脸识别系统" />
+            
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="https://sunwei.blog/categories/%E6%8A%98%E8%85%BE/" 
+                    class="color-tag"
+                    data-image="/p/%E6%A0%91%E8%8E%93%E6%B4%BE%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB%E7%B3%BB%E7%BB%9F/cover_hu5ddf1820a179cbdcdf664e6e5a048684_36219_20x20_fill_box_smart1_2.png" 
+                    data-key="" 
+                    data-hash="md5-yrKwdAlpU1u/9FoZ0Dd41g==">
+                    折腾
+                </a>
+            
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="https://sunwei.blog/p/%E6%A0%91%E8%8E%93%E6%B4%BE%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB%E7%B3%BB%E7%BB%9F/">树莓派人脸识别系统</a>
+    </h2>
+
+    
+    <h3 class="article-subtitle">
+        记录一下学完 php 以后和老方一起做的这个人生中的第一个项目，其实它是一切的开始
+    </h3>
+    <footer class="article-time">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <time class="article-time--published">May 18, 2018</time>
+        
+        <div style="margin-left: 20px;">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user-check" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <circle cx="9" cy="7" r="4" />
+  <path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+  <path d="M16 11l2 2l4 -4" />
+</svg>
+        </div>
+        <div  class="article-time--published">
+            孙玮
+        </div>
+        
+        
+    </footer></div>
+</header>
+
+    <section class="article-content">
+    <h1 id="引言">引言</h1>
+<p>学了一阵子 php 了，这次自己用 php 练了一下手，更加熟悉了 Linux 的操作，感觉用起来已经得心应手了。</p>
+<p>其实这个 OpenCV 的环境当时我配置了 1 个多星期，最后在抹茶家里面蹭网配置出来的，太难了。</p>
+<h2 id="项目概览">项目概览</h2>
+<p><figure>
+		<a href="/p/%E6%A0%91%E8%8E%93%E6%B4%BE%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB%E7%B3%BB%E7%BB%9F/media/15266442866137/23333.png" data-size="1260x607">
+			<img srcset="/p/%E6%A0%91%E8%8E%93%E6%B4%BE%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB%E7%B3%BB%E7%BB%9F/media/15266442866137/23333_hu4d2f3dcb901da6bc5481d5be12a080a1_23085_480x0_resize_box_2.png 480w, /p/%E6%A0%91%E8%8E%93%E6%B4%BE%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB%E7%B3%BB%E7%BB%9F/media/15266442866137/23333_hu4d2f3dcb901da6bc5481d5be12a080a1_23085_1024x0_resize_box_2.png 1024w"
+				src="/p/%E6%A0%91%E8%8E%93%E6%B4%BE%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB%E7%B3%BB%E7%BB%9F/media/15266442866137/23333.png" width="1260" height="607" loading="lazy"
+				alt="23333">
+		</a>
+		
+		<figcaption>23333</figcaption>
+		
+	</figure></p>
+<h3 id="1介绍">1.介绍</h3>
+<p>使用 OpenCV + Python + Linux + PHP 构建的树莓派人脸识别云系统，本次项目基于树莓派的系统进行嵌入式开发，使用 <code>OpenCV</code> 作为机器视觉库，用 Python 作为树莓派段的主要语言，使用了很多的开源软件和库，但是核心代码和逻辑全部是自己完成。</p>
+<h3 id="2使用场景模拟">2.使用场景模拟</h3>
+<p>该项目的定位为 <strong>智能家居</strong> ，树莓派作为整个家庭的 <strong>中心服务器</strong> ，树莓派可以作为家庭的路由器,NAS,和网关，通过开发，可以将控制各种家电的代码放到树莓派中运行，<strong>本次的项目就是其中之一的雏形，人脸识别的电子锁，由于经费和时间受限，并没有接上真正的电子锁，但是我们设计了检测结果的回调</strong> ，并且通过 <strong><code>亮红灯</code></strong> 或者 <strong><code>亮绿灯</code></strong> 模拟电子锁的开关</p>
+<p><strong>结合上面的使用场景</strong> ，我们已经实现了如下功能</p>
+<pre><code>1. 机械学习获取房子住户的人脸特征。（可以录入多个人的脸部信息）
+2. 按下识别按钮即可进行识别，方便快捷
+3. 识别脸部信息，并且做出相应的判断，开锁或者是不开锁
+4. 所有的识别记录都会上传到云端，其中包括，识别过程中的抓拍，识别时间，住户分配的 ID等
+5. 对于没有录入信息，但尝试非法打开“电子锁”的情况，云端会发送邮件、短信给主人，来警告用户，防止意外的发生
+6. 云端数据分类汇总展示
+7. .....
+</code></pre><h3 id="3关于未来的开发">3.关于未来的开发</h3>
+<p>如果有时间，我们会像上面所提到的 <strong><code>智能家居</code></strong> 靠近，首先会把电子锁功能完善，然后在树莓派中建立云服务的本地版，用户无需访问外网，直接访问树莓派中的数据汇总就可以查看所有的数据，我们会使用 <strong>百度语音 API</strong> 进行语言转化，实现语音控制家电的开关，也可以利用树莓派的 <strong>中心服务器</strong> 的地位通过云计算远程控制家电的开关情况。本项目有着很大的扩展性，并且符合现代人们的需求。</p>
+<h4 id="4效果图">4.效果图</h4>
+<h5 id="1成品图">1.成品图</h5>
+<p>树莓派硬件图：</p>
+<p><figure>
+		<a href="/p/%E6%A0%91%E8%8E%93%E6%B4%BE%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB%E7%B3%BB%E7%BB%9F/media/15266442866137/IMG_20190425_211557.jpg" data-size="3968x2976">
+			<img srcset="/p/%E6%A0%91%E8%8E%93%E6%B4%BE%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB%E7%B3%BB%E7%BB%9F/media/15266442866137/IMG_20190425_211557_hu783d3765da07f4c9b779d4a991194f0e_2542613_480x0_resize_q75_box.jpg 480w, /p/%E6%A0%91%E8%8E%93%E6%B4%BE%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB%E7%B3%BB%E7%BB%9F/media/15266442866137/IMG_20190425_211557_hu783d3765da07f4c9b779d4a991194f0e_2542613_1024x0_resize_q75_box.jpg 1024w"
+				src="/p/%E6%A0%91%E8%8E%93%E6%B4%BE%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB%E7%B3%BB%E7%BB%9F/media/15266442866137/IMG_20190425_211557.jpg" width="3968" height="2976" loading="lazy"
+				alt="IMG_20190425_211557">
+		</a>
+		
+		<figcaption>IMG_20190425_211557</figcaption>
+		
+	</figure>
+<figure>
+		<a href="/p/%E6%A0%91%E8%8E%93%E6%B4%BE%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB%E7%B3%BB%E7%BB%9F/media/15266442866137/IMG_20190425_211632.jpg" data-size="3968x2976">
+			<img srcset="/p/%E6%A0%91%E8%8E%93%E6%B4%BE%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB%E7%B3%BB%E7%BB%9F/media/15266442866137/IMG_20190425_211632_hu1ca52b0b10eb3ceef04df71a0b9d2c95_2076334_480x0_resize_q75_box.jpg 480w, /p/%E6%A0%91%E8%8E%93%E6%B4%BE%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB%E7%B3%BB%E7%BB%9F/media/15266442866137/IMG_20190425_211632_hu1ca52b0b10eb3ceef04df71a0b9d2c95_2076334_1024x0_resize_q75_box.jpg 1024w"
+				src="/p/%E6%A0%91%E8%8E%93%E6%B4%BE%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB%E7%B3%BB%E7%BB%9F/media/15266442866137/IMG_20190425_211632.jpg" width="3968" height="2976" loading="lazy"
+				alt="IMG_20190425_211632">
+		</a>
+		
+		<figcaption>IMG_20190425_211632</figcaption>
+		
+	</figure></p>
+<p>识别截截图</p>
+<p><figure>
+		<a href="/p/%E6%A0%91%E8%8E%93%E6%B4%BE%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB%E7%B3%BB%E7%BB%9F/media/15266442866137/15561985914641.jpg" data-size="1022x598">
+			<img srcset="/p/%E6%A0%91%E8%8E%93%E6%B4%BE%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB%E7%B3%BB%E7%BB%9F/media/15266442866137/15561985914641_hu81234410beb837ac6658d264212cf7c6_94490_480x0_resize_q75_box.jpg 480w, /p/%E6%A0%91%E8%8E%93%E6%B4%BE%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB%E7%B3%BB%E7%BB%9F/media/15266442866137/15561985914641_hu81234410beb837ac6658d264212cf7c6_94490_1024x0_resize_q75_box.jpg 1024w"
+				src="/p/%E6%A0%91%E8%8E%93%E6%B4%BE%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB%E7%B3%BB%E7%BB%9F/media/15266442866137/15561985914641.jpg" width="1022" height="598" loading="lazy"
+				alt="&nbsp;">
+		</a>
+		
+	</figure></p>
+<p>云端网站图：</p>
+<p><figure>
+		<a href="/p/%E6%A0%91%E8%8E%93%E6%B4%BE%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB%E7%B3%BB%E7%BB%9F/media/15266442866137/15561984135850.jpg" data-size="1919x872">
+			<img srcset="/p/%E6%A0%91%E8%8E%93%E6%B4%BE%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB%E7%B3%BB%E7%BB%9F/media/15266442866137/15561984135850_hud7385fc6c8808f014749df9810462844_202316_480x0_resize_q75_box.jpg 480w, /p/%E6%A0%91%E8%8E%93%E6%B4%BE%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB%E7%B3%BB%E7%BB%9F/media/15266442866137/15561984135850_hud7385fc6c8808f014749df9810462844_202316_1024x0_resize_q75_box.jpg 1024w"
+				src="/p/%E6%A0%91%E8%8E%93%E6%B4%BE%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB%E7%B3%BB%E7%BB%9F/media/15266442866137/15561984135850.jpg" width="1919" height="872" loading="lazy"
+				alt="&nbsp;">
+		</a>
+		
+	</figure></p>
+<h5 id="2运行图">2.运行图</h5>
+<p><img src="media/15266449819735/Snipaste_2018-05-16_21-13-24.png" alt="Snipaste_2018-05-16_21-13-24"  /></p>
+<h5 id="3云端截图">3.云端截图</h5>
+<p><img src="media/15266449819735/Snipaste_2018-05-16_23-39-54.png" alt="Snipaste_2018-05-16_23-39-54"  /></p>
+<p><img src="media/15266449819735/Snipaste_2018-05-16_23-40-06.png" alt="Snipaste_2018-05-16_23-40-06"  /></p>
+<p><img src="media/15266449819735/Snipaste_2018-05-16_23-40-14.png" alt="Snipaste_2018-05-16_23-40-14"  /></p>
+<p><img src="media/15266449819735/Snipaste_2018-05-16_23-40-22.png" alt="Snipaste_2018-05-16_23-40-22"  /></p>
+<p><img src="media/15266449819735/Snipaste_2018-05-16_23-40-43.png" alt="Snipaste_2018-05-16_23-40-43"  /></p>
+<p><img src="media/15266449819735/Snipaste_2018-05-16_23-40-58.png" alt="Snipaste_2018-05-16_23-40-58"  /></p>
+<h1 id="开发流程">开发流程</h1>
+<blockquote>
+<p>开发流程由三部分组成，分别是 电路部分 ， 树莓派环境部分 ， 云端部分</p>
+</blockquote>
+<h2 id="i树莓派部分">I.树莓派部分</h2>
+<blockquote>
+<p>由于树莓派的相当于一个微型的计算机，但是其i/o可以很灵活的进行设置，树莓派默认所使用的系统是使用Debian的内核，所以说，包管理相当的方便，可以快速的开发和投入使用，所以可以更好的做一个嵌入式的开发，这是我们选树莓派作为硬件的开发原因。</p>
+</blockquote>
+<h3 id="1picam-开启">1.PiCam 开启</h3>
+<p>想要捕捉到外部的数据我们必须先打开树莓派的摄像头模块</p>
+<p>首先在 shell 中切换身份到 root ，这样虽然危险，但是可以减少不少的操作</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">sudo root
+</code></pre></div><p>接下来我们需要开启摄像头模块</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">raspi-config
+</code></pre></div><p><figure>
+		<a href="/p/%E6%A0%91%E8%8E%93%E6%B4%BE%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB%E7%B3%BB%E7%BB%9F/media/15266442866137/Snipaste_2018-05-17_18-58-42.png" data-size="661x425">
+			<img srcset="/p/%E6%A0%91%E8%8E%93%E6%B4%BE%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB%E7%B3%BB%E7%BB%9F/media/15266442866137/Snipaste_2018-05-17_18-58-42_hu28a8461d87320a3415da529e9212ac02_50760_480x0_resize_box_2.png 480w, /p/%E6%A0%91%E8%8E%93%E6%B4%BE%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB%E7%B3%BB%E7%BB%9F/media/15266442866137/Snipaste_2018-05-17_18-58-42_hu28a8461d87320a3415da529e9212ac02_50760_1024x0_resize_box_2.png 1024w"
+				src="/p/%E6%A0%91%E8%8E%93%E6%B4%BE%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB%E7%B3%BB%E7%BB%9F/media/15266442866137/Snipaste_2018-05-17_18-58-42.png" width="661" height="425" loading="lazy"
+				alt="Snipaste_2018-05-17_18-58-42">
+		</a>
+		
+		<figcaption>Snipaste_2018-05-17_18-58-42</figcaption>
+		
+	</figure></p>
+<p><figure>
+		<a href="/p/%E6%A0%91%E8%8E%93%E6%B4%BE%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB%E7%B3%BB%E7%BB%9F/media/15266442866137/Snipaste_2018-05-17_19-00-03.png" data-size="877x563">
+			<img srcset="/p/%E6%A0%91%E8%8E%93%E6%B4%BE%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB%E7%B3%BB%E7%BB%9F/media/15266442866137/Snipaste_2018-05-17_19-00-03_hu9822be021b6c7987dbf9376452d796aa_405625_480x0_resize_box_2.png 480w, /p/%E6%A0%91%E8%8E%93%E6%B4%BE%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB%E7%B3%BB%E7%BB%9F/media/15266442866137/Snipaste_2018-05-17_19-00-03_hu9822be021b6c7987dbf9376452d796aa_405625_1024x0_resize_box_2.png 1024w"
+				src="/p/%E6%A0%91%E8%8E%93%E6%B4%BE%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB%E7%B3%BB%E7%BB%9F/media/15266442866137/Snipaste_2018-05-17_19-00-03.png" width="877" height="563" loading="lazy"
+				alt="Snipaste_2018-05-17_19-00-03">
+		</a>
+		
+		<figcaption>Snipaste_2018-05-17_19-00-03</figcaption>
+		
+	</figure></p>
+<p>接下来重启树莓派以后，命令 <code>PiCam</code> 拍照 ，查看是否成功安装 <code>PiCam</code></p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">raspistill -o 2333.jpg -t <span class="m">2000</span>
+</code></pre></div><p>如果在 <code>/root</code> 下面可以找到一张名为 <code>2333.jpg</code> 的照片，说明安装成功</p>
+<p><figure>
+		<a href="/p/%E6%A0%91%E8%8E%93%E6%B4%BE%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB%E7%B3%BB%E7%BB%9F/media/15266442866137/Snipaste_2018-05-17_19-05-13.png" data-size="1252x875">
+			<img srcset="/p/%E6%A0%91%E8%8E%93%E6%B4%BE%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB%E7%B3%BB%E7%BB%9F/media/15266442866137/Snipaste_2018-05-17_19-05-13_hu6a92305d194c6d7415204f8bbb7450b2_615475_480x0_resize_box_2.png 480w, /p/%E6%A0%91%E8%8E%93%E6%B4%BE%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB%E7%B3%BB%E7%BB%9F/media/15266442866137/Snipaste_2018-05-17_19-05-13_hu6a92305d194c6d7415204f8bbb7450b2_615475_1024x0_resize_box_2.png 1024w"
+				src="/p/%E6%A0%91%E8%8E%93%E6%B4%BE%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB%E7%B3%BB%E7%BB%9F/media/15266442866137/Snipaste_2018-05-17_19-05-13.png" width="1252" height="875" loading="lazy"
+				alt="Snipaste_2018-05-17_19-05-13">
+		</a>
+		
+		<figcaption>Snipaste_2018-05-17_19-05-13</figcaption>
+		
+	</figure></p>
+<h3 id="2opencv环境的构建--1">2.OpenCV环境的构建  <sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></h3>
+<p>我们所使用OpenCV的版本是3.30为了避免编译参数的问题，我们选择从源代码中构建OpenCV的环境，当然在编译之前我们安装了以下包，使用apt-get可以非常方便的进行安装，在此之前，得有安装一些包，当我们编译的时候会用到包，由于我们使用编译安装的方法进行安装，所以第一步肯定是安装编译器，我们使用 <code>CMake</code></p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">sudo apt-get install build-essential cmake pkg-config
+</code></pre></div><p>我们需要安装一些图像I / O包，允许我们从磁盘加载各种图像文件格式。这种文件格式的例子包括JPEG，PNG，TIFF等：</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">sudo apt-get install libjpeg-dev libtiff5-dev libjasper-dev libpng12-dev
+</code></pre></div><p>我们也需要视频I / O包。这些库允许我们从磁盘读取各种视频文件格式，并直接处理视频流:</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">sudo apt-get install libavcodec-dev libavformat-dev libswscale-dev libv4l-dev
+sudo apt-get install libxvidcore-dev libx264-dev
+</code></pre></div><p>OpenCV库附带一个名为highgui的子模块 ，用于在屏幕上显示图像并构建基本的GUI。为了编译 highgui模块，得安装GTK开发库：</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">sudo apt-get install libgtk2.0-dev libgtk-3-dev
+</code></pre></div><p>安装一些额外的依赖关系进一步优化OpenCV的图像处理操作:</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">sudo apt-get install libatlas-base-dev gfortran
+</code></pre></div><p>最后安装Python</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">sudo apt-get install  python3-dev
+</code></pre></div><p>接下来，从OpenVC的官网下载源代码，进入项目目录，进行编译，我们已经使用在上面安装好了cmake，所以我们使用cmake进行编译,编译参数如下：</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell">cmake -D <span class="nv">CMAKE_BUILD_TYPE</span><span class="o">=</span>RELEASE <span class="se">\
+</span><span class="se"></span>    -D <span class="nv">CMAKE_INSTALL_PREFIX</span><span class="o">=</span>/usr/local <span class="se">\
+</span><span class="se"></span>    -D <span class="nv">INSTALL_PYTHON_EXAMPLES</span><span class="o">=</span>ON <span class="se">\
+</span><span class="se"></span>    -D <span class="nv">OPENCV_EXTRA_MODULES_PATH</span><span class="o">=</span>~/opencv_contrib-3.3.0/modules <span class="se">\
+</span><span class="se"></span>    -D <span class="nv">BUILD_EXAMPLES</span><span class="o">=</span>ON ..
+</code></pre></div><p><strong>我们所有的python都运行在python的虚拟cv环境中，因为python的包管理是全局的，这就导致了包混乱，当一个全局包重名的时候，就会报错，所以我们为了避免出现这种情况，选择使用cv虚拟环境，但是这个同样带来了启动速度慢的缺陷</strong></p>
+<p>当编译完成以后检查OpenCV是否编译成功，由于树莓派的RAM太小，极有可能编译失败，我们的编译大概花费了5个小时左右</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="nb">source</span> ~/.profile <span class="c1">#更新以下配置文件</span>
+workon cv         <span class="c1"># 进入cv虚拟环境中</span>
+
+python            <span class="c1"># 进入python的解释器当中查看，我们安装的是Python3</span>
+
+import cv2       <span class="c1">#使用cv2这个包</span>
+</code></pre></div><p>没有任何报错，说明编译成功了，可以正常的使用OpenCV。</p>
+<h2 id="python-部分">Ⅱ.Python 部分</h2>
+<blockquote>
+<p>使用 Python 可以快速的进行开发，在对软件的速度没有那么多的要求的时候 Python 是最好的开发语言，并且 Python 使用 <code>OpenCV</code> 库相当的简单，只需要引入 <code>CV2</code> 这个包即可，当然，本项目中所有的 Python 都按照 Python 标准执行的方法，放入了 <code>CV</code> 虚拟环境，来防止包的误用。</p>
+</blockquote>
+<h3 id="一人脸识别步骤">一.人脸识别步骤</h3>
+<h4 id="1录入信息">1.录入信息：</h4>
+<p>首先在data.txt文件里面写下需要注册用户的姓名，一行一个即可（需要回车），但每次只能注册一位用户</p>
+<p>然后通过shell命令行工具打开运行 <code>face_recognition_rigister.py</code> 文件，</p>
+<p>如图所示：</p>
+<p><figure>
+		<a href="/p/%E6%A0%91%E8%8E%93%E6%B4%BE%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB%E7%B3%BB%E7%BB%9F/media/15266442866137/Snipaste_2018-05-16_21-36-09.png" data-size="1759x896">
+			<img srcset="/p/%E6%A0%91%E8%8E%93%E6%B4%BE%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB%E7%B3%BB%E7%BB%9F/media/15266442866137/Snipaste_2018-05-16_21-36-09_hu25bd5d4cee718bfabc1c666fd5f755b9_880491_480x0_resize_box_2.png 480w, /p/%E6%A0%91%E8%8E%93%E6%B4%BE%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB%E7%B3%BB%E7%BB%9F/media/15266442866137/Snipaste_2018-05-16_21-36-09_hu25bd5d4cee718bfabc1c666fd5f755b9_880491_1024x0_resize_box_2.png 1024w"
+				src="/p/%E6%A0%91%E8%8E%93%E6%B4%BE%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB%E7%B3%BB%E7%BB%9F/media/15266442866137/Snipaste_2018-05-16_21-36-09.png" width="1759" height="896" loading="lazy"
+				alt="Snipaste_2018-05-16_21-36-09">
+		</a>
+		
+		<figcaption>Snipaste_2018-05-16_21-36-09</figcaption>
+		
+	</figure></p>
+<p>让用户对着摄像头进行训练，程序会抓取30张照片作为基础训练样本，并且使用 OpenCV 库将其转为 <code>.yml</code> 文件，于此同时，在树莓派的可视化桌面中会出现摄像头返回的画面（视频流）</p>
+<h4 id="2人脸检测">2.人脸检测</h4>
+<p>当我们拥有了用户的个人信息以后，我们就可以具有针对性的进行人脸检测了，人脸检测我们设计了非常人性化的操作方式，我们需要通过 Shell 运行 <code>face_recognition_system.py</code> 就可以运行人脸检测程序，然后接下来，我们按下显示面板中的按钮，就可以进行人脸检测了</p>
+<p><figure>
+		<a href="/p/%E6%A0%91%E8%8E%93%E6%B4%BE%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB%E7%B3%BB%E7%BB%9F/media/15266442866137/Snipaste_2018-05-16_21-38-08.png" data-size="1920x1058">
+			<img srcset="/p/%E6%A0%91%E8%8E%93%E6%B4%BE%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB%E7%B3%BB%E7%BB%9F/media/15266442866137/Snipaste_2018-05-16_21-38-08_hubd7fc4b5285ed0b4ef9a2758794579cc_1540843_480x0_resize_box_2.png 480w, /p/%E6%A0%91%E8%8E%93%E6%B4%BE%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB%E7%B3%BB%E7%BB%9F/media/15266442866137/Snipaste_2018-05-16_21-38-08_hubd7fc4b5285ed0b4ef9a2758794579cc_1540843_1024x0_resize_box_2.png 1024w"
+				src="/p/%E6%A0%91%E8%8E%93%E6%B4%BE%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB%E7%B3%BB%E7%BB%9F/media/15266442866137/Snipaste_2018-05-16_21-38-08.png" width="1920" height="1058" loading="lazy"
+				alt="Snipaste_2018-05-16_21-38-08">
+		</a>
+		
+		<figcaption>Snipaste_2018-05-16_21-38-08</figcaption>
+		
+	</figure></p>
+<p>可以看到 Python 为我们返回的 GUI 视频流。</p>
+<p>我们所涉及的检测机制为：</p>
+<blockquote>
+<p>过点击按钮使用,如果是陌生人使用，会上传陌生人信息到云端（包含陌生人图片，以及识别时间）并亮红灯；如果是已认证用户识别，则会上传签到信息到云端（包含用户图片，签到时间，用户id等等信息）并亮绿灯；如果开启后一段时间没有签到，将自动关闭摄像头；如需再次扫描，可以通过按下按钮再次进行扫描</p>
+</blockquote>
+<h3 id="二程序设计以及实现">二.程序设计以及实现</h3>
+<h4 id="110-认证功能的实现">1.1.0 认证功能的实现：</h4>
+<p>流程分析</p>
+<p><img src="https://i.loli.net/2018/05/16/5afc487a4224b.png" alt="训练.png"  /></p>
+<blockquote>
+<p>按照上面的功能我们需要一个注册功能，和一个认证功能，另外还需要对接云端的 API 接口的功能,以下代码将围绕这些进行讲述</p>
+</blockquote>
+<h5 id="111-注册用户入口文件-face_recognition_rigisterpy">1.1.1 注册用户入口文件 <code>face_recognition_rigister.py</code></h5>
+<p>首先需要进入 CV 虚拟环境，并且调用摄像头启动抓取器 <code>face_dataset.py</code> ，于是训练功能的入口文件为</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">subprocess</span>
+
+<span class="k">def</span> <span class="nf">execShellCommand</span><span class="p">(</span><span class="n">cmd</span><span class="p">):</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">(</span><span class="n">cmd</span><span class="p">,</span> <span class="n">shell</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">stdout</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">,</span> <span class="n">stderr</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">STDOUT</span><span class="p">,</span><span class="n">executable</span><span class="o">=</span><span class="s2">&#34;/bin/bash&#34;</span><span class="p">)</span>
+    <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+        <span class="n">buff</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">buff</span> <span class="o">==</span> <span class="s1">&#39;&#39;</span> <span class="ow">and</span> <span class="n">p</span><span class="o">.</span><span class="n">poll</span><span class="p">()</span> <span class="o">!=</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">break</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="vm">__name__</span><span class="o">==</span><span class="s2">&#34;__main__&#34;</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&#34;start dataset!!!&#34;</span><span class="p">)</span>
+    <span class="n">cmd</span> <span class="o">=</span> <span class="s1">&#39;source ~/.profile&#39;</span> <span class="o">+</span><span class="s1">&#39;&amp;&amp;&#39;</span> <span class="o">+</span> <span class="s1">&#39;workon cv&#39;</span>  <span class="o">+</span> <span class="s1">&#39;&amp;&amp;&#39;</span> <span class="o">+</span> <span class="s1">&#39;python face_dataset.py&#39;</span>
+    <span class="n">execShellCommand</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>
+    <span class="k">print</span><span class="p">(</span><span class="s2">&#34;OK&#34;</span><span class="p">)</span>
+
+</code></pre></div><h5 id="112-抓取器-face_datasetpy-">1.1.2 抓取器 <code>face_dataset.py </code></h5>
+<p>抓取器会开启摄像头进行拍摄，会拍摄30张训练人的图片（前提是有人脸）（共30张图片保存在当前目录下 <code>dataset</code> 文件夹里面），然后调用 <code>face_training.py</code> 里面的 <code>Training()</code> 方法对训练人的信息进行训练。</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">cv2</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">face_training</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="n">cam</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">VideoCapture</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">cam</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">640</span><span class="p">)</span> <span class="c1"># set video width</span>
+<span class="n">cam</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">480</span><span class="p">)</span> <span class="c1"># set video height</span>
+
+<span class="n">face_detector</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CascadeClassifier</span><span class="p">(</span><span class="s1">&#39;haarcascade_frontalface_default.xml&#39;</span><span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">Dataset</span><span class="p">():</span>
+    <span class="k">def</span> <span class="nf">data_set</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># For each person, enter one numeric face id</span>
+        <span class="nb">list</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="nb">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&#34;data.txt&#34;</span><span class="p">)</span>
+        <span class="k">while</span> <span class="mi">1</span><span class="p">:</span>
+          <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="mi">1</span>
+          <span class="n">line</span> <span class="o">=</span> <span class="nb">file</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
+          <span class="k">if</span> <span class="ow">not</span> <span class="n">line</span><span class="p">:</span>
+              <span class="k">break</span>
+          <span class="n">regist</span> <span class="o">=</span> <span class="n">line</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+        <span class="nb">file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="n">face_id</span> <span class="o">=</span> <span class="n">x</span> <span class="o">-</span> <span class="mi">2</span>
+        <span class="k">print</span><span class="p">(</span><span class="s2">&#34;</span><span class="se">\n</span><span class="s2"> [INFO] Initializing face capture. Look the camera and wait ...&#34;</span><span class="p">)</span>
+        <span class="c1"># Initialize individual sampling face count</span>
+        <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+
+        <span class="k">while</span><span class="p">(</span><span class="bp">True</span><span class="p">):</span>
+            <span class="n">ret</span><span class="p">,</span> <span class="n">img</span> <span class="o">=</span> <span class="n">cam</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+            <span class="n">gray</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2GRAY</span><span class="p">)</span>
+            <span class="n">faces</span> <span class="o">=</span> <span class="n">face_detector</span><span class="o">.</span><span class="n">detectMultiScale</span><span class="p">(</span><span class="n">gray</span><span class="p">,</span> <span class="mf">1.3</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+
+            <span class="k">for</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">w</span><span class="p">,</span><span class="n">h</span><span class="p">)</span> <span class="ow">in</span> <span class="n">faces</span><span class="p">:</span>
+                <span class="n">cv2</span><span class="o">.</span><span class="n">rectangle</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">),</span> <span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">w</span><span class="p">,</span><span class="n">y</span><span class="o">+</span><span class="n">h</span><span class="p">),</span> <span class="p">(</span><span class="mi">255</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="mi">2</span><span class="p">)</span>
+                <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="c1"># Save the captured image into the datasets folder</span>
+                <span class="n">cv2</span><span class="o">.</span><span class="n">imwrite</span><span class="p">(</span><span class="s2">&#34;dataset/User.&#34;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">face_id</span><span class="p">)</span> <span class="o">+</span> <span class="s1">&#39;.&#39;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">count</span><span class="p">)</span> <span class="o">+</span> <span class="s2">&#34;.jpg&#34;</span><span class="p">,</span> <span class="n">gray</span><span class="p">[</span><span class="n">y</span><span class="p">:</span><span class="n">y</span><span class="o">+</span><span class="n">h</span><span class="p">,</span><span class="n">x</span><span class="p">:</span><span class="n">x</span><span class="o">+</span><span class="n">w</span><span class="p">])</span>
+                <span class="n">cv2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="s1">&#39;image&#39;</span><span class="p">,</span> <span class="n">img</span><span class="p">)</span>
+            <span class="n">k</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">waitKey</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mh">0xff</span> <span class="c1"># Press &#39;ESC&#39; for exiting video</span>
+            <span class="k">if</span> <span class="n">k</span> <span class="o">==</span> <span class="mi">27</span><span class="p">:</span>
+                <span class="k">break</span>
+            <span class="k">elif</span> <span class="n">count</span> <span class="o">&gt;=</span> <span class="mi">30</span><span class="p">:</span> <span class="c1"># Take 30 face sample and stop video</span>
+                <span class="k">break</span>
+        <span class="c1"># Do a bit of cleanup</span>
+        <span class="k">print</span><span class="p">(</span><span class="s2">&#34;</span><span class="se">\n</span><span class="s2"> [INFO] Exiting Program and cleanup stuff&#34;</span><span class="p">)</span>
+        <span class="n">cam</span><span class="o">.</span><span class="n">release</span><span class="p">()</span>
+        <span class="n">cv2</span><span class="o">.</span><span class="n">destroyAllWindows</span><span class="p">()</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s2">&#34;start identity recognition!!!&#34;</span><span class="p">)</span>
+<span class="n">dataset</span> <span class="o">=</span> <span class="n">Dataset</span><span class="p">()</span>
+<span class="n">dataset</span><span class="o">.</span><span class="n">data_set</span><span class="p">()</span>
+<span class="n">train</span> <span class="o">=</span> <span class="n">Training</span><span class="p">()</span>
+<span class="n">train</span><span class="o">.</span><span class="n">training</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&#34;OK!!!&#34;</span><span class="p">)</span>
+
+</code></pre></div><h5 id="113-训练器-face_trainingpy">1.1.3 训练器 <code>face_training.py</code></h5>
+<p>定义 <code>Training()</code> 方法对图片进行训练，得到 <code>trainer/trainer.yml</code> 文件，以后识别的时候需要调用并进行比对。</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">cv2</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="n">recognizer</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">face</span><span class="o">.</span><span class="n">LBPHFaceRecognizer_create</span><span class="p">()</span>
+<span class="n">detector</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CascadeClassifier</span><span class="p">(</span><span class="s2">&#34;haarcascade_frontalface_default.xml&#34;</span><span class="p">);</span>
+<span class="n">path</span> <span class="o">=</span> <span class="s1">&#39;dataset&#39;</span>
+<span class="k">class</span> <span class="nc">Training</span><span class="p">():</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Path for face image database</span>
+        <span class="k">pass</span>
+    <span class="c1"># function to get the images and label data</span>
+    <span class="k">def</span> <span class="nf">getImagesAndLabels</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">imagePaths</span> <span class="o">=</span> <span class="p">[</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span><span class="n">f</span><span class="p">)</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">os</span><span class="o">.</span><span class="n">listdir</span><span class="p">(</span><span class="n">path</span><span class="p">)]</span>
+        <span class="n">faceSamples</span><span class="o">=</span><span class="p">[]</span>
+        <span class="n">ids</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="k">for</span> <span class="n">imagePath</span> <span class="ow">in</span> <span class="n">imagePaths</span><span class="p">:</span>
+            <span class="n">PIL_img</span> <span class="o">=</span> <span class="n">Image</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">imagePath</span><span class="p">)</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="s1">&#39;L&#39;</span><span class="p">)</span> <span class="c1"># convert it to grayscale</span>
+            <span class="n">img_numpy</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">PIL_img</span><span class="p">,</span><span class="s1">&#39;uint8&#39;</span><span class="p">)</span>
+            <span class="nb">id</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="n">imagePath</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&#34;.&#34;</span><span class="p">)[</span><span class="mi">1</span><span class="p">])</span>
+            <span class="n">faces</span> <span class="o">=</span> <span class="n">detector</span><span class="o">.</span><span class="n">detectMultiScale</span><span class="p">(</span><span class="n">img_numpy</span><span class="p">)</span>
+            <span class="k">for</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">w</span><span class="p">,</span><span class="n">h</span><span class="p">)</span> <span class="ow">in</span> <span class="n">faces</span><span class="p">:</span>
+                <span class="n">faceSamples</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">img_numpy</span><span class="p">[</span><span class="n">y</span><span class="p">:</span><span class="n">y</span><span class="o">+</span><span class="n">h</span><span class="p">,</span><span class="n">x</span><span class="p">:</span><span class="n">x</span><span class="o">+</span><span class="n">w</span><span class="p">])</span>
+                <span class="n">ids</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="nb">id</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">faceSamples</span><span class="p">,</span><span class="n">ids</span>
+    <span class="k">def</span> <span class="nf">training</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">print</span> <span class="p">(</span><span class="s2">&#34;</span><span class="se">\n</span><span class="s2"> [INFO] Training faces. It will take a few seconds. Wait ...&#34;</span><span class="p">)</span>
+        <span class="n">faces</span><span class="p">,</span><span class="n">ids</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">getImagesAndLabels</span><span class="p">()</span>
+        <span class="n">recognizer</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">faces</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">ids</span><span class="p">))</span>
+        <span class="c1"># Save the model into trainer/trainer.yml</span>
+        <span class="n">recognizer</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s1">&#39;trainer/trainer.yml&#39;</span><span class="p">)</span> <span class="c1"># recognizer.save() worked on Mac, but not on Pi</span>
+        <span class="c1"># Print the numer of faces trained and end program</span>
+        <span class="k">print</span><span class="p">(</span><span class="s2">&#34;</span><span class="se">\n</span><span class="s2"> [INFO] {0} faces trained. Exiting Program&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">ids</span><span class="p">))))</span>
+
+</code></pre></div><h4 id="120-人脸识别功能的实现">1.2.0 人脸识别功能的实现</h4>
+<p>流程分析
+<img src="https://i.loli.net/2018/05/16/5afc487a88af2.png" alt="识别.png"  /></p>
+<h5 id="121-扫描器-face_recognition_systempy">1.2.1 扫描器 <code>face_recognition_system.py</code></h5>
+<p>扫描器用来载入 <code>CV</code> 虚拟环境,并且调用摄像头，和加载 <code>GPIO</code> 控制文件，扫描器和上面的入口文件一样，是用来分发功能的汇总文件 。他会设定一个 <code>GPIO</code> 引脚 <code>(GPIO2)</code> ，初始设置为低电平，如果按下按钮，就会变为高电平，检测到变化，就会调用回调函数 <code>my_callback()</code> ，然后部署 <code>opencv</code> 环境并打开 <code>face_recognition.py</code> 文件，开始人脸识别。</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">import</span> <span class="nn">RPi.GPIO</span> <span class="kn">as</span> <span class="nn">GPIO</span>
+<span class="kn">import</span> <span class="nn">subprocess</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="k">def</span> <span class="nf">execShellCommand</span><span class="p">(</span><span class="n">cmd</span><span class="p">):</span>
+    <span class="n">p</span> <span class="o">=</span> <span class="n">subprocess</span><span class="o">.</span><span class="n">Popen</span><span class="p">(</span><span class="n">cmd</span><span class="p">,</span> <span class="n">shell</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">stdout</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">PIPE</span><span class="p">,</span> <span class="n">stderr</span><span class="o">=</span><span class="n">subprocess</span><span class="o">.</span><span class="n">STDOUT</span><span class="p">,</span><span class="n">executable</span><span class="o">=</span><span class="s2">&#34;/bin/bash&#34;</span><span class="p">)</span>
+    <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+        <span class="n">buff</span> <span class="o">=</span> <span class="n">p</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">buff</span> <span class="o">==</span> <span class="s1">&#39;&#39;</span> <span class="ow">and</span> <span class="n">p</span><span class="o">.</span><span class="n">poll</span><span class="p">()</span> <span class="o">!=</span> <span class="bp">None</span><span class="p">:</span>
+            <span class="k">break</span>
+    <span class="n">p</span><span class="o">.</span><span class="n">wait</span><span class="p">()</span>
+
+<span class="k">def</span> <span class="nf">my_callback</span><span class="p">():</span>
+    <span class="k">print</span><span class="p">(</span><span class="s1">&#39;start recognition!!!&#39;</span><span class="p">)</span>
+    <span class="n">cmd</span> <span class="o">=</span> <span class="s1">&#39;source ~/.profile&#39;</span> <span class="o">+</span><span class="s1">&#39;&amp;&amp;&#39;</span> <span class="o">+</span> <span class="s1">&#39;workon cv&#39;</span>  <span class="o">+</span> <span class="s1">&#39;&amp;&amp;&#39;</span> <span class="o">+</span> <span class="s1">&#39;python face_recognition.py&#39;</span>
+    <span class="n">execShellCommand</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>
+
+<span class="n">GPIO_PIN</span> <span class="o">=</span> <span class="mi">24</span>
+<span class="n">GPIO</span><span class="o">.</span><span class="n">setmode</span><span class="p">(</span><span class="n">GPIO</span><span class="o">.</span><span class="n">BCM</span><span class="p">)</span>
+<span class="n">GPIO</span><span class="o">.</span><span class="n">setup</span><span class="p">(</span><span class="n">GPIO_PIN</span><span class="p">,</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">IN</span><span class="p">,</span> <span class="n">pull_up_down</span><span class="o">=</span><span class="n">GPIO</span><span class="o">.</span><span class="n">PUD_DOWN</span><span class="p">)</span>
+
+<span class="k">try</span><span class="p">:</span>
+    <span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+        <span class="k">if</span><span class="p">(</span><span class="n">GPIO</span><span class="o">.</span><span class="n">input</span><span class="p">(</span><span class="n">GPIO_PIN</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="n">my_callback</span><span class="p">()</span>
+            <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">0.1</span><span class="p">)</span>
+<span class="k">except</span><span class="p">:</span>
+    <span class="k">pass</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&#34;exit...&#34;</span><span class="p">)</span>
+<span class="n">GPIO</span><span class="o">.</span><span class="n">cleanup</span><span class="p">()</span>
+
+</code></pre></div><h5 id="122-中心调控器-face_recognitionpy">1.2.2 中心调控器 <code>face_recognition.py</code></h5>
+<p>该文件是整个项目最重要的文件（没有之一），设定<strong>13号和15号</strong> <code>GPIO</code> 口，连接小灯泡（为了实现亮灯的操作）。开启摄像头，循环对抓拍的图片进行判断（与 <code>trainer/trainer.yml</code> 进行对比），如果获取的相似程度大于<strong><code>50%</code></strong>并且次数超过 <strong><code>10次</code></strong> ，就表示该用户为已认证用户，通过，将上传信息到云端并亮绿灯，如果持续轮询有 <strong><code>100</code></strong>次识别程度均低于<strong><code>0</code></strong> ，就表示该用户为未认证用户，将上传信息到云端并亮红灯。如果长时间没有人脸，就关闭摄像头。其中需要调用 <code>encrypt.py</code> 里面的 <code>Encrypt()</code> 方法生成云端认证通过的 <code>token</code>(详情请看云端部分对于 <code>token</code> 的说明)。</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="kn">from</span> <span class="nn">PIL</span> <span class="kn">import</span> <span class="n">Image</span>
+<span class="kn">import</span> <span class="nn">cv2</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">encrypt</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">pycurl</span>
+<span class="kn">import</span> <span class="nn">base64</span>
+<span class="kn">import</span> <span class="nn">RPi.GPIO</span> <span class="kn">as</span> <span class="nn">GPIO</span>
+
+<span class="n">GPIO</span><span class="o">.</span><span class="n">setmode</span><span class="p">(</span><span class="n">GPIO</span><span class="o">.</span><span class="n">BOARD</span><span class="p">)</span>
+<span class="n">GPIO</span><span class="o">.</span><span class="n">setup</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">OUT</span><span class="p">)</span>
+<span class="n">GPIO</span><span class="o">.</span><span class="n">setup</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="n">GPIO</span><span class="o">.</span><span class="n">OUT</span><span class="p">)</span>
+
+<span class="n">recognizer</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">face</span><span class="o">.</span><span class="n">LBPHFaceRecognizer_create</span><span class="p">()</span>
+<span class="n">recognizer</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="s1">&#39;trainer/trainer.yml&#39;</span><span class="p">)</span>
+<span class="n">cascadePath</span> <span class="o">=</span> <span class="s2">&#34;haarcascade_frontalface_default.xml&#34;</span>
+<span class="n">faceCascade</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">CascadeClassifier</span><span class="p">(</span><span class="n">cascadePath</span><span class="p">);</span>
+
+<span class="n">font</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">FONT_HERSHEY_SIMPLEX</span>
+
+<span class="c1">#iniciate id counter</span>
+<span class="nb">id</span> <span class="o">=</span> <span class="mi">0</span>
+
+<span class="nb">list</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">xid</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="c1">#name = input(&#34;please input data name:&#34;)</span>
+<span class="nb">file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&#34;data.txt&#34;</span><span class="p">)</span>
+<span class="k">while</span> <span class="mi">1</span><span class="p">:</span>
+  <span class="n">xid</span> <span class="o">=</span> <span class="n">xid</span> <span class="o">+</span> <span class="mi">1</span>
+  <span class="n">line</span> <span class="o">=</span> <span class="nb">file</span><span class="o">.</span><span class="n">readline</span><span class="p">()</span>
+  <span class="k">if</span> <span class="ow">not</span> <span class="n">line</span><span class="p">:</span>
+      <span class="k">break</span>
+  <span class="nb">list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">line</span><span class="p">)</span> <span class="c1"># do something</span>
+<span class="nb">file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+
+<span class="n">names</span> <span class="o">=</span> <span class="nb">list</span>
+<span class="c1"># Initialize and start realtime video capture</span>
+<span class="n">cam</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">VideoCapture</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">cam</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">640</span><span class="p">)</span> <span class="c1"># set video widht</span>
+<span class="n">cam</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">480</span><span class="p">)</span> <span class="c1"># set video height</span>
+
+<span class="n">size</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="n">unsize</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="c1"># Define min window size to be recognized as a face</span>
+<span class="n">minW</span> <span class="o">=</span> <span class="mf">0.1</span><span class="o">*</span><span class="n">cam</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">minH</span> <span class="o">=</span> <span class="mf">0.1</span><span class="o">*</span><span class="n">cam</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;None&#39;</span>
+
+<span class="k">while</span> <span class="bp">True</span><span class="p">:</span>
+    <span class="n">ret</span><span class="p">,</span> <span class="n">img</span> <span class="o">=</span><span class="n">cam</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+    <span class="c1">#img = cv2.flip(img, -1) # Flip vertically</span>
+    <span class="n">gray</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">img</span><span class="p">,</span><span class="n">cv2</span><span class="o">.</span><span class="n">COLOR_BGR2GRAY</span><span class="p">)</span>
+    <span class="n">faces</span> <span class="o">=</span> <span class="n">faceCascade</span><span class="o">.</span><span class="n">detectMultiScale</span><span class="p">(</span>
+        <span class="n">gray</span><span class="p">,</span>
+        <span class="n">scaleFactor</span> <span class="o">=</span> <span class="mf">1.2</span><span class="p">,</span>
+        <span class="n">minNeighbors</span> <span class="o">=</span> <span class="mi">5</span><span class="p">,</span>
+        <span class="n">minSize</span> <span class="o">=</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">minW</span><span class="p">),</span> <span class="nb">int</span><span class="p">(</span><span class="n">minH</span><span class="p">)),</span>
+       <span class="p">)</span>
+    <span class="k">if</span> <span class="nb">str</span><span class="p">(</span><span class="n">faces</span><span class="p">)</span> <span class="o">==</span> <span class="s1">&#39;()&#39;</span><span class="p">:</span>
+        <span class="n">unsize</span> <span class="o">=</span> <span class="n">unsize</span> <span class="o">+</span><span class="mi">1</span>
+
+    <span class="k">for</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">w</span><span class="p">,</span><span class="n">h</span><span class="p">)</span> <span class="ow">in</span> <span class="n">faces</span><span class="p">:</span>
+
+        <span class="n">cv2</span><span class="o">.</span><span class="n">rectangle</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">),</span> <span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">w</span><span class="p">,</span><span class="n">y</span><span class="o">+</span><span class="n">h</span><span class="p">),</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">255</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="mi">2</span><span class="p">)</span>
+
+        <span class="nb">id</span><span class="p">,</span> <span class="n">confidence</span> <span class="o">=</span> <span class="n">recognizer</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">gray</span><span class="p">[</span><span class="n">y</span><span class="p">:</span><span class="n">y</span><span class="o">+</span><span class="n">h</span><span class="p">,</span><span class="n">x</span><span class="p">:</span><span class="n">x</span><span class="o">+</span><span class="n">w</span><span class="p">])</span>
+
+        <span class="c1"># Check if confidence is less them 100 ==&gt; &#34;0&#34; is perfect match</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">confidence</span> <span class="o">&lt;</span> <span class="mi">100</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">confidence</span> <span class="o">&lt;</span> <span class="mi">60</span><span class="p">:</span>
+                <span class="n">size</span> <span class="o">=</span> <span class="n">size</span> <span class="o">+</span> <span class="mi">1</span>
+                <span class="n">name</span> <span class="o">=</span> <span class="n">names</span><span class="p">[</span><span class="nb">id</span><span class="p">][</span><span class="mi">0</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">real_id</span> <span class="o">=</span> <span class="nb">id</span>
+            <span class="nb">id</span> <span class="o">=</span> <span class="n">names</span><span class="p">[</span><span class="nb">id</span><span class="p">]</span>
+
+            <span class="n">confidence</span> <span class="o">=</span> <span class="s2">&#34;  {0}%&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="mi">100</span> <span class="o">-</span> <span class="n">confidence</span><span class="p">))</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">id</span> <span class="o">=</span> <span class="s2">&#34;unknown&#34;</span>
+            <span class="n">unsize</span> <span class="o">=</span> <span class="n">unsize</span> <span class="o">+</span> <span class="mi">1</span>
+            <span class="n">confidence</span> <span class="o">=</span> <span class="s2">&#34;  {0}%&#34;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">round</span><span class="p">(</span><span class="mi">100</span> <span class="o">-</span> <span class="n">confidence</span><span class="p">))</span>
+
+        <span class="n">cv2</span><span class="o">.</span><span class="n">putText</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="nb">id</span><span class="p">),</span> <span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">5</span><span class="p">,</span><span class="n">y</span><span class="o">-</span><span class="mi">5</span><span class="p">),</span> <span class="n">font</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="mi">255</span><span class="p">,</span><span class="mi">255</span><span class="p">,</span><span class="mi">255</span><span class="p">),</span> <span class="mi">2</span><span class="p">)</span>
+        <span class="n">cv2</span><span class="o">.</span><span class="n">putText</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">confidence</span><span class="p">),</span> <span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="mi">5</span><span class="p">,</span><span class="n">y</span><span class="o">+</span><span class="n">h</span><span class="o">-</span><span class="mi">5</span><span class="p">),</span> <span class="n">font</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="mi">255</span><span class="p">,</span><span class="mi">255</span><span class="p">,</span><span class="mi">0</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span>
+
+    <span class="n">cv2</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="s1">&#39;camera&#39;</span><span class="p">,</span><span class="n">img</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">unsize</span><span class="o">&gt;</span><span class="mi">100</span><span class="p">:</span>
+        <span class="n">date</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()))</span>
+        <span class="n">cv2</span><span class="o">.</span><span class="n">imwrite</span><span class="p">(</span><span class="s2">&#34;unknown/User.unknown.&#34;</span> <span class="o">+</span> <span class="n">date</span> <span class="o">+</span> <span class="s2">&#34;.jpg&#34;</span><span class="p">,</span><span class="n">gray</span><span class="p">[</span><span class="n">y</span><span class="p">:</span><span class="n">y</span><span class="o">+</span><span class="n">h</span><span class="p">,</span><span class="n">x</span><span class="p">:</span><span class="n">x</span><span class="o">+</span><span class="n">w</span><span class="p">])</span>
+        <span class="n">encrypt_ing</span> <span class="o">=</span> <span class="n">Encrypt</span><span class="p">()</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;https://face.0w0.tn/?m=admin&amp;c=Api&amp;a=getData&#39;</span>
+        <span class="n">url_p</span><span class="o">=</span> <span class="s1">&#39;https://face.0w0.tn/?m=admin&amp;c=Api&amp;a=getPicture&#39;</span>
+        <span class="c1">#post unknown user message json</span>
+        <span class="n">s</span> <span class="o">=</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">({</span><span class="s2">&#34;user_id&#34;</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="s2">&#34;user_pic&#34;</span><span class="p">:</span><span class="s2">&#34;unknow:&#34;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">encrypt_ing</span><span class="o">.</span><span class="n">get_time</span><span class="p">()),</span><span class="s2">&#34;user_name&#34;</span><span class="p">:</span><span class="s1">&#39;unknown&#39;</span><span class="p">,</span><span class="s2">&#34;time&#34;</span><span class="p">:</span><span class="n">encrypt_ing</span><span class="o">.</span><span class="n">get_time</span><span class="p">(),</span><span class="s2">&#34;token&#34;</span><span class="p">:</span><span class="n">encrypt_ing</span><span class="o">.</span><span class="n">encrypting</span><span class="p">(),</span><span class="s2">&#34;status&#34;</span><span class="p">:</span><span class="mi">0</span><span class="p">})</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span><span class="n">data</span> <span class="o">=</span> <span class="n">s</span><span class="p">)</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="c1">#post picture</span>
+        <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&#34;unknown/User.unknown.&#34;</span> <span class="o">+</span> <span class="n">date</span> <span class="o">+</span> <span class="s2">&#34;.jpg&#34;</span><span class="p">,</span> <span class="s2">&#34;rb&#34;</span><span class="p">)</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url_p</span><span class="p">,</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+        <span class="n">f</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="n">GPIO</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">GPIO</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="k">break</span><span class="p">;</span>
+    <span class="k">if</span> <span class="n">size</span> <span class="o">&gt;</span><span class="mi">10</span><span class="p">:</span>
+        <span class="n">encrypt_ing</span> <span class="o">=</span> <span class="n">Encrypt</span><span class="p">()</span>
+        <span class="n">url</span> <span class="o">=</span> <span class="sa">r</span><span class="s1">&#39;https://face.0w0.tn/?m=admin&amp;c=Api&amp;a=getData&#39;</span>
+        <span class="n">s</span> <span class="o">=</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">({</span><span class="s2">&#34;user_id&#34;</span><span class="p">:</span><span class="n">real_id</span><span class="p">,</span><span class="s2">&#34;user_pic&#34;</span><span class="p">:</span><span class="s2">&#34;admin:&#34;</span><span class="p">,</span><span class="s2">&#34;user_name&#34;</span><span class="p">:</span><span class="n">name</span><span class="p">,</span><span class="s2">&#34;time&#34;</span><span class="p">:</span><span class="n">encrypt_ing</span><span class="o">.</span><span class="n">get_time</span><span class="p">(),</span><span class="s2">&#34;token&#34;</span><span class="p">:</span><span class="n">encrypt_ing</span><span class="o">.</span><span class="n">encrypting</span><span class="p">(),</span><span class="s2">&#34;status&#34;</span><span class="p">:</span><span class="mi">1</span><span class="p">})</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="p">,</span><span class="n">data</span> <span class="o">=</span> <span class="n">s</span><span class="p">)</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">url_p</span> <span class="o">=</span> <span class="s1">&#39;https://face.0w0.tn/?m=admin&amp;c=Api&amp;a=getPicture&#39;</span>
+        <span class="n">f</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&#34;dataset/User.&#34;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">real_id</span><span class="p">)</span> <span class="o">+</span>  <span class="s2">&#34;.10.jpg&#34;</span><span class="p">,</span> <span class="s2">&#34;rb&#34;</span><span class="p">)</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url_p</span><span class="p">,</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+        <span class="n">GPIO</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">GPIO</span><span class="o">.</span><span class="n">output</span><span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+        <span class="c1">#print(str(r))</span>
+        <span class="k">break</span>
+
+    <span class="n">k</span> <span class="o">=</span> <span class="n">cv2</span><span class="o">.</span><span class="n">waitKey</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span> <span class="o">&amp;</span> <span class="mh">0xff</span> <span class="c1"># Press &#39;ESC&#39; for exiting video</span>
+    <span class="k">if</span> <span class="n">k</span> <span class="o">==</span> <span class="mi">27</span><span class="p">:</span>
+        <span class="k">break</span>
+
+<span class="c1"># Do a bit of cleanup</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&#34;</span><span class="se">\n</span><span class="s2"> [INFO] Exiting Program and cleanup stuff&#34;</span><span class="p">)</span>
+<span class="n">cam</span><span class="o">.</span><span class="n">release</span><span class="p">()</span>
+<span class="n">GPIO</span><span class="o">.</span><span class="n">cleanup</span><span class="p">()</span>
+<span class="n">cv2</span><span class="o">.</span><span class="n">destroyAllWindows</span><span class="p">()</span>
+</code></pre></div><h5 id="123-加密器-encryptpy">1.2.3 加密器 <code>encrypt.py</code></h5>
+<p>使用和云端对应的加密方式生成token</p>
+<div class="highlight"><pre class="chroma"><code class="language-python" data-lang="python"><span class="ch">#!/usr/bin/python</span>
+<span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">hashlib</span>
+
+<span class="n">time</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()))</span>
+<span class="c1">#time = str(1524213154)</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">md5</span><span class="p">()</span>
+<span class="n">data</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">time</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">))</span>
+<span class="n">data</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span>
+
+<span class="n">key</span> <span class="o">=</span> <span class="s2">&#34;thisisatest&#34;</span>
+<span class="n">h1</span> <span class="o">=</span> <span class="n">hashlib</span><span class="o">.</span><span class="n">md5</span><span class="p">()</span>
+<span class="n">h1</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">key</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="n">encoding</span><span class="o">=</span><span class="s1">&#39;utf-8&#39;</span><span class="p">))</span>
+
+<span class="k">class</span> <span class="nc">Encrypt</span><span class="p">():</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">char</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">str</span> <span class="o">=</span> <span class="s2">&#34;&#34;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">key</span> <span class="o">=</span> <span class="n">h1</span><span class="o">.</span><span class="n">hexdigest</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">encrypting</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">char</span> <span class="o">=</span> <span class="n">data</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">key</span> <span class="o">+</span> <span class="n">data</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">char</span>
+
+    <span class="k">def</span> <span class="nf">get_time</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">time</span><span class="p">)</span>
+
+<span class="c1">#e = Encrypt()</span>
+<span class="c1">#print(e.encrypting())</span>
+</code></pre></div><p>以上为所有的核心文件和识别过程</p>
+<h3 id="三-树状图说明">三. 树状图说明</h3>
+<pre><code>FacialRecognition
+├── cv2.so						#OpenCV 编译完成的文件，作为包引入
+├── dataset						#抓取器抓取的图片存放到这里
+├── data.txt					#注册用户的信息
+├── encrypt.py					#加密器，生成 token 对接云端
+├── face_dataset.py				#抓取器，抓取用户脸部信息保存为图片
+├── face_recognition.py			#中心控制器，GPIO 设定，上传云端
+├── face_recognition_rigister.py		#注册入口文件，引入各种器
+├── face_recognition_system.py			#识别入口文件，扫描器，同样引入各种器
+├── face_training.py					#训练器，转化图片为 yml 文件用于识别
+├── haarcascade_frontalface_default.xml  	#人脸识别特征库
+├── __pycache__ 						#Python 编译的文件
+│   ├── encrypt.cpython-35.pyc
+│   ├── face_dataset.cpython-35.pyc
+│   ├── face_recognition.cpython-35.pyc
+│   └── face_training.cpython-35.pyc
+├── RPi.GPIO							#GPIO 库
+├── trainer								#训练器训练出来的 yml 文件存放地址
+└── unknown								#非法用户的抓拍的图片
+    ├── User.unknown.1526466123.jpg
+    └── User.unknown.1526475987.jpg
+
+</code></pre><h2 id="电路部分">Ⅲ电路部分</h2>
+<h3 id="1树莓派引脚应用">1.树莓派引脚应用</h3>
+<p><figure>
+		<a href="/p/%E6%A0%91%E8%8E%93%E6%B4%BE%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB%E7%B3%BB%E7%BB%9F/media/15266442866137/Snipaste_2018-05-17_19-13-59.png" data-size="509x578">
+			<img srcset="/p/%E6%A0%91%E8%8E%93%E6%B4%BE%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB%E7%B3%BB%E7%BB%9F/media/15266442866137/Snipaste_2018-05-17_19-13-59_hu07c10233f82bccd800ac185b59ba8fec_175720_480x0_resize_box_2.png 480w, /p/%E6%A0%91%E8%8E%93%E6%B4%BE%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB%E7%B3%BB%E7%BB%9F/media/15266442866137/Snipaste_2018-05-17_19-13-59_hu07c10233f82bccd800ac185b59ba8fec_175720_1024x0_resize_box_2.png 1024w"
+				src="/p/%E6%A0%91%E8%8E%93%E6%B4%BE%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB%E7%B3%BB%E7%BB%9F/media/15266442866137/Snipaste_2018-05-17_19-13-59.png" width="509" height="578" loading="lazy"
+				alt="Snipaste_2018-05-17_19-13-59">
+		</a>
+		
+		<figcaption>Snipaste_2018-05-17_19-13-59</figcaption>
+		
+	</figure></p>
+<h3 id="2电路设计">2.电路设计</h3>
+<p>一共有三个回路:</p>
+<p>回路一: 控制树莓派摄像头开关，一旦该回路检测到高低点位的变化，树莓派摄像头自动开启并开始检测人脸；</p>
+<p>回路二: 绿灯（发光二极管）显示回路，一旦识别成功则通以电流，绿灯发光；</p>
+<p>回路三: 红灯（发光二极管）显示回路，一旦识别失败达到一定次数则通以电流，红灯发光。</p>
+<p>所有的代码实现，请看 Python 部分中的 <strong>中心调控器 <code>face_recognition.py</code></strong></p>
+<p>接下来需要连接电路</p>
+<p><img src="media/15266442866137/%E6%9C%AA%E6%A0%87%E9%A2%98-1.png" alt="未标题-1"  /></p>
+<h3 id="3具体应用">3.具体应用</h3>
+<p>1.作为智能家居的总控器，在本次项目中，此电路只能作为电子锁部分的模拟，实现人脸识别&quot;电子锁&quot;的开或者关闭</p>
+<h3 id="4后续改进">4.后续改进</h3>
+<ol>
+<li>将传统开关转换为语音识别模块，通过对声纹的识别来启动摄像头，来达到快速启动树莓派模块并控制电子锁最终实现人脸识别的电子锁；在程序方面加入信息发送模块，若多次识别失败，通过网络及时通知使用者以及时防范。</li>
+<li>将绿色发光二极管转换为WiFi发射器，通过人脸识别进行开关解锁后（防止其他人通过语音控制家用设备），通过对声纹的识别进而控制家中的电子设备，例如空调、电视、窗帘等，从而实现智能家居的实现。</li>
+<li>增加指纹模块，进行二次验证</li>
+<li>增添真正的电子锁</li>
+</ol>
+<h2 id="-云端部分">Ⅳ 云端部分</h2>
+<blockquote>
+<p>云端的部分我们使用php作为web开发语言，使用MVC架构进行开发，可以很方便的扩充功能，仅仅只是用了连个第三方库，其他的代码全部是自己完成。</p>
+</blockquote>
+<h3 id="一需求分析">一.需求分析</h3>
+<ol>
+<li>管理员需要登录查看信息</li>
+<li>管理员可以注册</li>
+<li>管理员可以重置密码</li>
+<li>树莓派将数据同步到网站</li>
+<li>当有人进行非法扫描的时候，保存其信息，并且发邮件/短信通知用户</li>
+<li>数据汇总统计</li>
+<li>数据的增删查改</li>
+</ol>
+<h3 id="二设计数据库">二.设计数据库</h3>
+<blockquote>
+<p>数据库我们使用mysql,并且mysql版本不小于5.5，在本次数据库设计中，所有提到的表的Mysql引擎为 <code>MyISA</code> 编码为 <code>utf-8</code></p>
+</blockquote>
+<h4 id="1管理员表">1.管理员表</h4>
+<p>为了满足上述需求分析中的管理员登录、重置密码、注册，我们需要设计管理员表  <code>face_admin</code></p>
+<p>设计表格：</p>
+<table>
+<thead>
+<tr>
+<th>字段名称</th>
+<th>字段类型</th>
+<th>额外信息</th>
+<th>解释说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>admin_id</td>
+<td>INT</td>
+<td>主键、自增长</td>
+<td>管理员的ID</td>
+</tr>
+<tr>
+<td>name</td>
+<td>VARCHAR（16）</td>
+<td>无</td>
+<td>管理员登录所使用的用户名</td>
+</tr>
+<tr>
+<td>password</td>
+<td>VARCHAR（128）</td>
+<td>无</td>
+<td>密码</td>
+</tr>
+<tr>
+<td>email</td>
+<td>VARCHAR(32)</td>
+<td>无</td>
+<td>注册邮箱</td>
+</tr>
+<tr>
+<td>avatar</td>
+<td>VARCHAR</td>
+<td>无</td>
+<td>头像图片位置连接</td>
+</tr>
+<tr>
+<td>is_active</td>
+<td>INT</td>
+<td>无</td>
+<td>管理员账号是否激活</td>
+</tr>
+<tr>
+<td>reg_time</td>
+<td>INT</td>
+<td>无</td>
+<td>管理员注册时间</td>
+</tr>
+</tbody>
+</table>
+<p>对应的创建该表的Sql语句是</p>
+<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="o">`</span><span class="n">face_admin</span><span class="o">`</span> <span class="p">(</span>
+  <span class="o">`</span><span class="n">admin_id</span><span class="o">`</span> <span class="nb">int</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span> <span class="n">unsigned</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="n">AUTO_INCREMENT</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">name</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">16</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">DEFAULT</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">password</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">32</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">DEFAULT</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">active_code</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">128</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">DEFAULT</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">email</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">32</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">DEFAULT</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">avatar</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">128</span><span class="p">)</span> <span class="k">DEFAULT</span> <span class="k">NULL</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">is_active</span><span class="o">`</span> <span class="nb">int</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">DEFAULT</span> <span class="s1">&#39;0&#39;</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">reg_time</span><span class="o">`</span> <span class="nb">int</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+  <span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="p">(</span><span class="o">`</span><span class="n">admin_id</span><span class="o">`</span><span class="p">)</span>
+<span class="p">)</span> <span class="n">ENGINE</span><span class="o">=</span><span class="n">MyISAM</span> <span class="n">AUTO_INCREMENT</span><span class="o">=</span><span class="mi">10</span> <span class="k">DEFAULT</span> <span class="n">CHARSET</span><span class="o">=</span><span class="n">utf8mb4</span><span class="p">;</span>
+</code></pre></div><h4 id="2注册用户表">2.注册用户表</h4>
+<p>此表用来记录在树莓派中存有脸部训练数据的用户，这些用户的信息会在云端展示出来，并且用户不是管理员，无法登录到云端查看消息，此表名为 <code>face_admin</code></p>
+<p>设计表格：</p>
+<table>
+<thead>
+<tr>
+<th>字段名称</th>
+<th>字段类型</th>
+<th>额外信息</th>
+<th>解释说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>user_id</td>
+<td>INT</td>
+<td>主键、自增长</td>
+<td>用户的ID</td>
+</tr>
+<tr>
+<td>user_name</td>
+<td>VARCHAR（128）</td>
+<td>无</td>
+<td>用户名</td>
+</tr>
+</tbody>
+</table>
+<p>对应的创建此表的Sql语句为</p>
+<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="o">`</span><span class="n">face_register_user</span><span class="o">`</span> <span class="p">(</span>
+  <span class="o">`</span><span class="n">user_id</span><span class="o">`</span> <span class="nb">int</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span> <span class="n">unsigned</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">user_name</span><span class="o">`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">128</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="k">DEFAULT</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+  <span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="p">(</span><span class="o">`</span><span class="n">user_id</span><span class="o">`</span><span class="p">)</span>
+<span class="p">)</span> <span class="n">ENGINE</span><span class="o">=</span><span class="n">MyISAM</span> <span class="k">DEFAULT</span> <span class="n">CHARSET</span><span class="o">=</span><span class="n">utf8mb4</span><span class="p">;</span>
+</code></pre></div><h4 id="3扫描记录表">3.扫描记录表</h4>
+<p>此表用于记录所有的扫描信息，无论是成功也后失败也罢，所有的尝试进行过人脸识别的行为都会被记录在这张表当中，此表名为 <code>face_san</code></p>
+<p>设计表格：</p>
+<table>
+<thead>
+<tr>
+<th>字段名称</th>
+<th>字段类型</th>
+<th>额外信息</th>
+<th>解释说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>scan_id</td>
+<td>INT</td>
+<td>主键、自增长</td>
+<td>扫描的id，主要用于查询</td>
+</tr>
+<tr>
+<td>status</td>
+<td>INT</td>
+<td>无</td>
+<td>扫描状态，1为人脸识别成功，0为不成功</td>
+</tr>
+<tr>
+<td>scan_time</td>
+<td>INT</td>
+<td>无</td>
+<td>扫描时间</td>
+</tr>
+<tr>
+<td>scan_pic</td>
+<td>TEXT</td>
+<td>无</td>
+<td>抓拍人脸图片的地址</td>
+</tr>
+<tr>
+<td>user_id</td>
+<td>INT</td>
+<td>无</td>
+<td>认证用户的用户id，作为外键进行查询</td>
+</tr>
+</tbody>
+</table>
+<p>对应创建此表的Sql语句为</p>
+<div class="highlight"><pre class="chroma"><code class="language-sql" data-lang="sql"><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="o">`</span><span class="n">face_scan</span><span class="o">`</span> <span class="p">(</span>
+  <span class="o">`</span><span class="n">scan_id</span><span class="o">`</span> <span class="nb">int</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span> <span class="n">unsigned</span> <span class="k">NOT</span> <span class="k">NULL</span> <span class="n">AUTO_INCREMENT</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">status</span><span class="o">`</span> <span class="nb">int</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">scan_time</span><span class="o">`</span> <span class="nb">int</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">scan_pic</span><span class="o">`</span> <span class="nb">text</span><span class="p">,</span>
+  <span class="o">`</span><span class="n">user_id</span><span class="o">`</span> <span class="nb">int</span><span class="p">(</span><span class="mi">11</span><span class="p">)</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+  <span class="k">PRIMARY</span> <span class="k">KEY</span> <span class="p">(</span><span class="o">`</span><span class="n">scan_id</span><span class="o">`</span><span class="p">)</span>
+<span class="p">)</span> <span class="n">ENGINE</span><span class="o">=</span><span class="n">MyISAM</span> <span class="n">AUTO_INCREMENT</span><span class="o">=</span><span class="mi">144</span> <span class="k">DEFAULT</span> <span class="n">CHARSET</span><span class="o">=</span><span class="n">utf8mb4</span><span class="p">;</span>
+</code></pre></div><h3 id="三程序设计">三.程序设计</h3>
+<blockquote>
+<p>使用MVC架构，即Model ，View ，Controller</p>
+</blockquote>
+<p>由于程序设计设计的概念太多，我只能选出这次项目的重点进行说明</p>
+<h4 id="1自动加载">1.自动加载</h4>
+<p>遵循 <code>PSR-0</code> 自动加载规范，不用 <code>composer</code> 所提供的自动加载，全部用自己的代码实现</p>
+<p>流程图如下</p>
+<p>具体代码参考 <code>framework\core\Framework.class.php</code>
+<a class="link" href="https://i.loli.net/2018/04/07/5ac899a7b0823.png"  target="_blank" rel="noopener"
+    ><img src="https://i.loli.net/2018/04/07/5ac899a7b0823.png" alt="自动加载机制.png"  /></a></p>
+<h4 id="2api-交互接口">2.API 交互接口</h4>
+<p>我们编写了云端的API接口，用于树莓派和云端进行数据的交互同步。
+Api接口是云端控制台的重中之重，是进行数据交互的关键。</p>
+<p><a class="link" href="https://i.loli.net/2018/05/10/5af3e79b33e7b.png"  target="_blank" rel="noopener"
+    ><img src="https://i.loli.net/2018/05/10/5af3e79b33e7b.png" alt="Api.png"  /></a></p>
+<p>上面流程图中所用到的 <code>JSON</code> <strong>未认证的用户</strong> 的标准格式为</p>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+	<span class="nt">&#34;user_id&#34;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>			<span class="err">#</span> <span class="err">如果是非法用户，全部定为0</span>
+	<span class="nt">&#34;user_pic&#34;</span><span class="p">:</span> <span class="s2">&#34;https:\/\/xxxxxxxx&#34;</span><span class="p">,</span>
+	<span class="nt">&#34;user_name&#34;</span><span class="p">:</span> <span class="s2">&#34;Unknow&#34;</span><span class="p">,</span>  <span class="err">#</span> <span class="err">如果是非法用户，全部定为Unknow</span>
+	<span class="nt">&#34;time&#34;</span><span class="p">:</span> <span class="mi">1523202206</span><span class="p">,</span>
+	<span class="nt">&#34;token&#34;</span><span class="p">:</span> <span class="s2">&#34;b47cc11f9e01d216bf35154f57d63655f830f69d23b8224b512a0dc2f5aec974b47cc11f9e01d216bf35154f57d63655&#34;</span><span class="p">,</span>
+	<span class="nt">&#34;status&#34;</span><span class="p">:</span> <span class="s2">&#34;0&#34;</span>			<span class="err">#</span> <span class="err">如果是非法用户，全部定为</span><span class="mi">0</span>
+<span class="p">}</span>
+</code></pre></div><p>上面流程图中所用到的 <code>JSON</code> <strong>认证的用户</strong> 的标准格式为</p>
+<div class="highlight"><pre class="chroma"><code class="language-json" data-lang="json"><span class="p">{</span>
+	<span class="nt">&#34;user_id&#34;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>			<span class="err">#树莓派中的用户ID</span>
+	<span class="nt">&#34;user_pic&#34;</span><span class="p">:</span> <span class="s2">&#34;https:\/\/xxxxxxxx&#34;</span><span class="p">,</span>
+	<span class="nt">&#34;user_name&#34;</span><span class="p">:</span> <span class="s2">&#34;XiaoMing&#34;</span><span class="p">,</span>
+	<span class="nt">&#34;time&#34;</span><span class="p">:</span> <span class="mi">1523202212</span><span class="p">,</span>
+	<span class="nt">&#34;token&#34;</span><span class="p">:</span> <span class="s2">&#34;b47cc11f9e01d216bf35154f57d63655f830f69d23b8224b512a0dc2f5aec974b47cc11f9e01d216bf35154f57d63655&#34;</span><span class="p">,</span>
+	<span class="nt">&#34;status&#34;</span><span class="p">:</span> <span class="s2">&#34;1&#34;</span>
+<span class="p">}</span>
+</code></pre></div><p>其中</p>
+<ol>
+<li><code>user_id</code> 是在树莓派中所录入的user_id，如果识别结为<code>Unknow</code>的话我们将user_id设置为0，表示不存在这个用户。</li>
+<li><code>user_pic</code> 是上传到图床上面的图片，或者我们会选择直接将图片post到我们的服务器上面，获取在服务器上面的链接地址。</li>
+<li><code>user_name</code> 此出为用户的称谓，我们需要用这个来判断用户是否已经在服务器端进行来注册，如果进行了注册的我们可以直接在数据库插入此用户的扫描的信息，如果没有注册，我们会将这个用户信息写入<code>face_user_register</code>表中，然后进行用户扫描数据的插入。</li>
+<li><code>time</code> time为Unix时间戳</li>
+<li><code>token</code> token是数据交互所必须具备的，在服务器端php脚本将验token，如果token正确，才会进行数据的处理操作，其中数据的token生成和验证，请参见framework/tools/Encrypt.class.php</li>
+<li><code>status</code> 为认证是否通过的标示，0为没有通过，1通过目录结构</li>
+</ol>
+<blockquote>
+<p><strong>说明一下前面的各种认证的原因：</strong></p>
+</blockquote>
+<p>因为只要写网站就设计网站的安全问题，<strong>特别是和数据库/文件储存有联系的操作，一定要谨慎</strong>，我们通过验证数据提交方式（必须使用POST），检验时间（时间间隔≤60s）,检验参数（请看上面的 <code>json</code> 的标准格式），检验Token(进行数据身份认证)
+来确保，提交给云端的数据确实来自树莓派，没有攻击性，可以入库储存，在云端写入文件。如果不进行检验，可能会导致 <code>xss</code> 、<code>CSRF</code>、<code>SQL注入</code> 等常见的攻击方式，导致不必要的损失。</p>
+<h3 id="四部署服务到云端">四.部署服务到云端</h3>
+<blockquote>
+<p>为了给我们的树莓派提供服务器，我们需要从将我们服务发布的外网，即部署服务到云端</p>
+</blockquote>
+<h4 id="1环境架构">1.环境架构</h4>
+<p>使用经典的 LNMP 架构方式</p>
+<pre><code>L : Linux
+N : Niginx
+M : MySQL
+P : PHP
+</code></pre><h4 id="2环境要求">2.环境要求</h4>
+<p>由于在编写 php 代码的时候采用了最新的语法，所以php的版本需要不小于5.6,推荐使用 <code>PHP7.2.*</code> ,同时，MySQL 的版本大于 5.5 , Nginx 的版本大于 1.12.* (1.12.* 因为以下版本 header 头缓存导致网站真实 ip 暴露)</p>
+<h4 id="3分配权限">3.分配权限</h4>
+<p>由于 <code>/application/public/uploads</code> 目录需要写入权限，在 linux 系统下，必须分配给他 775 权限</p>
+<div class="highlight"><pre class="chroma"><code class="language-shell" data-lang="shell"><span class="nb">cd</span> /www/wwwroot/face.0w0.tn
+chmod /application/public/uploads <span class="m">775</span> -R
+</code></pre></div><p>由于使用了 smarty 作为模板渲染引擎，所以需要在编译文件指定目录下增添写入权限</p>
+<pre><code>cd /www/wwwroot/face.0w0.tn
+
+chmod /application/home/view/ 775 -R
+
+chmode /application/admin/view 775 -R
+
+</code></pre><h3 id="五树状图说明文件用途">五.树状图说明文件用途</h3>
+<p>js、css、字体文件、图片等静态文件不做说明</p>
+<pre><code>Rasberrypi-FaceRecognition-Web
+├── README.md           #说明文档
+├── application         #项目目录
+│   ├── admin           #管理员后台目录
+│   │   ├── controller  #控制器目录
+│   │   │   ├── AdminController.class.php       #管理员身份控制器（负责修改信息）
+│   │   │   ├── ApiController.class.php         #Api上传接口，负责数据交互
+│   │   │   ├── IllegalScanController.class.php  #非法扫描用户控制器
+│   │   │   ├── IndexController.class.php       # 首页控制器
+│   │   │   ├── ScanController.class.php        #扫描总数控制器
+│   │   │   └── UserController.class.php        #注册用户控制器
+│   │   ├── model                               #模型类目录
+│   │   │   ├── RegisterUserModel.class.php     #查询注册用户信息
+│   │   │   ├── ScanModel.class.php             #查询所有扫描用户信息
+│   │   │   └── UserModel.class.php             #管理员信息
+│   │   ├── runtime                             #smarty编译文件
+│   │   └── view                                #视图层Html文件
+│   │       ├── admin
+│   │       │   └── setting.html
+│   │       ├── home
+│   │       │   └── home.html
+│   │       ├── illegal
+│   │       │   ├── illegal.html
+│   │       │   └── illegal_detail.html
+│   │       ├── layout.html
+│   │       ├── msg.html
+│   │       └── user
+│   │           ├── register_user.html
+│   │           └── user_detail.html
+│   ├── common                                #公共目录（TODO）占位
+│   │   ├── email
+│   │   │   └── email_active.php
+│   │   └── msg.html
+│   ├── home                                  #前台目录
+│   │   ├── controller                        #控制器
+│   │   │   ├── IndexController.class.php     #首页控制器
+│   │   │   └── UserController.class.php      #用户控制器（管理员）
+│   │   ├── model                             #模型目录
+│   │   │   └── UserModel.class.php           #用户模型（管理员）
+│   │   ├── runtime                           #Smarty编译文件
+│   │   └── view                              #view层Html文件
+│   │       ├── admin
+│   │       │   └── all_users.html
+│   │       ├── email
+│   │       │   └── email.html
+│   │       ├── index.html
+│   │       ├── layout.html
+│   │       ├── msg.html
+│   │       ├── test.html
+│   │       └── user
+│   │           ├── active_success.html
+│   │           ├── login.html
+│   │           └── rest_password.html
+│   └── public                              #前端静态文件
+│       ├── css
+│       │   ├── materialize.css
+│       │   ├── materialize.min.css
+│       │   └── style.css
+│       ├── fonts
+│       │   ├── FiraCode-Light.ttf
+│       │   ├── FiraCode-Regular.ttf
+│       │   └── roboto
+│       ├── js
+│       │   ├── init.js
+│       │   ├── materialize.js
+│       │   └── materialize.min.js
+│       ├── static
+│       │   ├── css
+│       │   │   ├── admin
+│       │   │   │   └── summernote.css
+│       │   │   ├── angular-filemanager.min.css
+│       │   │   ├── animate.css
+│       │   │   ├── bootstrap.min.css
+│       │   │   ├── bootstrap4
+│       │   │   │   └── bootstrap.min.css
+│       │   │   ├── datatables
+│       │   │   │   └── dataTables.bootstrap4.css
+│       │   │   ├── default-skin
+│       │   │   │   ├── default-skin.css
+│       │   │   │   ├── default-skin.png
+│       │   │   │   ├── default-skin.svg
+│       │   │   │   └── preloader.gif
+│       │   │   ├── error.css
+│       │   │   ├── font
+│       │   │   │   ├── summernote.eot
+│       │   │   │   ├── summernote.ttf
+│       │   │   │   └── summernote.woff
+│       │   │   ├── font-awesome.min.css
+│       │   │   ├── images
+│       │   │   │   ├── arrow.svg
+│       │   │   │   ├── close.svg
+│       │   │   │   └── spinner.svg
+│       │   │   ├── lock.css
+│       │   │   ├── login.css
+│       │   │   ├── main.css
+│       │   │   ├── material.css
+│       │   │   ├── mdeditor
+│       │   │   │   └── codemirror.css
+│       │   │   ├── photoswipe.css
+│       │   │   ├── profile.css
+│       │   │   ├── setting.css
+│       │   │   └── toastr.min.css
+│       │   ├── fonts
+│       │   │   ├── FontAwesome.otf
+│       │   │   ├── fontawesome-webfont.eot
+│       │   │   ├── fontawesome-webfont.svg
+│       │   │   ├── fontawesome-webfont.ttf
+│       │   │   ├── fontawesome-webfont.woff
+│       │   │   ├── fontawesome-webfont.woff2
+│       │   │   ├── glyphicons-halflings-regular.eot
+│       │   │   ├── glyphicons-halflings-regular.svg
+│       │   │   ├── glyphicons-halflings-regular.ttf
+│       │   │   ├── glyphicons-halflings-regular.woff
+│       │   │   └── glyphicons-halflings-regular.woff2
+│       │   ├── img
+│       │   │   ├── alipay.png
+│       │   │   ├── card.png
+│       │   │   ├── default.png
+│       │   │   ├── local.png
+│       │   │   ├── logo_s.png
+│       │   │   ├── logo_white.png
+│       │   │   ├── oss.png
+│       │   │   ├── output.jpg
+│       │   │   ├── profile.jpg
+│       │   │   ├── qiniu.png
+│       │   │   ├── remote.png
+│       │   │   ├── s3.png
+│       │   │   ├── sign.png
+│       │   │   ├── upyun.png
+│       │   │   └── weixin-icon.png
+│       │   └── js
+│       │       ├── angular-filemanager.min.js
+│       │       ├── angular-translate.min.js
+│       │       ├── angular.min.js
+│       │       ├── bootstrap.min.js
+│       │       ├── bootstrap4
+│       │       │   └── bootstrap.bundle.min.js
+│       │       ├── jquery.color.js
+│       │       ├── jquery.liMarquee.js
+│       │       ├── jquery.min.js
+│       │       ├── jquery.poptrox.min.js
+│       │       ├── login.js
+│       │       ├── material.js
+│       │       ├── profile.js
+│       │       └── setting.js
+│       └── uploads
+├── framework                               #MVC轻量级框架，按照GPLv3开源，自己开发的
+│   ├── config                              #网站的所有配置选项
+│   │   └── config.php
+│   ├── core                                #所有基础类
+│   │   ├── Controller.class.php            #控制器基础类
+│   │   ├── Factory.class.php               #工厂类
+│   │   ├── Framework.class.php             #框架核心类（自动加载，分发器）
+│   │   └── Model.class.php                 #基础模型类
+│   ├── dao                                 #数据库链接DAO工具
+│   │   ├── DAOPDO.class.php                #数据库PDO类
+│   │   └── I_DAO.interface.php             #数据库PDO接口
+│   ├── tools                               #工具类目录
+│   │   ├── Captcha.class.php               #验证码类
+│   │   ├── CheckPath.class.php             #路径检测类（用于Debug）
+│   │   ├── Email.class.php                 #邮件类
+│   │   ├── EmailTemples.class.php          #邮件模版类（TODO：此类将会删除，用smarty拼接）
+│   │   ├── Encrypt.class.php               #加密类，在生成json中token验证
+│   │   ├── HttpRequest.class.php           #http请求类，主要封装了Curl
+│   │   ├── Page.class.php                  #分页类
+│   │   ├── Regex.class.php                 #正则类
+│   │   ├── Thumb.class.php                 #图像压缩类
+│   │   └── Upload.class.php                #上传类
+│   └── vendor                              #第三方库（别人的轮子）
+│       ├── PHPMailer                       #使用php发送邮件
+│       └── smarty                          #模版引擎渲染
+|
+└── index.php                               #入口文件
+</code></pre><h3 id="六所用到的第三方库">六.所用到的第三方库</h3>
+<p>本项目中所用到的重要的第三方代码，所有代码均为开源代码</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>官网</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AngularJS</td>
+<td><a href="https://docs.angularjs.org/">https://docs.angularjs.org/</a></td>
+<td>强大的JS框架</td>
+</tr>
+<tr>
+<td>JQuery</td>
+<td><a href="https://jquery.com/">https://jquery.com/</a></td>
+<td>最常用的JS代码库</td>
+</tr>
+<tr>
+<td>PHPMailer</td>
+<td>无</td>
+<td>使用PHP发送邮件</td>
+</tr>
+<tr>
+<td>Smarty</td>
+<td><a href="https://www.smarty.net/">https://www.smarty.net/</a></td>
+<td>PHP模版引擎</td>
+</tr>
+<tr>
+<td>materializecss</td>
+<td><a href="http://materializecss.com/">http://materializecss.com/</a></td>
+<td>基于Material Design进行开发的前端CSS/JS库</td>
+</tr>
+<tr>
+<td>bootstrap</td>
+<td><a href="https://getbootstrap.com/">https://getbootstrap.com/</a></td>
+<td>强大漂亮优雅的CSS前端库</td>
+</tr>
+</tbody>
+</table>
+<p>还有一些其他的前端组件，就不在此一一列举</p>
+<h2 id="-参考文献">Ⅴ 参考文献</h2>
+<p>1.OpenCV 环境编译:</p>
+<p><a class="link" href="https://www.pyimagesearch.com/2017/09/04/raspbian-stretch-install-opencv-3-python-on-your-raspberry-pi/"  target="_blank" rel="noopener"
+    >Raspbian Stretch: Install OpenCV 3 + Python on your Raspberry Pi</a></p>
+<p>2.OpenCV 文档</p>
+<p><a class="link" href="https://opencv.org/"  target="_blank" rel="noopener"
+    >OpenCV官网</a></p>
+<section class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1" role="doc-endnote">
+<p><a class="link" href="https://www.pyimagesearch.com/2017/09/04/raspbian-stretch-install-opencv-3-python-on-your-raspberry-pi/"  target="_blank" rel="noopener"
+    >Raspbian Stretch: Install OpenCV 3 + Python on your Raspberry Pi</a> <a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</section>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="https://sunwei.blog/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/">树莓派</a>
+        
+            <a href="https://sunwei.blog/tags/php/">php</a>
+        
+            <a href="https://sunwei.blog/tags/python/">python</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+        <h2 class="section-title">相关文章</h2>
+        <div class="related-contents">
+            <div class="flex article-list--tile">
+                
+                    
+<article class="has-image">
+    <a href="https://sunwei.blog/p/%E5%B9%B4%E8%BD%BB%E4%BA%BA%E7%9A%84%E7%AC%AC%E4%BA%8C%E5%8F%B0%E9%BB%91%E8%8B%B9%E6%9E%9C/">
+        
+        
+            <div class="article-image">
+                <img src="/p/%E5%B9%B4%E8%BD%BB%E4%BA%BA%E7%9A%84%E7%AC%AC%E4%BA%8C%E5%8F%B0%E9%BB%91%E8%8B%B9%E6%9E%9C/cover_hu9587307df3b0a528bff40458715a7575_87846_250x150_fill_box_smart1_2.png" width="250" height="150" 
+                        loading="lazy" data-key="" data-hash="md5-dS0/fDtGlSnjIaP5o&#43;W0hQ==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">年轻人的第二台黑苹果</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="has-image">
+    <a href="https://sunwei.blog/p/docker-%E4%B8%AD-mysql-%E8%BF%9B%E8%A1%8C%E4%B8%BB%E4%BB%8E%E5%90%8C%E6%AD%A5/">
+        
+        
+            <div class="article-image">
+                <img src="/p/docker-%E4%B8%AD-mysql-%E8%BF%9B%E8%A1%8C%E4%B8%BB%E4%BB%8E%E5%90%8C%E6%AD%A5/cover_hu81200c1cba70a189fc5075fa6ae62b86_24632_250x150_fill_box_smart1_2.png" width="250" height="150" 
+                        loading="lazy" data-key="" data-hash="md5-ZpeE8kpFWvQ3y9HqJ4LuQg==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Docker 中 MySQL 进行主从同步</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="https://sunwei.blog/p/auxpi%E5%AF%B9%E6%8E%A5-flicker-%E7%9A%84%E4%B8%80%E4%BA%9B%E5%9D%91/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">AUXPI对接 flicker 的一些坑</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="has-image">
+    <a href="https://sunwei.blog/p/%E6%9C%BA%E6%A2%B0%E5%8E%9F%E7%90%86%E5%A4%A7%E4%BD%9C%E4%B8%9A-%E5%87%B8%E8%BD%AE%E7%94%9F%E6%88%90%E5%99%A8/">
+        
+        
+            <div class="article-image">
+                <img src="/p/%E6%9C%BA%E6%A2%B0%E5%8E%9F%E7%90%86%E5%A4%A7%E4%BD%9C%E4%B8%9A-%E5%87%B8%E8%BD%AE%E7%94%9F%E6%88%90%E5%99%A8/cover_huc4bffe6863479b6bd0ad6a7dd8026253_290434_250x150_fill_box_smart1_2.png" width="250" height="150" 
+                        loading="lazy" data-key="" data-hash="md5-GeMp21dEVnmnNM&#43;Gwlja7Q==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">机械原理大作业-凸轮生成器</h2>
+        </div>
+    </a>
+</article>
+                
+            </div>
+        </div>
+    
+</aside>
+
+    
+        
+    <script src="https://utteranc.es/client.js" 
+        repo="0xDkd/comment"
+        issue-term="pathname"
+        theme="preferred-color-scheme" 
+        
+        crossorigin="anonymous" 
+        async>
+</script>
+
+<style>
+    .utterances {
+        max-width: unset;
+    }
+</style>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">&copy; 2020 A桑的杂货箱</section>
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="1.0.5">Stack</a></b> designed by
+        <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true" style="display:none">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+            </main>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"
+    integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin="anonymous"></script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+<link rel="stylesheet" href="/css/highlight/light.min.css" media="(prefers-color-scheme: light)">
+<link rel="stylesheet" href="/css/highlight/dark.min.css" media="(prefers-color-scheme: dark)">
+
+    </body>
+</html>

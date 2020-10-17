@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>swoole on A桑的杂货箱</title>
+    <link>https://sunwei.blog/tags/swoole/</link>
+    <description>Recent content in swoole on A桑的杂货箱</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Tue, 25 Dec 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://sunwei.blog/tags/swoole/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Mac 快速编译 swoole</title>
+      <link>https://sunwei.blog/p/mac-%E5%BF%AB%E9%80%9F%E7%BC%96%E8%AF%91-swoole/</link>
+      <pubDate>Tue, 25 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://sunwei.blog/p/mac-%E5%BF%AB%E9%80%9F%E7%BC%96%E8%AF%91-swoole/</guid>
+      <description>brew install php cd /usr/local/opt/ git clone https://gitee.com/swoole/swoole.git cd swoole phpize ./configure brew install autoconf make &amp;amp;&amp;amp; make install 编译完成的.so文件在 modules/ 目录下面
+cd /usr/local/etc/php/7.2/conf.d/ touch ext-swoole.ini 写入
+[swoole] extension=&amp;#34;/usr/local/opt/swoole/modules/swoole.so&amp;#34; 重载 php
+brew service restart php 检测是否加入扩展
+php -i |grep swoole 如下输出
+/usr/local/etc/php/7.2/conf.d/ext-swoole.ini, swoole swoole support =&amp;gt; enabled Author =&amp;gt; Swoole Group[email: team@swoole.com] swoole.aio_thread_num =&amp;gt; 2 =&amp;gt; 2 swoole.display_errors =&amp;gt; On =&amp;gt; On swoole.enable_coroutine =&amp;gt; On =&amp;gt; On swoole.fast_serialize =&amp;gt; Off =&amp;gt; Off swoole.</description>
+    </item>
+    
+  </channel>
+</rss>

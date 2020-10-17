@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>分享 on A桑的杂货箱</title>
+    <link>https://sunwei.blog/categories/%E5%88%86%E4%BA%AB/</link>
+    <description>Recent content in 分享 on A桑的杂货箱</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Wed, 17 Apr 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://sunwei.blog/categories/%E5%88%86%E4%BA%AB/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>AUXPI 图床</title>
+      <link>https://sunwei.blog/p/auxpi-%E5%9B%BE%E5%BA%8A/</link>
+      <pubDate>Wed, 17 Apr 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://sunwei.blog/p/auxpi-%E5%9B%BE%E5%BA%8A/</guid>
+      <description>前情提要 这个是参加全国计算机设计大赛的时候写的，现在已经比完了，三等奖有点不开心，果然还是不应该讲太多技术方面的东西，应该多讲一些细节方面的东西。不过好消息是这个项目参加互联网+的成绩还不错
+第二章概要设计 一．各个模块功能 系统的开发是前后端分离的，后端采用的架构模式为 MVC ，后端的开发所用的各个目录的功能和作用如下图所示。
+为了保证高复用，我们加入了 Server 层作为可以拔插的插件进行配置和使用，下面是后端的文件分布目录
+. ├── LICENSE ├── README.md ├── auxpiAll #内置了需要经常格式话成 JSON / XML 的结构体 ├── bootstrap #启动程序的时候初始化的库，内置了 helper ，仅能被调用 ├── build #编译文件存放目录 ├── build.sh #自动化编译脚本 ├── conf #配置文件目录 ├── controllers #控制器存放目录 ├── install.sh #自动化安装脚本 ├── log #日志包 ├── main.go #入口文件 ├── middleware #中间件 ├── models #模型层 ├── pem #RSA 秘钥对，在初始化程序的时候自动生成 ├── resource #前端 Vue 源码存放目录 ├── routers #路由 ├── server #可拔插的服务目录 ├── static #静态资源存放 ├── tests #测试文件 ├── tools #工具类 ├── utils #控制器专用工具类 └── views #视图层 前端我们采用了 Vue+Webpack 进行前端工程化开发，前端最大的特点是组件化开发，这也是我们所使用的核心的前端技术，下面是前端开发的文件分布</description>
+    </item>
+    
+    <item>
+      <title>Mac 快速编译 swoole</title>
+      <link>https://sunwei.blog/p/mac-%E5%BF%AB%E9%80%9F%E7%BC%96%E8%AF%91-swoole/</link>
+      <pubDate>Tue, 25 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://sunwei.blog/p/mac-%E5%BF%AB%E9%80%9F%E7%BC%96%E8%AF%91-swoole/</guid>
+      <description>brew install php cd /usr/local/opt/ git clone https://gitee.com/swoole/swoole.git cd swoole phpize ./configure brew install autoconf make &amp;amp;&amp;amp; make install 编译完成的.so文件在 modules/ 目录下面
+cd /usr/local/etc/php/7.2/conf.d/ touch ext-swoole.ini 写入
+[swoole] extension=&amp;#34;/usr/local/opt/swoole/modules/swoole.so&amp;#34; 重载 php
+brew service restart php 检测是否加入扩展
+php -i |grep swoole 如下输出
+/usr/local/etc/php/7.2/conf.d/ext-swoole.ini, swoole swoole support =&amp;gt; enabled Author =&amp;gt; Swoole Group[email: team@swoole.com] swoole.aio_thread_num =&amp;gt; 2 =&amp;gt; 2 swoole.display_errors =&amp;gt; On =&amp;gt; On swoole.enable_coroutine =&amp;gt; On =&amp;gt; On swoole.fast_serialize =&amp;gt; Off =&amp;gt; Off swoole.</description>
+    </item>
+    
+    <item>
+      <title>AUXPI对接 flicker 的一些坑</title>
+      <link>https://sunwei.blog/p/auxpi%E5%AF%B9%E6%8E%A5-flicker-%E7%9A%84%E4%B8%80%E4%BA%9B%E5%9D%91/</link>
+      <pubDate>Thu, 13 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://sunwei.blog/p/auxpi%E5%AF%B9%E6%8E%A5-flicker-%E7%9A%84%E4%B8%80%E4%BA%9B%E5%9D%91/</guid>
+      <description>在开发 auxpi 图床的时候踩了不少坑，特别是用 flickr 的时候，简直调试到内心崩溃，我再 github 上找了一个 flickr 的第三方SDK，Go 的 SDK 并不多，而且说明很少，只能去看源码。那种简直看到心态爆炸 QAQ
+ multipart.File to os.File 使用 beego上传文件的时候，默认接受到的文件格式是 multipart.File ，但是我发现第三方 Flickr 的 SDK所提供的文件上传类型其实是 os.File 的类型。他是用一个 io.Reader 做为参数传入进去的。通过阅读源代码
+func UploadFile(client *FlickrClient, path string, optionalParams *UploadParams) (*UploadResponse, error) { file, err := os.Open(path) if err != nil { return nil, err } defer file.Close() return UploadReader(client, file, file.Name(), optionalParams) } 我们可以发现，这个 io.Reader  其实是一个 os.File 的指针类型，即为 *os.File 我们可以直接调用 UploadReader 这个函数，直接将已经构造好的 client传入进去就可以或获得结果。</description>
+    </item>
+    
+    <item>
+      <title>机械原理大作业-凸轮生成器</title>
+      <link>https://sunwei.blog/p/%E6%9C%BA%E6%A2%B0%E5%8E%9F%E7%90%86%E5%A4%A7%E4%BD%9C%E4%B8%9A-%E5%87%B8%E8%BD%AE%E7%94%9F%E6%88%90%E5%99%A8/</link>
+      <pubDate>Fri, 23 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://sunwei.blog/p/%E6%9C%BA%E6%A2%B0%E5%8E%9F%E7%90%86%E5%A4%A7%E4%BD%9C%E4%B8%9A-%E5%87%B8%E8%BD%AE%E7%94%9F%E6%88%90%E5%99%A8/</guid>
+      <description>引言 众所周知，我们小清华在大三上学期的时候机械类专业的学生需要经历机械原理的大作业：“用电脑使用解析法画一个凸轮，并且还要打印对应的报告”。最近正好在学 Golang 于是稍微研究了一下解析法生成的原理， 发现只需要变换运动方程即可，不需要更改轮廓公式，于是可以使用 Golang 的模板去生成 matlab 代码。
+我用这篇文章记录一下当时的思考和实现过程，希望能帮上同学和以后学弟学妹的忙😂
+另外不要直接用啊，得研究一下到底是什么原理，要不被老师提问就难受了
+工具 本次的作业使用的画图的工具为 Matlab，Matlab 的代码可以帮助我们更好的去理解整个的运动过程和运动曲线的是如何形成的
+分析运动状态 按照学号分配题目，我是20 号，下面是我的原始数据
+   名称 数据     近休止状态 0˚ - 30˚   推程运动状态 30˚ - 200˚    远休止状态 200˚ - 270˚   回程运动状态 270˚ - 360˚   初选基圆半径 20   偏心距 +10   滚子半径 14   最大推程 30    推程运动为: 正弦加速度运动 回程运动为: 等加速等减速运动</description>
+    </item>
+    
+  </channel>
+</rss>

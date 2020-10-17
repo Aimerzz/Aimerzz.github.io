@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='其实更好的解决方法是使用 docker，我现在感觉开发环境扔到 docker 中最好了'><title>Mac 快速编译 swoole</title>
+    
+    <link rel='canonical' href='https://sunwei.blog/p/mac-%E5%BF%AB%E9%80%9F%E7%BC%96%E8%AF%91-swoole/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='Mac 快速编译 swoole'>
+<meta property='og:description' content='其实更好的解决方法是使用 docker，我现在感觉开发环境扔到 docker 中最好了'>
+<meta property='og:url' content='https://sunwei.blog/p/mac-%E5%BF%AB%E9%80%9F%E7%BC%96%E8%AF%91-swoole/'>
+<meta property='og:site_name' content='A桑的杂货箱'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='swoole' /><meta property='article:tag' content='php' /><meta property='article:published_time' content='2018-12-25T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2018-12-25T00:00:00&#43;00:00'/>
+<meta name="twitter:title" content="Mac 快速编译 swoole">
+<meta name="twitter:description" content="其实更好的解决方法是使用 docker，我现在感觉开发环境扔到 docker 中最好了"></head><body class="">
+        <div class="container flex on-phone--column align-items--flex-start extended article-page with-toolbar">
+            <aside class="sidebar left-sidebar sticky">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header class="site-info">
+        
+            <figure class="site-avatar">
+                
+
+                
+                    
+                    <img src="/img/avatar1_huda84896c9bf23e2f48c7de4e6ccdd7e8_360249_300x300_resize_box_2.png" width="300"
+                        height="300" class="site-logo" loading="lazy" alt="Avatar">
+                
+
+                <span class="emoji">🍥</span>
+            </figure>
+        
+        <h1 class="site-name"><a href="https://sunwei.blog">A桑的杂货箱</a></h1>
+        <h2 class="site-description">有时候回头看看自己做的东西，感觉充实且鬼畜😂</h2>
+    </header>
+
+    <ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='https://sunwei.blog/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='https://sunwei.blog/about'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='https://sunwei.blog/archives'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+    </ol>
+</aside>
+            <main class="main full-width">
+    <div id="article-toolbar">
+        <a href="https://sunwei.blog" class="back-home">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+            <span>Back</span>
+        </a>
+    </div>
+
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            
+                <a href="https://sunwei.blog/categories/%E5%88%86%E4%BA%AB/">分享</a>
+            
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="https://sunwei.blog/p/mac-%E5%BF%AB%E9%80%9F%E7%BC%96%E8%AF%91-swoole/">Mac 快速编译 swoole</a>
+    </h2>
+
+    
+    <h3 class="article-subtitle">
+        其实更好的解决方法是使用 docker，我现在感觉开发环境扔到 docker 中最好了
+    </h3>
+    <footer class="article-time">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <time class="article-time--published">Dec 25, 2018</time>
+        
+        <div style="margin-left: 20px;">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user-check" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <circle cx="9" cy="7" r="4" />
+  <path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+  <path d="M16 11l2 2l4 -4" />
+</svg>
+        </div>
+        <div  class="article-time--published">
+            孙玮
+        </div>
+        
+        
+    </footer></div>
+</header>
+
+    <section class="article-content">
+    <div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">brew install php 
+<span class="nb">cd</span> /usr/local/opt/
+git clone https://gitee.com/swoole/swoole.git
+<span class="nb">cd</span> swoole
+phpize
+./configure
+brew install autoconf
+make <span class="o">&amp;&amp;</span> make install
+</code></pre></div><p>编译完成的<code>.so</code>文件在<code> modules/</code> 目录下面</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nb">cd</span> /usr/local/etc/php/7.2/conf.d/
+touch ext-swoole.ini
+</code></pre></div><p>写入</p>
+<div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">[swoole]
+extension=&#34;/usr/local/opt/swoole/modules/swoole.so&#34;
+</code></pre></div><p>重载 php</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">brew service restart php
+</code></pre></div><p>检测是否加入扩展</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">php -i <span class="p">|</span>grep swoole
+</code></pre></div><p>如下输出</p>
+<div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">/usr/local/etc/php/7.2/conf.d/ext-swoole.ini,
+swoole
+swoole support =&gt; enabled
+Author =&gt; Swoole Group[email: team@swoole.com]
+swoole.aio_thread_num =&gt; 2 =&gt; 2
+swoole.display_errors =&gt; On =&gt; On
+swoole.enable_coroutine =&gt; On =&gt; On
+swoole.fast_serialize =&gt; Off =&gt; Off
+swoole.unixsock_buffer_size =&gt; 262144 =&gt; 262144
+swoole.use_shortname =&gt; On =&gt; On
+PWD =&gt; /usr/local/opt/swoole/modules
+OLDPWD =&gt; /usr/local/opt/swoole
+$_SERVER[&#39;PWD&#39;] =&gt; /usr/local/opt/swoole/modules
+$_SERVER[&#39;OLDPWD&#39;] =&gt; /usr/local/opt/swoole
+</code></pre></div><p>则为编译成功</p>
+<p><img src="https://i.loli.net/2018/12/25/5c222e3d2cc11.png" alt=""  /></p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="https://sunwei.blog/tags/swoole/">swoole</a>
+        
+            <a href="https://sunwei.blog/tags/php/">php</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+        <h2 class="section-title">相关文章</h2>
+        <div class="related-contents">
+            <div class="flex article-list--tile">
+                
+                    
+<article class="has-image">
+    <a href="https://sunwei.blog/p/auxpi-%E5%9B%BE%E5%BA%8A/">
+        
+        
+            <div class="article-image">
+                <img src="/p/auxpi-%E5%9B%BE%E5%BA%8A/cover_hueb0766070fc2955c280311d243791276_14363_250x150_fill_box_smart1_2.png" width="250" height="150" 
+                        loading="lazy" data-key="" data-hash="md5-hGw5NB8QcM8Lupc8zDCh7Q==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">AUXPI 图床</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="https://sunwei.blog/p/auxpi%E5%AF%B9%E6%8E%A5-flicker-%E7%9A%84%E4%B8%80%E4%BA%9B%E5%9D%91/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">AUXPI对接 flicker 的一些坑</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="has-image">
+    <a href="https://sunwei.blog/p/%E6%9C%BA%E6%A2%B0%E5%8E%9F%E7%90%86%E5%A4%A7%E4%BD%9C%E4%B8%9A-%E5%87%B8%E8%BD%AE%E7%94%9F%E6%88%90%E5%99%A8/">
+        
+        
+            <div class="article-image">
+                <img src="/p/%E6%9C%BA%E6%A2%B0%E5%8E%9F%E7%90%86%E5%A4%A7%E4%BD%9C%E4%B8%9A-%E5%87%B8%E8%BD%AE%E7%94%9F%E6%88%90%E5%99%A8/cover_huc4bffe6863479b6bd0ad6a7dd8026253_290434_250x150_fill_box_smart1_2.png" width="250" height="150" 
+                        loading="lazy" data-key="" data-hash="md5-GeMp21dEVnmnNM&#43;Gwlja7Q==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">机械原理大作业-凸轮生成器</h2>
+        </div>
+    </a>
+</article>
+                
+            </div>
+        </div>
+    
+</aside>
+
+    
+        
+    <script src="https://utteranc.es/client.js" 
+        repo="0xDkd/comment"
+        issue-term="pathname"
+        theme="preferred-color-scheme" 
+        
+        crossorigin="anonymous" 
+        async>
+</script>
+
+<style>
+    .utterances {
+        max-width: unset;
+    }
+</style>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">&copy; 2020 A桑的杂货箱</section>
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="1.0.5">Stack</a></b> designed by
+        <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true" style="display:none">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+            </main>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"
+    integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin="anonymous"></script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+<link rel="stylesheet" href="/css/highlight/light.min.css" media="(prefers-color-scheme: light)">
+<link rel="stylesheet" href="/css/highlight/dark.min.css" media="(prefers-color-scheme: dark)">
+
+    </body>
+</html>

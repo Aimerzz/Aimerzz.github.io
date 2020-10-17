@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>php on A桑的杂货箱</title>
+    <link>https://sunwei.blog/tags/php/</link>
+    <description>Recent content in php on A桑的杂货箱</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Tue, 25 Dec 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://sunwei.blog/tags/php/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Mac 快速编译 swoole</title>
+      <link>https://sunwei.blog/p/mac-%E5%BF%AB%E9%80%9F%E7%BC%96%E8%AF%91-swoole/</link>
+      <pubDate>Tue, 25 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://sunwei.blog/p/mac-%E5%BF%AB%E9%80%9F%E7%BC%96%E8%AF%91-swoole/</guid>
+      <description>brew install php cd /usr/local/opt/ git clone https://gitee.com/swoole/swoole.git cd swoole phpize ./configure brew install autoconf make &amp;amp;&amp;amp; make install 编译完成的.so文件在 modules/ 目录下面
+cd /usr/local/etc/php/7.2/conf.d/ touch ext-swoole.ini 写入
+[swoole] extension=&amp;#34;/usr/local/opt/swoole/modules/swoole.so&amp;#34; 重载 php
+brew service restart php 检测是否加入扩展
+php -i |grep swoole 如下输出
+/usr/local/etc/php/7.2/conf.d/ext-swoole.ini, swoole swoole support =&amp;gt; enabled Author =&amp;gt; Swoole Group[email: team@swoole.com] swoole.aio_thread_num =&amp;gt; 2 =&amp;gt; 2 swoole.display_errors =&amp;gt; On =&amp;gt; On swoole.enable_coroutine =&amp;gt; On =&amp;gt; On swoole.fast_serialize =&amp;gt; Off =&amp;gt; Off swoole.</description>
+    </item>
+    
+    <item>
+      <title>树莓派人脸识别系统</title>
+      <link>https://sunwei.blog/p/%E6%A0%91%E8%8E%93%E6%B4%BE%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB%E7%B3%BB%E7%BB%9F/</link>
+      <pubDate>Fri, 18 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://sunwei.blog/p/%E6%A0%91%E8%8E%93%E6%B4%BE%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB%E7%B3%BB%E7%BB%9F/</guid>
+      <description>引言 学了一阵子 php 了，这次自己用 php 练了一下手，更加熟悉了 Linux 的操作，感觉用起来已经得心应手了。
+其实这个 OpenCV 的环境当时我配置了 1 个多星期，最后在抹茶家里面蹭网配置出来的，太难了。
+项目概览   23333 
+1.介绍 使用 OpenCV + Python + Linux + PHP 构建的树莓派人脸识别云系统，本次项目基于树莓派的系统进行嵌入式开发，使用 OpenCV 作为机器视觉库，用 Python 作为树莓派段的主要语言，使用了很多的开源软件和库，但是核心代码和逻辑全部是自己完成。
+2.使用场景模拟 该项目的定位为 智能家居 ，树莓派作为整个家庭的 中心服务器 ，树莓派可以作为家庭的路由器,NAS,和网关，通过开发，可以将控制各种家电的代码放到树莓派中运行，本次的项目就是其中之一的雏形，人脸识别的电子锁，由于经费和时间受限，并没有接上真正的电子锁，但是我们设计了检测结果的回调 ，并且通过 亮红灯 或者 亮绿灯 模拟电子锁的开关
+结合上面的使用场景 ，我们已经实现了如下功能
+1. 机械学习获取房子住户的人脸特征。（可以录入多个人的脸部信息） 2. 按下识别按钮即可进行识别，方便快捷 3. 识别脸部信息，并且做出相应的判断，开锁或者是不开锁 4. 所有的识别记录都会上传到云端，其中包括，识别过程中的抓拍，识别时间，住户分配的 ID等 5. 对于没有录入信息，但尝试非法打开“电子锁”的情况，云端会发送邮件、短信给主人，来警告用户，防止意外的发生 6. 云端数据分类汇总展示 7. ..... 3.关于未来的开发 如果有时间，我们会像上面所提到的 智能家居 靠近，首先会把电子锁功能完善，然后在树莓派中建立云服务的本地版，用户无需访问外网，直接访问树莓派中的数据汇总就可以查看所有的数据，我们会使用 百度语音 API 进行语言转化，实现语音控制家电的开关，也可以利用树莓派的 中心服务器 的地位通过云计算远程控制家电的开关情况。本项目有着很大的扩展性，并且符合现代人们的需求。
+4.效果图 1.</description>
+    </item>
+    
+  </channel>
+</rss>

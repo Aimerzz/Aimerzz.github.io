@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='第一个 Golang 项目，第一个 github stars 数目到达 2000 的项目 🎉'><title>AUXPI 图床</title>
+    
+    <link rel='canonical' href='https://sunwei.blog/p/auxpi-%E5%9B%BE%E5%BA%8A/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='AUXPI 图床'>
+<meta property='og:description' content='第一个 Golang 项目，第一个 github stars 数目到达 2000 的项目 🎉'>
+<meta property='og:url' content='https://sunwei.blog/p/auxpi-%E5%9B%BE%E5%BA%8A/'>
+<meta property='og:site_name' content='A桑的杂货箱'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='图床' /><meta property='article:tag' content='golang' /><meta property='article:tag' content='vue' /><meta property='article:published_time' content='2019-04-17T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2019-04-17T00:00:00&#43;00:00'/><meta property='og:image' content='https://sunwei.blog/p/auxpi-%E5%9B%BE%E5%BA%8A/cover.png' />
+<meta name="twitter:title" content="AUXPI 图床">
+<meta name="twitter:description" content="第一个 Golang 项目，第一个 github stars 数目到达 2000 的项目 🎉"><meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:image" content='https://sunwei.blog/p/auxpi-%E5%9B%BE%E5%BA%8A/cover.png' /></head><body class="">
+        <div class="container flex on-phone--column align-items--flex-start extended article-page with-toolbar">
+            <aside class="sidebar left-sidebar sticky">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header class="site-info">
+        
+            <figure class="site-avatar">
+                
+
+                
+                    
+                    <img src="/img/avatar1_huda84896c9bf23e2f48c7de4e6ccdd7e8_360249_300x300_resize_box_2.png" width="300"
+                        height="300" class="site-logo" loading="lazy" alt="Avatar">
+                
+
+                <span class="emoji">🍥</span>
+            </figure>
+        
+        <h1 class="site-name"><a href="https://sunwei.blog">A桑的杂货箱</a></h1>
+        <h2 class="site-description">有时候回头看看自己做的东西，感觉充实且鬼畜😂</h2>
+    </header>
+
+    <ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='https://sunwei.blog/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='https://sunwei.blog/about'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='https://sunwei.blog/archives'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+    </ol>
+</aside>
+            <main class="main full-width">
+    <div id="article-toolbar">
+        <a href="https://sunwei.blog" class="back-home">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+            <span>Back</span>
+        </a>
+    </div>
+
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <img srcset="/p/auxpi-%E5%9B%BE%E5%BA%8A/cover_hueb0766070fc2955c280311d243791276_14363_1024x0_resize_box_2.png 1024w, /p/auxpi-%E5%9B%BE%E5%BA%8A/cover_hueb0766070fc2955c280311d243791276_14363_2000x0_resize_box_2.png 2000w"
+                    src="/p/auxpi-%E5%9B%BE%E5%BA%8A/cover_hueb0766070fc2955c280311d243791276_14363_2000x0_resize_box_2.png" width="559" height="178" loading="lazy"
+                    alt="Featured image of post AUXPI 图床" />
+            
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="https://sunwei.blog/categories/%E5%88%86%E4%BA%AB/" 
+                    class="color-tag"
+                    data-image="/p/auxpi-%E5%9B%BE%E5%BA%8A/cover_hueb0766070fc2955c280311d243791276_14363_20x20_fill_box_smart1_2.png" 
+                    data-key="" 
+                    data-hash="md5-hGw5NB8QcM8Lupc8zDCh7Q==">
+                    分享
+                </a>
+            
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="https://sunwei.blog/p/auxpi-%E5%9B%BE%E5%BA%8A/">AUXPI 图床</a>
+    </h2>
+
+    
+    <h3 class="article-subtitle">
+        第一个 Golang 项目，第一个 github stars 数目到达 2000 的项目 🎉
+    </h3>
+    <footer class="article-time">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <time class="article-time--published">Apr 17, 2019</time>
+        
+        <div style="margin-left: 20px;">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user-check" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <circle cx="9" cy="7" r="4" />
+  <path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+  <path d="M16 11l2 2l4 -4" />
+</svg>
+        </div>
+        <div  class="article-time--published">
+            孙玮
+        </div>
+        
+        
+    </footer></div>
+</header>
+
+    <section class="article-content">
+    <h1 id="前情提要">前情提要</h1>
+<p>这个是参加全国计算机设计大赛的时候写的，现在已经比完了，三等奖有点不开心，果然还是不应该讲太多技术方面的东西，应该多讲一些细节方面的东西。不过好消息是这个项目参加互联网+的成绩还不错</p>
+<h2 id="第二章概要设计">第二章概要设计</h2>
+<h3 id="一各个模块功能">一．各个模块功能</h3>
+<p>系统的开发是前后端分离的，后端采用的架构模式为 MVC ，后端的开发所用的各个目录的功能和作用如下图所示。</p>
+<p>为了保证高复用，我们加入了 Server 层作为可以拔插的插件进行配置和使用，下面是后端的文件分布目录</p>
+<div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">.
+├── LICENSE   
+├── README.md
+├── auxpiAll       #内置了需要经常格式话成 JSON / XML 的结构体
+├── bootstrap      #启动程序的时候初始化的库，内置了 helper ，仅能被调用
+├── build          #编译文件存放目录
+├── build.sh       #自动化编译脚本
+├── conf           #配置文件目录
+├── controllers    #控制器存放目录
+├── install.sh     #自动化安装脚本
+├── log            #日志包
+├── main.go        #入口文件
+├── middleware     #中间件
+├── models         #模型层
+├── pem            #RSA 秘钥对，在初始化程序的时候自动生成
+├── resource       #前端 Vue 源码存放目录
+├── routers        #路由
+├── server         #可拔插的服务目录
+├── static         #静态资源存放
+├── tests          #测试文件
+├── tools          #工具类
+├── utils          #控制器专用工具类
+└── views          #视图层
+
+</code></pre></div><p>前端我们采用了 Vue+Webpack 进行前端工程化开发，前端最大的特点是组件化开发，这也是我们所使用的核心的前端技术，下面是前端开发的文件分布</p>
+<div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">├── build                      # 构建配置目录  
+├── config                     # 开发配置目录
+├── src                        # 开发目录
+│   ├── api                    # 对于后端的所有请求
+│   ├── assets                 # 主题 字体等静态资源
+│   ├── components             # Vue 全局公用组件
+│   ├── directive              # Vue 全局指令
+│   ├── filtres                # Vue 全局 filter
+│   ├── icons                  # 项目所有 svg icons
+│   ├── lang                   # 国际化 language
+│   ├── mock                   # 项目mock 模拟数据
+│   ├── router                 # Vue 路由
+│   ├── store                  # Vuex 全局 store管理
+│   ├── styles                 # 全局样式
+│   ├── utils                  # 全局公用方法
+│   ├── vendor                 # 公用vendor
+│   ├── views                  # view layout 开发目录
+│   ├── App.vue                # 入口页面
+│   ├── main.js                # 入口 加载组件 初始化等
+│   └── permission.js          # 权限管理
+├── static                     # 第三方不打包资源                  
+├── .babelrc                   # babel-loader 配置
+├── eslintrc.js                # eslint 配置项
+├── .gitignore                 # git 忽略项
+├── favicon.ico                # favicon图标
+├── index.html                 # html模板
+└── package.json               # package.jsond
+</code></pre></div><h3 id="二模块及其调用关系">二.模块及其调用关系</h3>
+<p>后端模块之间的调用关系:
+<figure>
+		<a href="/p/auxpi-%E5%9B%BE%E5%BA%8A/media/15555117472431/flow.png" data-size="793x291">
+			<img srcset="/p/auxpi-%E5%9B%BE%E5%BA%8A/media/15555117472431/flow_hu7926348c7ca634a085c5c50a14a8266b_41984_480x0_resize_box_2.png 480w, /p/auxpi-%E5%9B%BE%E5%BA%8A/media/15555117472431/flow_hu7926348c7ca634a085c5c50a14a8266b_41984_1024x0_resize_box_2.png 1024w"
+				src="/p/auxpi-%E5%9B%BE%E5%BA%8A/media/15555117472431/flow.png" width="793" height="291" loading="lazy"
+				alt="flo">
+		</a>
+		
+		<figcaption>flo</figcaption>
+		
+	</figure></p>
+<p>总体的后端模型是 MVC，增添了 Server 层作为可以拆装的插件进行使用，另外几个工具包之间也有不同的调用规则，utils 下面的各种工具文件不允许与 models 下面的文件耦合在一起，如果要为 models 编写工具，必须放到 tools 下</p>
+<p>前端的模块调用关系为:</p>
+<p><figure>
+		<a href="/p/auxpi-%E5%9B%BE%E5%BA%8A/media/15555117472431/Snipaste_2019-04-17_15-09-50.png" data-size="1920x961">
+			<img srcset="/p/auxpi-%E5%9B%BE%E5%BA%8A/media/15555117472431/Snipaste_2019-04-17_15-09-50_hu9e4e6bea4b53a8ef8b50c45aa05c5eb8_412372_480x0_resize_box_2.png 480w, /p/auxpi-%E5%9B%BE%E5%BA%8A/media/15555117472431/Snipaste_2019-04-17_15-09-50_hu9e4e6bea4b53a8ef8b50c45aa05c5eb8_412372_1024x0_resize_box_2.png 1024w"
+				src="/p/auxpi-%E5%9B%BE%E5%BA%8A/media/15555117472431/Snipaste_2019-04-17_15-09-50.png" width="1920" height="961" loading="lazy"
+				alt="Snipaste_2019-04-17_15-09-50">
+		</a>
+		
+		<figcaption>Snipaste_2019-04-17_15-09-50</figcaption>
+		
+	</figure></p>
+<p>因为前端工程化开发需要引入依赖，所以会导致调用关系比较复杂，如果需要详细的关系，可以在前端根目录中运行 <code>npm run build --report</code> ，即可在浏览器中查看详情，注意:<strong>文件之间的依赖关系为 <code>webpack build</code> 以后的依赖调用关系</strong>。图片是使用 webpack 依赖分析工具进行生成。</p>
+<h2 id="第三章详细设计">第三章详细设计</h2>
+<h3 id="一-界面设计">一. 界面设计</h3>
+<p>界面使用 <code>layout</code> 布局，UI 设计使用 <code>element-ui</code> 最后的，部分使用 <code>MDUI</code> 和 <code>Bootstrap 4</code> 进行设计。整体的页面布局都是基于 <strong>栅格系统</strong> 进行编写，所所有的页面都是响应式的，无论是在<strong>手机端</strong>或者<strong>电脑端</strong>都有十分良好的体验</p>
+<p>要设计的界面有: 网站首页，用户登录，注册，找回密码，重置密码页面，邮件模板，普通用户后台，管理员后台等</p>
+<p>网站首页:</p>
+<p><figure>
+		<a href="/p/auxpi-%E5%9B%BE%E5%BA%8A/media/15555117472431/Snipaste_2019-03-30_00-40-50.png" data-size="1916x866">
+			<img srcset="/p/auxpi-%E5%9B%BE%E5%BA%8A/media/15555117472431/Snipaste_2019-03-30_00-40-50_hu926a00ba06735fa71a27c121b47c0c42_142081_480x0_resize_box_2.png 480w, /p/auxpi-%E5%9B%BE%E5%BA%8A/media/15555117472431/Snipaste_2019-03-30_00-40-50_hu926a00ba06735fa71a27c121b47c0c42_142081_1024x0_resize_box_2.png 1024w"
+				src="/p/auxpi-%E5%9B%BE%E5%BA%8A/media/15555117472431/Snipaste_2019-03-30_00-40-50.png" width="1916" height="866" loading="lazy"
+				alt="Snipaste_2019-03-30_00-40-50">
+		</a>
+		
+		<figcaption>Snipaste_2019-03-30_00-40-50</figcaption>
+		
+	</figure></p>
+<p>普通用户后台:</p>
+<p><figure>
+		<a href="/p/auxpi-%E5%9B%BE%E5%BA%8A/media/15555117472431/Snipaste_2019-04-17_19-27-57.png" data-size="1920x960">
+			<img srcset="/p/auxpi-%E5%9B%BE%E5%BA%8A/media/15555117472431/Snipaste_2019-04-17_19-27-57_hud1a1db4ec3c2204048cf54515db7f3bd_308817_480x0_resize_box_2.png 480w, /p/auxpi-%E5%9B%BE%E5%BA%8A/media/15555117472431/Snipaste_2019-04-17_19-27-57_hud1a1db4ec3c2204048cf54515db7f3bd_308817_1024x0_resize_box_2.png 1024w"
+				src="/p/auxpi-%E5%9B%BE%E5%BA%8A/media/15555117472431/Snipaste_2019-04-17_19-27-57.png" width="1920" height="960" loading="lazy"
+				alt="Snipaste_2019-04-17_19-27-57">
+		</a>
+		
+		<figcaption>Snipaste_2019-04-17_19-27-57</figcaption>
+		
+	</figure></p>
+<p>当用户是管理员时后台样子:</p>
+<p><figure>
+		<a href="/p/auxpi-%E5%9B%BE%E5%BA%8A/media/15555117472431/Snipaste_2019-04-17_22-54-18.png" data-size="1920x954">
+			<img srcset="/p/auxpi-%E5%9B%BE%E5%BA%8A/media/15555117472431/Snipaste_2019-04-17_22-54-18_hu4e0c7432bc0be380379a08725e0a9253_315138_480x0_resize_box_2.png 480w, /p/auxpi-%E5%9B%BE%E5%BA%8A/media/15555117472431/Snipaste_2019-04-17_22-54-18_hu4e0c7432bc0be380379a08725e0a9253_315138_1024x0_resize_box_2.png 1024w"
+				src="/p/auxpi-%E5%9B%BE%E5%BA%8A/media/15555117472431/Snipaste_2019-04-17_22-54-18.png" width="1920" height="954" loading="lazy"
+				alt="Snipaste_2019-04-17_22-54-18">
+		</a>
+		
+		<figcaption>Snipaste_2019-04-17_22-54-18</figcaption>
+		
+	</figure></p>
+<p>管理员的管理后台:</p>
+<p><figure>
+		<a href="/p/auxpi-%E5%9B%BE%E5%BA%8A/media/15555117472431/Snipaste_2019-03-30_00-42-52.png" data-size="1920x869">
+			<img srcset="/p/auxpi-%E5%9B%BE%E5%BA%8A/media/15555117472431/Snipaste_2019-03-30_00-42-52_hu46e58887d8e7e9a0a01419c6099a1e99_127617_480x0_resize_box_2.png 480w, /p/auxpi-%E5%9B%BE%E5%BA%8A/media/15555117472431/Snipaste_2019-03-30_00-42-52_hu46e58887d8e7e9a0a01419c6099a1e99_127617_1024x0_resize_box_2.png 1024w"
+				src="/p/auxpi-%E5%9B%BE%E5%BA%8A/media/15555117472431/Snipaste_2019-03-30_00-42-52.png" width="1920" height="869" loading="lazy"
+				alt="Snipaste_2019-03-30_00-42-52">
+		</a>
+		
+		<figcaption>Snipaste_2019-03-30_00-42-52</figcaption>
+		
+	</figure></p>
+<h3 id="二-数据库设计">二. 数据库设计</h3>
+<p>ERD:</p>
+<p><figure>
+		<a href="/p/auxpi-%E5%9B%BE%E5%BA%8A/media/15555117472431/lalalalala-2019-04-17_17_32.png" data-size="926x1159">
+			<img srcset="/p/auxpi-%E5%9B%BE%E5%BA%8A/media/15555117472431/lalalalala-2019-04-17_17_32_hu84c74b6e628176088392d05cc9d7b9d8_172101_480x0_resize_box_2.png 480w, /p/auxpi-%E5%9B%BE%E5%BA%8A/media/15555117472431/lalalalala-2019-04-17_17_32_hu84c74b6e628176088392d05cc9d7b9d8_172101_1024x0_resize_box_2.png 1024w"
+				src="/p/auxpi-%E5%9B%BE%E5%BA%8A/media/15555117472431/lalalalala-2019-04-17_17_32.png" width="926" height="1159" loading="lazy"
+				alt="lalalalala-2019-04-17_17_32">
+		</a>
+		
+		<figcaption>lalalalala-2019-04-17_17_32</figcaption>
+		
+	</figure></p>
+<table>
+<thead>
+<tr>
+<th>表名</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>auxpi_user</td>
+<td>用户元信息储存</td>
+</tr>
+<tr>
+<td>auxpi_image</td>
+<td>图片信息</td>
+</tr>
+<tr>
+<td>auxpi_sync_image</td>
+<td>本地同步信息表</td>
+</tr>
+<tr>
+<td>auxpi_store</td>
+<td>公共 CDN 信息</td>
+</tr>
+<tr>
+<td>auxpi_distribution</td>
+<td>分发图片信息</td>
+</tr>
+<tr>
+<td>auxpi_log</td>
+<td>日志信息</td>
+</tr>
+<tr>
+<td>auxpi_role</td>
+<td>角色信息</td>
+</tr>
+<tr>
+<td>auxpi_permission</td>
+<td>权限信息</td>
+</tr>
+<tr>
+<td>auxpi_role_permission</td>
+<td>权限角色中间表</td>
+</tr>
+<tr>
+<td>auxpi_option</td>
+<td>站点配置表</td>
+</tr>
+<tr>
+<td>auxpi_role_permission</td>
+<td>权限角色中间表</td>
+</tr>
+</tbody>
+</table>
+<h3 id="三关键技术">三．关键技术</h3>
+<p><code>MVC</code> 后端架构模式，高度解耦的模块设计</p>
+<p><code>VueJs</code> 数据驱动前端，前后端分离</p>
+<p><code>JWT</code> 打造标准 RESTFUL API</p>
+<p><code>MiddleWare</code> 过滤，控制，防范，限制  一气呵成</p>
+<p><code>Echart</code> 实现数据可视化，清晰完整</p>
+<p><code>RBAC</code> 权限组控制，灵活分配权限</p>
+<p><code>Redis</code> 高速缓存，解决高并发问题</p>
+<p><code>Header</code> 检测技术保证图片一致存在</p>
+<h3 id="四解决的痛点">四．解决的痛点</h3>
+<p>使用公共 CDN 的最大痛点就是<strong>不稳定</strong>，因为公共 CDN 的管理权并不在用户的手上，所以经常会出现图片被删掉的状况，一旦图片被删掉，会十分影响用户的浏览体验，这就要求网站管理员得重新补充上传的图片，这是一件十分无聊并且繁琐的劳动。</p>
+<p>所以因为这个原因大部分人不会选用公共 CDN 作为自己的图床。而是购买OOS 来储存图片，但是当网站流量大了起来，使用 OOS 所产生的 CDN 流量费用会陡然上升，经常会出现“天价”账单，又因为公共 CDN 不稳定不敢使用，所以中小心公司和个人站长经常会有这种选择上的麻烦。</p>
+<p>我们通过分析 HTTP 协议中的 Header 状态进行图片状态的检测，如果检测到图片不存在，我们的程序会从根节点中(本地或者 OOS 中取出图片，按照预先设定好的权重，重新上传到权重较高的公共 CDN 上，不需要走自己 OOS 上的，因此可以做到图片一直存在，从而解决了使用 OOS 会产生高额 CDN 费用和公共 CDN 不稳定的痛点</p>
+<h2 id="第四章测试报告">第四章测试报告</h2>
+<h3 id="一-pprof-性能测试">一. PProf 性能测试</h3>
+<p>想要进行性能优化，首先瞩目在 Go 自身提供的工具链来作为分析依据，我们采用的是</p>
+<p><code>net/http/pprof</code> 来采集 HTTP Server 的运行时数据进行分析</p>
+<p>这是我们测试的时候采样到的 cpu 使用</p>
+<p>由于图片太大只截取相关部分进行分析</p>
+<p>其中线最粗框最大最红的为耗时较长的步骤，可以看到主要耗时其实是在 beego 的整个生命周期上，这个问题无法避免，作为一个 web 框架 beego 的性能已经非常优秀了，所以这一部分我们没有办法进一步的优化，另外主要的耗时在调用系统库函数的上面(syscall) 所以这一部分我们也无法优化</p>
+<p><figure>
+		<a href="/p/auxpi-%E5%9B%BE%E5%BA%8A/media/15555117472431/15555141147365.jpg" data-size="1615x824">
+			<img srcset="/p/auxpi-%E5%9B%BE%E5%BA%8A/media/15555117472431/15555141147365_hu077ffaffe31eb17e2d4527ccc5ca9b59_203710_480x0_resize_q75_box.jpg 480w, /p/auxpi-%E5%9B%BE%E5%BA%8A/media/15555117472431/15555141147365_hu077ffaffe31eb17e2d4527ccc5ca9b59_203710_1024x0_resize_q75_box.jpg 1024w"
+				src="/p/auxpi-%E5%9B%BE%E5%BA%8A/media/15555117472431/15555141147365.jpg" width="1615" height="824" loading="lazy"
+				alt="&nbsp;">
+		</a>
+		
+	</figure></p>
+<p><figure>
+		<a href="/p/auxpi-%E5%9B%BE%E5%BA%8A/media/15555117472431/15555141549936.jpg" data-size="1822x849">
+			<img srcset="/p/auxpi-%E5%9B%BE%E5%BA%8A/media/15555117472431/15555141549936_hu28d47049f53b5d06377c139f4d66fb6a_310480_480x0_resize_q75_box.jpg 480w, /p/auxpi-%E5%9B%BE%E5%BA%8A/media/15555117472431/15555141549936_hu28d47049f53b5d06377c139f4d66fb6a_310480_1024x0_resize_q75_box.jpg 1024w"
+				src="/p/auxpi-%E5%9B%BE%E5%BA%8A/media/15555117472431/15555141549936.jpg" width="1822" height="849" loading="lazy"
+				alt="&nbsp;">
+		</a>
+		
+	</figure></p>
+<p>分析业务逻辑的主要耗时，可以看到在这个控制器</p>
+<p><code>GetAuthByUserName</code> 这个方法会占用较多的时间。</p>
+<p>通过查看代码，发现这个函数需要查询数据库来获取用户名称，所以有较长时间的耗时是可以理解的。由于这个函数的特殊性，并不能使用 Redis 进行缓存，但是却给了我们要使用 Redis 等高性能 NoSQL 数据库去缓存经常需要查库的数据</p>
+<p><figure>
+		<a href="/p/auxpi-%E5%9B%BE%E5%BA%8A/media/15555117472431/15555146212420.jpg" data-size="1637x803">
+			<img srcset="/p/auxpi-%E5%9B%BE%E5%BA%8A/media/15555117472431/15555146212420_hu363907bcec9e60fa618cec59eb131743_227775_480x0_resize_q75_box.jpg 480w, /p/auxpi-%E5%9B%BE%E5%BA%8A/media/15555117472431/15555146212420_hu363907bcec9e60fa618cec59eb131743_227775_1024x0_resize_q75_box.jpg 1024w"
+				src="/p/auxpi-%E5%9B%BE%E5%BA%8A/media/15555117472431/15555146212420.jpg" width="1637" height="803" loading="lazy"
+				alt="&nbsp;">
+		</a>
+		
+	</figure></p>
+<p>继续查看可以看到这里有一个因为使用反射机制 (<code>reflect</code>) 导致的时间上的浪费，查看代码发现是 beego 内置的路由反射，我们可以使用正常的路由写法来修改路由反射的写法，路由反射写法尽量不要在线上使用，并且不易管理</p>
+<p><figure>
+		<a href="/p/auxpi-%E5%9B%BE%E5%BA%8A/media/15555117472431/15555148701246.jpg" data-size="1386x749">
+			<img srcset="/p/auxpi-%E5%9B%BE%E5%BA%8A/media/15555117472431/15555148701246_hu765e3a8bf226a8187d2462faa52f3989_164078_480x0_resize_q75_box.jpg 480w, /p/auxpi-%E5%9B%BE%E5%BA%8A/media/15555117472431/15555148701246_hu765e3a8bf226a8187d2462faa52f3989_164078_1024x0_resize_q75_box.jpg 1024w"
+				src="/p/auxpi-%E5%9B%BE%E5%BA%8A/media/15555117472431/15555148701246.jpg" width="1386" height="749" loading="lazy"
+				alt="&nbsp;">
+		</a>
+		
+	</figure></p>
+<h2 id="二压力测试">二．压力测试</h2>
+<p>对我们的系统使用压力工具 <code>hey</code> 进行压力测试</p>
+<p>本机的配置为</p>
+<div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">型号名称： MacBook Air  
+处理器名称： Intel Core i5
+处理器速度： 2.71 GHz
+处理器数目： 1
+核总数： 2
+L2 缓存（每个核）： 256 KB
+L3 缓存： 3 MB
+内存： 8 GB
+</code></pre></div><p>测试一:</p>
+<p>默认请求方法 GET ,请求线程数 100 请求次数 2000
+请求地址:网站首页
+测试结果:
+<figure>
+		<a href="/p/auxpi-%E5%9B%BE%E5%BA%8A/media/15555117472431/Snipaste_2019-04-17_21-05-46.png" data-size="886x932">
+			<img srcset="/p/auxpi-%E5%9B%BE%E5%BA%8A/media/15555117472431/Snipaste_2019-04-17_21-05-46_hud6a09e8abcd2d8c0af61213b52298043_104207_480x0_resize_box_2.png 480w, /p/auxpi-%E5%9B%BE%E5%BA%8A/media/15555117472431/Snipaste_2019-04-17_21-05-46_hud6a09e8abcd2d8c0af61213b52298043_104207_1024x0_resize_box_2.png 1024w"
+				src="/p/auxpi-%E5%9B%BE%E5%BA%8A/media/15555117472431/Snipaste_2019-04-17_21-05-46.png" width="886" height="932" loading="lazy"
+				alt="Snipaste_2019-04-17_21-05-46">
+		</a>
+		
+		<figcaption>Snipaste_2019-04-17_21-05-46</figcaption>
+		
+	</figure></p>
+<p>2000 次请求在 0.6502s 内完成，并发的数量是 100，大多数的相应在 0.041 ms 内</p>
+<p>服务器相应了所有的请求，没有请求丢失的情况，没有内存泄露的情况，无崩溃的情况。测试合格。</p>
+<p>测试二:
+默认请求方法 GET ,请求线程数 100 请求次数 2000
+测试目标:登录 API
+测试结果:
+<figure>
+		<a href="/p/auxpi-%E5%9B%BE%E5%BA%8A/media/15555117472431/Snipaste_2019-04-17_21-22-54.png" data-size="924x979">
+			<img srcset="/p/auxpi-%E5%9B%BE%E5%BA%8A/media/15555117472431/Snipaste_2019-04-17_21-22-54_hu664e9efa341513d74d902faa4e680f02_112891_480x0_resize_box_2.png 480w, /p/auxpi-%E5%9B%BE%E5%BA%8A/media/15555117472431/Snipaste_2019-04-17_21-22-54_hu664e9efa341513d74d902faa4e680f02_112891_1024x0_resize_box_2.png 1024w"
+				src="/p/auxpi-%E5%9B%BE%E5%BA%8A/media/15555117472431/Snipaste_2019-04-17_21-22-54.png" width="924" height="979" loading="lazy"
+				alt="Snipaste_2019-04-17_21-22-54">
+		</a>
+		
+		<figcaption>Snipaste_2019-04-17_21-22-54</figcaption>
+		
+	</figure></p>
+<p>2000 次请求在 1.1s 内完成，并发的数量是 100，大多数的相应在 0.055 ms 内，
+服务器相应了所有的请求，没有请求丢失的情况，没有内存泄露的情况，无崩溃的情况。测试合格。</p>
+<h3 id="三根据测试改进">三．根据测试改进</h3>
+<p>所以想要满足高并发请求，必须对需要频繁查库的内容进行缓存。根据上面的测试，我们觉得使用 Redis 作为 NoSQL 数据库来应对高并发的请求。</p>
+<p>另外如果 SEO 要求不是很高的话可以使用客户端渲染，而不是用模板引擎进行渲染，在生产环境中需要跨域的时候尽量不要使用后端 CORS 跨域，尽量使用代理进行跨域，CORS 在某种程度上说并不安全，并且前端在CORS跨域的时候会先发 OPTIONS 请求进行探测，如果这样在高并发情况下会给服务器增添一部分压力。</p>
+<h3 id="四-安全性">四. 安全性</h3>
+<pre><code>权限测试，当用户为管理员的时候没有访问管理后台的权限，当用户为管理员的时候才有访问后台的权限
+
+为了防止中间人攻击，我们的项目支持 SSL 加密，并且 HTTPS 也是现在 Web 的主流方向。
+</code></pre>
+<h3 id="五-编译的方便性">五. 编译的方便性</h3>
+<p>由于 Golang 支持跨平台编译，在编译的时候经常使用下面的三个命令进行编译</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="nv">GOOS</span><span class="o">=</span>darwin <span class="nv">GOARCH</span><span class="o">=</span>amd64 go  build main.go
+<span class="nv">GOOS</span><span class="o">=</span>linux <span class="nv">GOARCH</span><span class="o">=</span>amd64 go  build main.go
+<span class="nv">GOOS</span><span class="o">=</span>windows <span class="nv">GOARCH</span><span class="o">=</span>amd64 go  build main.go
+</code></pre></div><p>并且还要移动静态资源到对应的目录底下</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">cp -r static/ build/linux/static/
+cp -r views/ build/linux/views/
+cp -r conf/app.conf build/linux/conf/
+</code></pre></div><p>这样太繁琐并且很多操作都是重复的，于是我们编写了一个脚本，可以很方便的在 Unix 平台下进行所有平台的跨平台编译</p>
+<p>具体脚本的使用方式为:</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">bash build.sh all <span class="c1"># 编译所有平台的程序并压缩</span>
+bash build.sh mac <span class="c1"># 编译 mac 程序并压缩</span>
+bash build.sh windows <span class="c1"># 编译 Windows 程序并压缩</span>
+bash build.sh linux <span class="c1">#编译 linux 程序</span>
+bash build.sh all 2.2.0 clear <span class="c1"># 编译程序并压缩，分别打包所有的平台的项目，2.2.0 为版本号，清空编译以后文件，只保留压缩包</span>
+bahs build.sh <span class="nb">help</span> <span class="c1">#查看帮助</span>
+</code></pre></div><p>脚本运行截图</p>
+<p><figure>
+		<a href="/p/auxpi-%E5%9B%BE%E5%BA%8A/media/15555117472431/Snipaste_2019-04-17_22-08-26.png" data-size="800x839">
+			<img srcset="/p/auxpi-%E5%9B%BE%E5%BA%8A/media/15555117472431/Snipaste_2019-04-17_22-08-26_hue00ac18f70f1c487e8d5194e195631fe_139254_480x0_resize_box_2.png 480w, /p/auxpi-%E5%9B%BE%E5%BA%8A/media/15555117472431/Snipaste_2019-04-17_22-08-26_hue00ac18f70f1c487e8d5194e195631fe_139254_1024x0_resize_box_2.png 1024w"
+				src="/p/auxpi-%E5%9B%BE%E5%BA%8A/media/15555117472431/Snipaste_2019-04-17_22-08-26.png" width="800" height="839" loading="lazy"
+				alt="Snipaste_2019-04-17_22-08-26">
+		</a>
+		
+		<figcaption>Snipaste_2019-04-17_22-08-26</figcaption>
+		
+	</figure></p>
+<h2 id="第五章安装及使用">第五章安装及使用</h2>
+<h3 id="一-安装环境要求">一. 安装环境要求</h3>
+<p>由于本程序使用 Golang 编写可以跨平台编译，所以几乎支持所有平台，包括部分嵌入式的平台，因此部署十分容易</p>
+<p>我们建议您的服务器</p>
+<ul>
+<li>RAM ≥ 256 MB</li>
+<li>存储 ≥10 GB</li>
+<li>真实机器或者 KVM 虚拟架构</li>
+<li>必须链接外部网络</li>
+</ul>
+<h3 id="二-全自动安装程序">二. 全自动安装程序</h3>
+<p>为了方便我们程序的部署，我们编写了一个脚本用来简化我们程序在类 Unix 平台上的安装，</p>
+<p>如果您的服务器上面没有 Nginx 或者 MySQL，您可以输入下面的命令安装 MySQL，Nginx 和 我们的图床程序</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">wget -N --no-check-certificate https://raw.githubusercontent.com/aimerforreimu/AUXPI/dev/install.sh <span class="o">&amp;&amp;</span> chmod +x install.sh <span class="o">&amp;&amp;</span> bash install.sh all
+</code></pre></div><p>如果您只想安装我们的图床程序您可以输入下面的命令</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">wget -N --no-check-certificate https://raw.githubusercontent.com/aimerforreimu/AUXPI/dev/install.sh <span class="o">&amp;&amp;</span> chmod +x install.sh <span class="o">&amp;&amp;</span> bash install.sh install
+</code></pre></div><p>就可以安装完成了</p>
+<p>非常的方便简单，关于更多安装脚本的使用</p>
+<p>您可以输入</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">bash install.sh <span class="nb">help</span>
+</code></pre></div><p>进行查看</p>
+<h3 id="三-手动安装程序">三. 手动安装程序</h3>
+<p>找到您 <code>auxpi</code> 图床的下载位置，并且进入，然后执行</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">chmod -u+x auxpi
+./auxpi init
+</code></pre></div><p>会输出如下字样</p>
+<div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">2019/03/10 20:19:53 &amp;{&lt;nil&gt; &lt;nil&gt; 0 0xc0000fa480 false 0 {0xc0001ba3c0} &lt;nil&gt; {{0 0} {&lt;nil&gt;} map[] 0} 0xc0000b8dc0 0xfadfe0 0xc0001c9a40 false}
+2019/03/10 20:19:53 dial tcp 127.0.0.1:3306: connect: connection refused
+2019/03/10 20:19:53 [info] replacing callback `gorm:update_time_stamp` from /Users/aimer/go/src/auxpi/models/models.go:69
+2019/03/10 20:19:53 [info] replacing callback `gorm:update_time_stamp` from /Users/aimer/go/src/auxpi/models/models.go:70
+
+   _       __  __  ___ _____
+  /_\  /\ /\ \/ / / _ \\_   \
+ //_\\/ / \ \  / / /_)/ / /\/
+/  _  \ \_/ /  \/ ___/\/ /_
+\_/ \_/\___/_/\_\/   \____/
+
+🍭 A NEW API IMAGES STORE TOOL 🍭
+
+2019/03/10 20:19:53.169 [A] [main.go:23]  [./auxpi init]
+[INFO]:AUXPI have already initialization complete.
+[INFO]:Please run &#34;./auxpi run&#34;  to start
+</code></pre></div><p>表示已经完成了初始化</p>
+<h4 id="2修改配置文件">2.修改配置文件</h4>
+<p>请进入到程序根目录下的 <code>conf/</code> 目录，修改 <code>siteConfig.json</code>
+只需要修改下面所示的部分即可</p>
+<div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">&#34;db_option&#34;: {
+    &#34;use_db&#34;: true,     
+    &#34;db_type&#34;: &#34;mysql&#34;,       
+    &#34;db_host&#34;: &#34;127.0.0.1:3306&#34;,    #数据库地址，正常不需要修改
+    &#34;db_name&#34;: &#34;auxpi&#34;,             #数据库名称
+    &#34;db_user&#34;: &#34;root&#34;,              #数据库用户名
+    &#34;db_pass&#34;: &#34;root&#34;,              #数据库密码
+    &#34;table_prefix&#34;: &#34;auxpi_&#34;        #数据表前缀，可不修改
+  },
+
+</code></pre></div><p>完成以后请保存。</p>
+<h4 id="3创建迁移数据库">3.创建(迁移)数据库</h4>
+<p>**注意:**如果您正在使用本程序，并且已经成功连接数据库，请不要随意运行此命令，此命令会重置并生成新的数据表，您原来的数据会丢失。</p>
+<p>输入命令</p>
+<pre><code>./auxpi migrate
+</code></pre><p>有如下输出</p>
+<pre><code>   _       __  __  ___ _____
+  /_\  /\ /\ \/ / / _ \\_   \
+ //_\\/ / \ \  / / /_)/ / /\/
+/  _  \ \_/ /  \/ ___/\/ /_
+\_/ \_/\___/_/\_\/   \____/
+
+🍭 A NEW API IMAGES STORE TOOL 🍭
+
+[SUCCESS]: Database migrate Done
+
+</code></pre><p>即代表数据库连接成功</p>
+<h4 id="4创建管理员">4.创建管理员</h4>
+<p>在程序的根目录运行如下程序</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">./auxpi -mod<span class="o">=</span>admin -name<span class="o">=</span>hello -email<span class="o">=</span>auxpi@0w0.tn -pass<span class="o">=</span><span class="m">123123123</span> 
+</code></pre></div><p>可以创建一个</p>
+<p>密码为 <code>123123123</code>
+用户名为:<code>hello</code>
+邮箱为: <code>auxpi@0w0.tn</code></p>
+<p>的管理员账号，管理员有且只有一个，并且用户 ID 只能为1</p>
+<p>会有如下输出，表示运行成功</p>
+<pre><code>
+   _       __  __  ___ _____
+  /_\  /\ /\ \/ / / _ \\_   \
+ //_\\/ / \ \  / / /_)/ / /\/
+/  _  \ \_/ /  \/ ___/\/ /_
+\_/ \_/\___/_/\_\/   \____/
+
+🍭 A NEW API IMAGES STORE TOOL 🍭
+
+2019/03/10 20:39:32.827 [A] [users.go:245]  [Models Error]:  record not found  ===&gt;[users.go:245]
+[SUCCESS]:Create Admin SUCCESS
+</code></pre><p>不必担心上面的报错，这个错误是允许的</p>
+<p>现在您就可以使用这个账号登录后台</p>
+<h4 id="5运行程序">5.运行程序</h4>
+<p>完成上述配置之后，您可以直接运行程序</p>
+<p>在程序的根目录执行</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">./auxpi run
+</code></pre></div><p>程序就会运行起来，然后访问您的域名就可以看到程序了</p>
+<p>如果要托管到后台可以使用 <code>screen</code> 或者 <code>nohup</code></p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="https://sunwei.blog/tags/%E5%9B%BE%E5%BA%8A/">图床</a>
+        
+            <a href="https://sunwei.blog/tags/golang/">golang</a>
+        
+            <a href="https://sunwei.blog/tags/vue/">vue</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+        <h2 class="section-title">相关文章</h2>
+        <div class="related-contents">
+            <div class="flex article-list--tile">
+                
+                    
+<article class="">
+    <a href="https://sunwei.blog/p/auxpi%E5%AF%B9%E6%8E%A5-flicker-%E7%9A%84%E4%B8%80%E4%BA%9B%E5%9D%91/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">AUXPI对接 flicker 的一些坑</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="has-image">
+    <a href="https://sunwei.blog/p/%E6%9C%BA%E6%A2%B0%E5%8E%9F%E7%90%86%E5%A4%A7%E4%BD%9C%E4%B8%9A-%E5%87%B8%E8%BD%AE%E7%94%9F%E6%88%90%E5%99%A8/">
+        
+        
+            <div class="article-image">
+                <img src="/p/%E6%9C%BA%E6%A2%B0%E5%8E%9F%E7%90%86%E5%A4%A7%E4%BD%9C%E4%B8%9A-%E5%87%B8%E8%BD%AE%E7%94%9F%E6%88%90%E5%99%A8/cover_huc4bffe6863479b6bd0ad6a7dd8026253_290434_250x150_fill_box_smart1_2.png" width="250" height="150" 
+                        loading="lazy" data-key="" data-hash="md5-GeMp21dEVnmnNM&#43;Gwlja7Q==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">机械原理大作业-凸轮生成器</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="https://sunwei.blog/p/mac-%E5%BF%AB%E9%80%9F%E7%BC%96%E8%AF%91-swoole/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Mac 快速编译 swoole</h2>
+        </div>
+    </a>
+</article>
+                
+            </div>
+        </div>
+    
+</aside>
+
+    
+        
+    <script src="https://utteranc.es/client.js" 
+        repo="0xDkd/comment"
+        issue-term="pathname"
+        theme="preferred-color-scheme" 
+        
+        crossorigin="anonymous" 
+        async>
+</script>
+
+<style>
+    .utterances {
+        max-width: unset;
+    }
+</style>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">&copy; 2020 A桑的杂货箱</section>
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="1.0.5">Stack</a></b> designed by
+        <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true" style="display:none">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+            </main>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"
+    integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin="anonymous"></script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+<link rel="stylesheet" href="/css/highlight/light.min.css" media="(prefers-color-scheme: light)">
+<link rel="stylesheet" href="/css/highlight/dark.min.css" media="(prefers-color-scheme: dark)">
+
+    </body>
+</html>

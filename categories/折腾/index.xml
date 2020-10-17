@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>折腾 on A桑的杂货箱</title>
+    <link>https://sunwei.blog/categories/%E6%8A%98%E8%85%BE/</link>
+    <description>Recent content in 折腾 on A桑的杂货箱</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Sun, 23 Aug 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://sunwei.blog/categories/%E6%8A%98%E8%85%BE/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>年轻人的第二台黑苹果</title>
+      <link>https://sunwei.blog/p/%E5%B9%B4%E8%BD%BB%E4%BA%BA%E7%9A%84%E7%AC%AC%E4%BA%8C%E5%8F%B0%E9%BB%91%E8%8B%B9%E6%9E%9C/</link>
+      <pubDate>Sun, 23 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://sunwei.blog/p/%E5%B9%B4%E8%BD%BB%E4%BA%BA%E7%9A%84%E7%AC%AC%E4%BA%8C%E5%8F%B0%E9%BB%91%E8%8B%B9%E6%9E%9C/</guid>
+      <description>咋回事呢？ 好久没有更新博客了，最近刚刚从上海学习回来，学到了很多东西，我第一次认为自己的大学所学的东西不枯燥，甚至还挺有意思的。 可能这就是实际的工作和纯理论学习的区别吧，实地的去见识到了轨道车辆这种庞然大物，心中不免有些小兴奋，大学里面学的那点贫瘠的知识也疯狂的被回忆起来， 感觉跑题了🤣
+在参加工作之前我就给自己选好了电脑的配置，一直期待来深圳自己组装起来并且安装好超级生产力系统 MacOS（Windows 能玩的游戏多真香！）
+这是我的配置：
+ 主板：arous-z490-version-D CPU：i7-10700k 散片 GPU：蓝宝石超白金 5700xt 内存：威刚 16G 3200 * 4 固态：WD_Black sn750 2t 和 1t 散热：堡垒水冷 240 机箱：陈睿同款 nzxt 710i 电源：安钛克 850w 网卡：FVT919（黑苹果无线上网用）  这一套买下来我基本上被掏空了，一想到我要给强哥打工 2 年还债我就想再多买点东西
+  想成为和先辈一样的屑 
+开整 钱都花了，就不要再心疼了，快点黑苹果整起来。
+目前看来引导黑苹果的工具常用的有两种，一种是 clover，另一种是 opencore    随着 OpenCore 日渐成熟、acidanthera 团队宣布放弃旗下绝大部分内核驱动（包括 Lilu、VirtualSMC、WhateverGreen、AppleALC 等）对 Clover 的兼容性支持，与其届时被迫换到 OpenCore，不如主动开始迁移。 所以这一次我选择使用 Opencore 对黑苹果进行引导。
+这是我整理好的 opencore 的目录，我所用的版本是 0.58 。
+  
+这里需要着重说一下，由于 arous-z490-version-D 这块主板自身带着蓝牙和 wifi，安装上 FV-T919 网卡之后都会冲突，在 Windows 下面需要重新安装 Fenvi 家的蓝牙和 Wifi 驱动。在黑苹果下就比较重要了，需要增加两个 kext，否则的话蓝牙功能和隔空投递的功能都是没有办法使用的，需要增添的两个包是 intelBlueTootooth*** 这两个包，加入之后就可以屏蔽掉主板自带的蓝牙，防止主板蓝牙和 Fenvi 网卡蓝牙产生冲突而导致蓝牙无法使用，当然解决了蓝牙问题隔空投递问题自己就化解了。</description>
+    </item>
+    
+    <item>
+      <title>Docker 中 MySQL 进行主从同步</title>
+      <link>https://sunwei.blog/p/docker-%E4%B8%AD-mysql-%E8%BF%9B%E8%A1%8C%E4%B8%BB%E4%BB%8E%E5%90%8C%E6%AD%A5/</link>
+      <pubDate>Fri, 13 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>https://sunwei.blog/p/docker-%E4%B8%AD-mysql-%E8%BF%9B%E8%A1%8C%E4%B8%BB%E4%BB%8E%E5%90%8C%E6%AD%A5/</guid>
+      <description>Docker &amp;amp;&amp;amp; Mysql 问题 1.MySQL 8 无法使用第三方软件登录 首先进入 mysql 中
+use mysql; select user,host,plugin,authentication_string from user; 查一下输出，如果加密方式是：caching_sha2_password 则需要修改一下加密方式成为 mysql_native_password
+/*使用默认的 mysql 认证模式*/ ALTER USER &amp;#39;root&amp;#39;@&amp;#39;%&amp;#39; IDENTIFIED WITH mysql_native_password BY &amp;#39;root&amp;#39;; 2.MySQL 主从模式配置 2.1 创建 MySQL 容器 首先使用 docker 创建两个容器。
+#主 docker run -itd --name mysql-master -p 3307:3306 -e MYSQL_ROOT_PASSWORD=root mysql #从 docker run -itd --name mysql-servent -p 3308:3306 -e MYSQL_ROOT_PASSWORD=root mysql 如果需要无论何时都可以自动启动这两个容器的话可以加上 --restart=always 参数 另外下面是关于 --restart 可选值的说明：
+no - 容器退出时，不重启容器； on-failure - 只有在非0状态退出时才从新启动容器； always - 无论退出状态是如何，都重启容器； 比如下面的命令可以保证只要 docker 启动这些容器也会自动启动。</description>
+    </item>
+    
+    <item>
+      <title>AUXPI对接 flicker 的一些坑</title>
+      <link>https://sunwei.blog/p/auxpi%E5%AF%B9%E6%8E%A5-flicker-%E7%9A%84%E4%B8%80%E4%BA%9B%E5%9D%91/</link>
+      <pubDate>Thu, 13 Dec 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://sunwei.blog/p/auxpi%E5%AF%B9%E6%8E%A5-flicker-%E7%9A%84%E4%B8%80%E4%BA%9B%E5%9D%91/</guid>
+      <description>在开发 auxpi 图床的时候踩了不少坑，特别是用 flickr 的时候，简直调试到内心崩溃，我再 github 上找了一个 flickr 的第三方SDK，Go 的 SDK 并不多，而且说明很少，只能去看源码。那种简直看到心态爆炸 QAQ
+ multipart.File to os.File 使用 beego上传文件的时候，默认接受到的文件格式是 multipart.File ，但是我发现第三方 Flickr 的 SDK所提供的文件上传类型其实是 os.File 的类型。他是用一个 io.Reader 做为参数传入进去的。通过阅读源代码
+func UploadFile(client *FlickrClient, path string, optionalParams *UploadParams) (*UploadResponse, error) { file, err := os.Open(path) if err != nil { return nil, err } defer file.Close() return UploadReader(client, file, file.Name(), optionalParams) } 我们可以发现，这个 io.Reader  其实是一个 os.File 的指针类型，即为 *os.File 我们可以直接调用 UploadReader 这个函数，直接将已经构造好的 client传入进去就可以或获得结果。</description>
+    </item>
+    
+    <item>
+      <title>机械原理大作业-凸轮生成器</title>
+      <link>https://sunwei.blog/p/%E6%9C%BA%E6%A2%B0%E5%8E%9F%E7%90%86%E5%A4%A7%E4%BD%9C%E4%B8%9A-%E5%87%B8%E8%BD%AE%E7%94%9F%E6%88%90%E5%99%A8/</link>
+      <pubDate>Fri, 23 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://sunwei.blog/p/%E6%9C%BA%E6%A2%B0%E5%8E%9F%E7%90%86%E5%A4%A7%E4%BD%9C%E4%B8%9A-%E5%87%B8%E8%BD%AE%E7%94%9F%E6%88%90%E5%99%A8/</guid>
+      <description>引言 众所周知，我们小清华在大三上学期的时候机械类专业的学生需要经历机械原理的大作业：“用电脑使用解析法画一个凸轮，并且还要打印对应的报告”。最近正好在学 Golang 于是稍微研究了一下解析法生成的原理， 发现只需要变换运动方程即可，不需要更改轮廓公式，于是可以使用 Golang 的模板去生成 matlab 代码。
+我用这篇文章记录一下当时的思考和实现过程，希望能帮上同学和以后学弟学妹的忙😂
+另外不要直接用啊，得研究一下到底是什么原理，要不被老师提问就难受了
+工具 本次的作业使用的画图的工具为 Matlab，Matlab 的代码可以帮助我们更好的去理解整个的运动过程和运动曲线的是如何形成的
+分析运动状态 按照学号分配题目，我是20 号，下面是我的原始数据
+   名称 数据     近休止状态 0˚ - 30˚   推程运动状态 30˚ - 200˚    远休止状态 200˚ - 270˚   回程运动状态 270˚ - 360˚   初选基圆半径 20   偏心距 +10   滚子半径 14   最大推程 30    推程运动为: 正弦加速度运动 回程运动为: 等加速等减速运动</description>
+    </item>
+    
+    <item>
+      <title>树莓派人脸识别系统</title>
+      <link>https://sunwei.blog/p/%E6%A0%91%E8%8E%93%E6%B4%BE%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB%E7%B3%BB%E7%BB%9F/</link>
+      <pubDate>Fri, 18 May 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://sunwei.blog/p/%E6%A0%91%E8%8E%93%E6%B4%BE%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB%E7%B3%BB%E7%BB%9F/</guid>
+      <description>引言 学了一阵子 php 了，这次自己用 php 练了一下手，更加熟悉了 Linux 的操作，感觉用起来已经得心应手了。
+其实这个 OpenCV 的环境当时我配置了 1 个多星期，最后在抹茶家里面蹭网配置出来的，太难了。
+项目概览   23333 
+1.介绍 使用 OpenCV + Python + Linux + PHP 构建的树莓派人脸识别云系统，本次项目基于树莓派的系统进行嵌入式开发，使用 OpenCV 作为机器视觉库，用 Python 作为树莓派段的主要语言，使用了很多的开源软件和库，但是核心代码和逻辑全部是自己完成。
+2.使用场景模拟 该项目的定位为 智能家居 ，树莓派作为整个家庭的 中心服务器 ，树莓派可以作为家庭的路由器,NAS,和网关，通过开发，可以将控制各种家电的代码放到树莓派中运行，本次的项目就是其中之一的雏形，人脸识别的电子锁，由于经费和时间受限，并没有接上真正的电子锁，但是我们设计了检测结果的回调 ，并且通过 亮红灯 或者 亮绿灯 模拟电子锁的开关
+结合上面的使用场景 ，我们已经实现了如下功能
+1. 机械学习获取房子住户的人脸特征。（可以录入多个人的脸部信息） 2. 按下识别按钮即可进行识别，方便快捷 3. 识别脸部信息，并且做出相应的判断，开锁或者是不开锁 4. 所有的识别记录都会上传到云端，其中包括，识别过程中的抓拍，识别时间，住户分配的 ID等 5. 对于没有录入信息，但尝试非法打开“电子锁”的情况，云端会发送邮件、短信给主人，来警告用户，防止意外的发生 6. 云端数据分类汇总展示 7. ..... 3.关于未来的开发 如果有时间，我们会像上面所提到的 智能家居 靠近，首先会把电子锁功能完善，然后在树莓派中建立云服务的本地版，用户无需访问外网，直接访问树莓派中的数据汇总就可以查看所有的数据，我们会使用 百度语音 API 进行语言转化，实现语音控制家电的开关，也可以利用树莓派的 中心服务器 的地位通过云计算远程控制家电的开关情况。本项目有着很大的扩展性，并且符合现代人们的需求。
+4.效果图 1.</description>
+    </item>
+    
+  </channel>
+</rss>

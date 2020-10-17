@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>matlab on A桑的杂货箱</title>
+    <link>https://sunwei.blog/tags/matlab/</link>
+    <description>Recent content in matlab on A桑的杂货箱</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Fri, 23 Nov 2018 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://sunwei.blog/tags/matlab/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>机械原理大作业-凸轮生成器</title>
+      <link>https://sunwei.blog/p/%E6%9C%BA%E6%A2%B0%E5%8E%9F%E7%90%86%E5%A4%A7%E4%BD%9C%E4%B8%9A-%E5%87%B8%E8%BD%AE%E7%94%9F%E6%88%90%E5%99%A8/</link>
+      <pubDate>Fri, 23 Nov 2018 00:00:00 +0000</pubDate>
+      
+      <guid>https://sunwei.blog/p/%E6%9C%BA%E6%A2%B0%E5%8E%9F%E7%90%86%E5%A4%A7%E4%BD%9C%E4%B8%9A-%E5%87%B8%E8%BD%AE%E7%94%9F%E6%88%90%E5%99%A8/</guid>
+      <description>引言 众所周知，我们小清华在大三上学期的时候机械类专业的学生需要经历机械原理的大作业：“用电脑使用解析法画一个凸轮，并且还要打印对应的报告”。最近正好在学 Golang 于是稍微研究了一下解析法生成的原理， 发现只需要变换运动方程即可，不需要更改轮廓公式，于是可以使用 Golang 的模板去生成 matlab 代码。
+我用这篇文章记录一下当时的思考和实现过程，希望能帮上同学和以后学弟学妹的忙😂
+另外不要直接用啊，得研究一下到底是什么原理，要不被老师提问就难受了
+工具 本次的作业使用的画图的工具为 Matlab，Matlab 的代码可以帮助我们更好的去理解整个的运动过程和运动曲线的是如何形成的
+分析运动状态 按照学号分配题目，我是20 号，下面是我的原始数据
+   名称 数据     近休止状态 0˚ - 30˚   推程运动状态 30˚ - 200˚    远休止状态 200˚ - 270˚   回程运动状态 270˚ - 360˚   初选基圆半径 20   偏心距 +10   滚子半径 14   最大推程 30    推程运动为: 正弦加速度运动 回程运动为: 等加速等减速运动</description>
+    </item>
+    
+  </channel>
+</rss>

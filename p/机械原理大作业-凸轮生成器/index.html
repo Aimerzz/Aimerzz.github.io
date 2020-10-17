@@ -1,0 +1,1145 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head>
+    <meta charset='utf-8'>
+    <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='大三上学期的机械原理大作业，写了个凸轮全数据生成器，妈妈再也不用担心我考试过了'><title>机械原理大作业-凸轮生成器</title>
+    
+    <link rel='canonical' href='https://sunwei.blog/p/%E6%9C%BA%E6%A2%B0%E5%8E%9F%E7%90%86%E5%A4%A7%E4%BD%9C%E4%B8%9A-%E5%87%B8%E8%BD%AE%E7%94%9F%E6%88%90%E5%99%A8/'>
+
+<link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='机械原理大作业-凸轮生成器'>
+<meta property='og:description' content='大三上学期的机械原理大作业，写了个凸轮全数据生成器，妈妈再也不用担心我考试过了'>
+<meta property='og:url' content='https://sunwei.blog/p/%E6%9C%BA%E6%A2%B0%E5%8E%9F%E7%90%86%E5%A4%A7%E4%BD%9C%E4%B8%9A-%E5%87%B8%E8%BD%AE%E7%94%9F%E6%88%90%E5%99%A8/'>
+<meta property='og:site_name' content='A桑的杂货箱'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='golang' /><meta property='article:tag' content='matlab' /><meta property='article:published_time' content='2018-11-23T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2018-11-23T00:00:00&#43;00:00'/><meta property='og:image' content='https://sunwei.blog/p/%E6%9C%BA%E6%A2%B0%E5%8E%9F%E7%90%86%E5%A4%A7%E4%BD%9C%E4%B8%9A-%E5%87%B8%E8%BD%AE%E7%94%9F%E6%88%90%E5%99%A8/cover.png' />
+<meta name="twitter:title" content="机械原理大作业-凸轮生成器">
+<meta name="twitter:description" content="大三上学期的机械原理大作业，写了个凸轮全数据生成器，妈妈再也不用担心我考试过了"><meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:image" content='https://sunwei.blog/p/%E6%9C%BA%E6%A2%B0%E5%8E%9F%E7%90%86%E5%A4%A7%E4%BD%9C%E4%B8%9A-%E5%87%B8%E8%BD%AE%E7%94%9F%E6%88%90%E5%99%A8/cover.png' /></head><body class="">
+        <div class="container flex on-phone--column align-items--flex-start extended article-page with-toolbar">
+            <aside class="sidebar left-sidebar sticky">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header class="site-info">
+        
+            <figure class="site-avatar">
+                
+
+                
+                    
+                    <img src="/img/avatar1_huda84896c9bf23e2f48c7de4e6ccdd7e8_360249_300x300_resize_box_2.png" width="300"
+                        height="300" class="site-logo" loading="lazy" alt="Avatar">
+                
+
+                <span class="emoji">🍥</span>
+            </figure>
+        
+        <h1 class="site-name"><a href="https://sunwei.blog">A桑的杂货箱</a></h1>
+        <h2 class="site-description">有时候回头看看自己做的东西，感觉充实且鬼畜😂</h2>
+    </header>
+
+    <ol class="menu" id="main-menu">
+        
+        
+        
+
+        <li >
+            <a href='https://sunwei.blog/'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>Home</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='https://sunwei.blog/about'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>About</span>
+            </a>
+        </li>
+        
+        
+
+        <li >
+            <a href='https://sunwei.blog/archives'>
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>Archives</span>
+            </a>
+        </li>
+        
+    </ol>
+</aside>
+            <main class="main full-width">
+    <div id="article-toolbar">
+        <a href="https://sunwei.blog" class="back-home">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="15 6 9 12 15 18" />
+</svg>
+
+
+
+            <span>Back</span>
+        </a>
+    </div>
+
+    <article class="has-image main-article">
+    <header class="article-header">
+        <div class="article-image">
+            <img srcset="/p/%E6%9C%BA%E6%A2%B0%E5%8E%9F%E7%90%86%E5%A4%A7%E4%BD%9C%E4%B8%9A-%E5%87%B8%E8%BD%AE%E7%94%9F%E6%88%90%E5%99%A8/cover_huc4bffe6863479b6bd0ad6a7dd8026253_290434_1024x0_resize_box_2.png 1024w, /p/%E6%9C%BA%E6%A2%B0%E5%8E%9F%E7%90%86%E5%A4%A7%E4%BD%9C%E4%B8%9A-%E5%87%B8%E8%BD%AE%E7%94%9F%E6%88%90%E5%99%A8/cover_huc4bffe6863479b6bd0ad6a7dd8026253_290434_2000x0_resize_box_2.png 2000w"
+                    src="/p/%E6%9C%BA%E6%A2%B0%E5%8E%9F%E7%90%86%E5%A4%A7%E4%BD%9C%E4%B8%9A-%E5%87%B8%E8%BD%AE%E7%94%9F%E6%88%90%E5%99%A8/cover_huc4bffe6863479b6bd0ad6a7dd8026253_290434_2000x0_resize_box_2.png" width="1280" height="720" loading="lazy"
+                    alt="Featured image of post 机械原理大作业-凸轮生成器" />
+            
+        </div>
+    
+
+    <div class="article-details">
+    
+    <header class="article-category">
+        
+            <a href="https://sunwei.blog/categories/%E5%88%86%E4%BA%AB/" 
+                    class="color-tag"
+                    data-image="/p/%E6%9C%BA%E6%A2%B0%E5%8E%9F%E7%90%86%E5%A4%A7%E4%BD%9C%E4%B8%9A-%E5%87%B8%E8%BD%AE%E7%94%9F%E6%88%90%E5%99%A8/cover_huc4bffe6863479b6bd0ad6a7dd8026253_290434_20x20_fill_box_smart1_2.png" 
+                    data-key="" 
+                    data-hash="md5-GeMp21dEVnmnNM&#43;Gwlja7Q==">
+                    分享
+                </a>
+            
+        
+            <a href="https://sunwei.blog/categories/%E6%8A%98%E8%85%BE/" 
+                    class="color-tag"
+                    data-image="/p/%E6%9C%BA%E6%A2%B0%E5%8E%9F%E7%90%86%E5%A4%A7%E4%BD%9C%E4%B8%9A-%E5%87%B8%E8%BD%AE%E7%94%9F%E6%88%90%E5%99%A8/cover_huc4bffe6863479b6bd0ad6a7dd8026253_290434_20x20_fill_box_smart1_2.png" 
+                    data-key="" 
+                    data-hash="md5-GeMp21dEVnmnNM&#43;Gwlja7Q==">
+                    折腾
+                </a>
+            
+        
+    </header>
+    
+
+    <h2 class="article-title">
+        <a href="https://sunwei.blog/p/%E6%9C%BA%E6%A2%B0%E5%8E%9F%E7%90%86%E5%A4%A7%E4%BD%9C%E4%B8%9A-%E5%87%B8%E8%BD%AE%E7%94%9F%E6%88%90%E5%99%A8/">机械原理大作业-凸轮生成器</a>
+    </h2>
+
+    
+    <h3 class="article-subtitle">
+        大三上学期的机械原理大作业，写了个凸轮全数据生成器，妈妈再也不用担心我考试过了
+    </h3>
+    <footer class="article-time">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <time class="article-time--published">Nov 23, 2018</time>
+        
+        <div style="margin-left: 20px;">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user-check" width="44" height="44" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <circle cx="9" cy="7" r="4" />
+  <path d="M3 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+  <path d="M16 11l2 2l4 -4" />
+</svg>
+        </div>
+        <div  class="article-time--published">
+            孙玮
+        </div>
+        
+        
+    </footer></div>
+</header>
+
+    <section class="article-content">
+    <h1 id="引言">引言</h1>
+<p>众所周知，我们小清华在大三上学期的时候机械类专业的学生需要经历机械原理的大作业：“用电脑使用解析法画一个凸轮，并且还要打印对应的报告”。最近正好在学 Golang 于是稍微研究了一下解析法生成的原理，
+发现只需要变换<strong>运动方程</strong>即可，不需要更改轮廓公式，于是可以使用 Golang 的模板去生成 matlab 代码。</p>
+<p>我用这篇文章记录一下当时的思考和实现过程，希望能帮上同学和以后学弟学妹的忙😂</p>
+<p>另外不要直接用啊，得研究一下到底是什么原理，要不被老师提问就难受了</p>
+<h2 id="工具">工具</h2>
+<p>本次的作业使用的画图的工具为 Matlab，Matlab 的代码可以帮助我们更好的去理解整个的运动过程和运动曲线的是如何形成的</p>
+<h2 id="分析运动状态">分析运动状态</h2>
+<p>按照学号分配题目，我是20 号，下面是我的原始数据</p>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th align="center">数据</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>近休止状态</td>
+<td align="center">0˚ - 30˚</td>
+</tr>
+<tr>
+<td>推程运动状态</td>
+<td align="center">30˚ - 200˚ </td>
+</tr>
+<tr>
+<td>远休止状态</td>
+<td align="center">200˚ - 270˚</td>
+</tr>
+<tr>
+<td>回程运动状态</td>
+<td align="center">270˚ - 360˚</td>
+</tr>
+<tr>
+<td>初选基圆半径</td>
+<td align="center">20</td>
+</tr>
+<tr>
+<td>偏心距</td>
+<td align="center">+10</td>
+</tr>
+<tr>
+<td>滚子半径</td>
+<td align="center">14</td>
+</tr>
+<tr>
+<td>最大推程</td>
+<td align="center">30</td>
+</tr>
+</tbody>
+</table>
+<p>推程运动为: 正弦加速度运动
+回程运动为: 等加速等减速运动</p>
+<p>可以确定</p>
+<p><strong>推程</strong>的运动方程为:
+<code>s＝h[δ/δ0-sin(2πδ/δ0)/2π]</code>
+<strong>回程</strong>的运动方程为:
+<code>s ＝h-2hδ2/δ’20</code> (前半段)
+<code>s ＝2h(δ’0-δ)2/δ’20</code> (后半段)</p>
+<p>近休止和远休止都不会影响滚子推杆的位移。
+于是我们可以编写如下的 matlab 代码</p>
+<div class="highlight"><pre class="chroma"><code class="language-matlab" data-lang="matlab"><span class="n">rb</span> <span class="p">=</span><span class="mi">50</span><span class="p">;</span><span class="c">%基圆半径</span>
+<span class="n">rt</span> <span class="p">=</span> <span class="mi">14</span><span class="p">;</span><span class="c">%滚子半径</span>
+<span class="n">e</span> <span class="p">=</span><span class="mi">10</span> <span class="p">;</span><span class="c">%偏心距</span>
+<span class="n">h</span> <span class="p">=</span> <span class="mi">30</span><span class="p">;</span><span class="c">%推程最大值</span>
+<span class="n">ft</span> <span class="p">=</span><span class="mi">170</span><span class="p">;</span><span class="c">%推程运动角</span>
+<span class="n">fs</span> <span class="p">=</span> <span class="mi">70</span><span class="p">;</span><span class="c">%远休止角</span>
+<span class="n">fh</span> <span class="p">=</span><span class="mi">90</span><span class="p">;</span><span class="c">%回程运动角</span>
+<span class="n">hd</span> <span class="p">=</span><span class="nb">pi</span> <span class="o">/</span><span class="mi">180</span><span class="p">;</span>
+<span class="n">du</span> <span class="p">=</span> <span class="mi">180</span><span class="o">/</span><span class="nb">pi</span><span class="p">;</span><span class="c">%定义° 的含义</span>
+<span class="n">se</span> <span class="p">=</span><span class="nb">sqrt</span><span class="p">(</span><span class="n">rb</span>^<span class="mi">2</span><span class="o">-</span><span class="n">e</span>^<span class="mi">2</span><span class="p">);</span>
+<span class="n">d1</span> <span class="p">=</span> <span class="n">ft</span><span class="o">+</span><span class="n">fs</span><span class="p">;</span>
+<span class="n">d2</span> <span class="p">=</span> <span class="n">ft</span><span class="o">+</span><span class="n">fs</span><span class="o">+</span><span class="n">fh</span><span class="p">;</span>
+<span class="n">n</span><span class="p">=</span><span class="mi">360</span><span class="p">;</span>
+
+<span class="c">%开始运动</span>
+<span class="k">if</span> <span class="n">f</span><span class="o">&lt;</span><span class="p">=</span><span class="n">ft</span>
+    <span class="n">s</span><span class="p">(</span><span class="n">f</span><span class="p">)=</span><span class="n">h</span><span class="o">*</span><span class="p">((</span><span class="n">f</span><span class="o">/</span><span class="n">ft</span><span class="p">)</span><span class="o">-</span><span class="p">(</span><span class="nb">sin</span><span class="p">((</span><span class="mi">2</span><span class="o">*</span><span class="nb">pi</span><span class="o">*</span><span class="n">f</span><span class="p">)</span><span class="o">/</span><span class="n">ft</span><span class="p">))</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="nb">pi</span><span class="p">));</span><span class="n">s</span><span class="p">=</span><span class="n">s</span><span class="p">(</span><span class="n">f</span><span class="p">);</span>
+    <span class="n">ds</span><span class="p">(</span><span class="n">f</span><span class="p">)=(</span><span class="n">h</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="nb">cos</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="nb">pi</span><span class="o">*</span><span class="n">f</span><span class="o">/</span><span class="n">ft</span><span class="p">)))</span><span class="o">/</span><span class="n">ft</span><span class="p">;</span><span class="n">ds</span><span class="p">=</span><span class="n">ds</span><span class="p">(</span><span class="n">f</span><span class="p">);</span>
+    <span class="c">%远休止状态</span>
+
+<span class="k">elseif</span> <span class="n">f</span><span class="o">&gt;</span><span class="n">ft</span> <span class="o">&amp;&amp;</span> <span class="n">f</span><span class="o">&lt;</span><span class="p">=</span><span class="n">d1</span>
+    <span class="n">s</span><span class="p">=</span><span class="n">h</span><span class="p">;</span><span class="n">ds</span><span class="p">=</span><span class="mi">0</span><span class="p">;</span>
+    <span class="c">%回程运动状态(等加速减速运动)</span>
+
+<span class="k">elseif</span> <span class="n">f</span><span class="o">&gt;</span><span class="n">d1</span> <span class="o">&amp;&amp;</span> <span class="n">f</span><span class="o">&lt;</span><span class="p">=</span><span class="n">d1</span><span class="o">+</span><span class="p">(</span><span class="n">fh</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+     <span class="n">k</span><span class="p">=</span><span class="n">f</span><span class="o">-</span><span class="n">d1</span><span class="p">;</span> <span class="c">% k</span>
+    <span class="n">s</span><span class="p">(</span><span class="n">f</span><span class="p">)=</span><span class="n">h</span><span class="o">-</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">h</span><span class="o">*</span><span class="p">(</span><span class="n">k</span>^<span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">fh</span>^<span class="mi">2</span><span class="p">));</span><span class="n">s</span><span class="p">=</span><span class="n">s</span><span class="p">(</span><span class="n">f</span><span class="p">);</span>
+    <span class="n">ds</span><span class="p">(</span><span class="n">f</span><span class="p">)=</span><span class="o">-</span><span class="mi">4</span><span class="o">*</span><span class="n">h</span><span class="o">*</span><span class="n">k</span><span class="o">/</span><span class="p">(</span><span class="n">fh</span>^<span class="mi">2</span><span class="p">);</span><span class="n">ds</span><span class="p">=</span><span class="n">ds</span><span class="p">(</span><span class="n">f</span><span class="p">);</span>
+<span class="k">elseif</span> <span class="n">f</span> <span class="o">&gt;</span> <span class="n">d1</span><span class="o">+</span><span class="p">(</span><span class="n">fh</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="n">f</span> <span class="o">&lt;</span><span class="p">=</span> <span class="n">d2</span>
+    <span class="n">k</span><span class="p">=</span><span class="n">f</span><span class="o">-</span><span class="n">d1</span><span class="p">;</span>
+    <span class="n">s</span><span class="p">(</span><span class="n">f</span><span class="p">)=(</span><span class="mi">2</span><span class="o">*</span><span class="n">h</span><span class="o">*</span><span class="p">((</span><span class="n">fh</span><span class="o">-</span><span class="n">k</span><span class="p">)</span>^<span class="mi">2</span><span class="p">))</span><span class="o">/</span><span class="p">(</span><span class="n">fh</span>^<span class="mi">2</span><span class="p">);</span><span class="n">s</span><span class="p">=</span><span class="n">s</span><span class="p">(</span><span class="n">f</span><span class="p">);</span>
+    <span class="n">ds</span><span class="p">(</span><span class="n">f</span><span class="p">)=(</span><span class="o">-</span><span class="mi">4</span><span class="o">*</span><span class="n">h</span><span class="o">*</span><span class="p">(</span><span class="n">fh</span><span class="o">-</span><span class="n">k</span><span class="p">))</span><span class="o">/</span><span class="p">(</span><span class="n">fh</span>^<span class="mi">2</span><span class="p">);</span><span class="n">ds</span><span class="p">=</span><span class="n">ds</span><span class="p">(</span><span class="n">f</span><span class="p">);</span>
+    <span class="c">%近休止状态</span>
+
+<span class="k">elseif</span> <span class="n">f</span><span class="o">&gt;</span><span class="n">d2</span> <span class="o">&amp;&amp;</span>  <span class="n">f</span><span class="o">&lt;</span><span class="p">=</span><span class="n">n</span>
+    <span class="n">s</span><span class="p">=</span><span class="mi">0</span><span class="p">;</span><span class="n">ds</span><span class="p">=</span><span class="mi">0</span><span class="p">;</span>
+<span class="k">end</span>
+    
+</code></pre></div><p>接下来只需要把凸轮的轮廓方程带入</p>
+<div class="highlight"><pre class="chroma"><code class="language-matlab" data-lang="matlab"><span class="c">%计算轮廓</span>
+    <span class="n">xx</span><span class="p">(</span><span class="n">f</span><span class="p">)=(</span><span class="n">se</span><span class="o">+</span><span class="n">s</span><span class="p">)</span><span class="o">*</span><span class="nb">sin</span><span class="p">(</span><span class="n">f</span><span class="o">*</span><span class="n">hd</span><span class="p">)</span><span class="o">+</span><span class="n">e</span><span class="o">*</span><span class="nb">cos</span><span class="p">(</span><span class="n">f</span><span class="o">*</span><span class="n">hd</span><span class="p">);</span><span class="n">x</span><span class="p">=</span><span class="n">xx</span><span class="p">(</span><span class="n">f</span><span class="p">);</span>
+    <span class="n">yy</span><span class="p">(</span><span class="n">f</span><span class="p">)=(</span><span class="n">se</span><span class="o">+</span><span class="n">s</span><span class="p">)</span><span class="o">*</span><span class="nb">cos</span><span class="p">(</span><span class="n">f</span><span class="o">*</span><span class="n">hd</span><span class="p">)</span><span class="o">-</span><span class="n">e</span><span class="o">*</span><span class="nb">sin</span><span class="p">(</span><span class="n">f</span><span class="o">*</span><span class="n">hd</span><span class="p">);</span><span class="n">y</span><span class="p">=</span><span class="n">yy</span><span class="p">(</span><span class="n">f</span><span class="p">);</span>
+    <span class="n">dx</span><span class="p">(</span><span class="n">f</span><span class="p">)=(</span><span class="n">ds</span><span class="o">-</span><span class="n">e</span><span class="p">)</span><span class="o">*</span><span class="nb">sin</span><span class="p">(</span><span class="n">f</span><span class="o">*</span><span class="n">hd</span><span class="p">)</span><span class="o">+</span><span class="p">(</span><span class="n">se</span><span class="o">+</span><span class="n">s</span><span class="p">)</span><span class="o">*</span><span class="nb">cos</span><span class="p">(</span><span class="n">f</span><span class="o">*</span><span class="n">hd</span><span class="p">);</span><span class="n">dx</span><span class="p">=</span><span class="n">dx</span><span class="p">(</span><span class="n">f</span><span class="p">);</span>
+    <span class="n">dy</span><span class="p">(</span><span class="n">f</span><span class="p">)=(</span><span class="n">ds</span><span class="o">-</span><span class="n">e</span><span class="p">)</span><span class="o">*</span><span class="nb">cos</span><span class="p">(</span><span class="n">f</span><span class="o">*</span><span class="n">hd</span><span class="p">)</span><span class="o">-</span><span class="p">(</span><span class="n">se</span><span class="o">+</span><span class="n">s</span><span class="p">)</span><span class="o">*</span><span class="nb">sin</span><span class="p">(</span><span class="n">f</span><span class="o">*</span><span class="n">hd</span><span class="p">);</span><span class="n">dy</span><span class="p">=</span><span class="n">dy</span><span class="p">(</span><span class="n">f</span><span class="p">);</span>
+    <span class="n">xp</span><span class="p">(</span><span class="n">f</span><span class="p">)=</span><span class="n">x</span><span class="o">+</span><span class="n">rt</span><span class="o">*</span><span class="n">dy</span><span class="o">/</span><span class="nb">sqrt</span><span class="p">(</span><span class="n">dx</span>^<span class="mi">2</span><span class="o">+</span><span class="n">dy</span>^<span class="mi">2</span><span class="p">);</span><span class="n">xxp</span><span class="p">=</span><span class="n">xp</span><span class="p">(</span><span class="n">f</span><span class="p">);</span>
+    <span class="n">yp</span><span class="p">(</span><span class="n">f</span><span class="p">)=</span><span class="n">y</span><span class="o">-</span><span class="n">rt</span><span class="o">*</span><span class="n">dx</span><span class="o">/</span><span class="nb">sqrt</span><span class="p">(</span><span class="n">dx</span>^<span class="mi">2</span><span class="o">+</span><span class="n">dy</span>^<span class="mi">2</span><span class="p">);</span><span class="n">yyp</span><span class="p">=</span><span class="n">yp</span><span class="p">(</span><span class="n">f</span><span class="p">);</span>
+
+<span class="k">end</span>
+</code></pre></div><p>计算出了凸轮的轮廓，接下来就是画图了，使用 <code>plot</code> 函数即可把图像画出</p>
+<div class="highlight"><pre class="chroma"><code class="language-matlab" data-lang="matlab"><span class="n">plot</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span><span class="n">yy</span><span class="p">,</span><span class="s">&#39;r-.&#39;</span><span class="p">)</span>
+<span class="n">axis</span><span class="p">([</span><span class="o">-</span><span class="p">(</span><span class="n">rb</span><span class="o">+</span><span class="n">h</span><span class="o">-</span><span class="mi">10</span><span class="p">)</span> <span class="p">(</span><span class="n">rb</span><span class="o">+</span><span class="n">h</span><span class="o">+</span><span class="mi">10</span><span class="p">)</span> <span class="o">-</span><span class="p">(</span><span class="n">rb</span><span class="o">+</span><span class="n">h</span><span class="o">+</span><span class="mi">10</span><span class="p">)</span> <span class="p">(</span><span class="n">rb</span><span class="o">+</span><span class="n">rt</span><span class="o">+</span><span class="mi">10</span><span class="p">)])</span>
+
+<span class="n">axis</span> <span class="n">equal</span>
+<span class="n">text</span><span class="p">(</span><span class="n">rb</span><span class="o">+</span><span class="n">h</span><span class="o">+</span><span class="mi">3</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="s">&#39;X&#39;</span><span class="p">)</span>
+<span class="n">text</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">rb</span><span class="o">+</span><span class="n">rt</span><span class="o">+</span><span class="mi">3</span><span class="p">,</span><span class="s">&#39;Y&#39;</span><span class="p">)</span>
+<span class="n">text</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="s">&#39;O&#39;</span><span class="p">)</span>
+<span class="n">title</span><span class="p">(</span><span class="s">&#39;偏置移动从动件盘型凸轮设计&#39;</span><span class="p">)</span>
+<span class="n">hold</span> <span class="n">on</span><span class="p">;</span>
+
+<span class="n">plot</span><span class="p">([</span><span class="o">-</span><span class="p">(</span><span class="n">rb</span><span class="o">+</span><span class="n">h</span><span class="p">)</span> <span class="p">(</span><span class="n">rb</span><span class="o">+</span><span class="n">h</span><span class="p">)],[</span><span class="mi">0</span> <span class="mi">0</span><span class="p">],</span><span class="s">&#39;k&#39;</span><span class="p">)</span>
+<span class="n">plot</span><span class="p">([</span><span class="mi">0</span> <span class="mi">0</span><span class="p">],[</span><span class="o">-</span><span class="p">(</span><span class="n">rb</span><span class="o">+</span><span class="n">h</span><span class="p">)</span> <span class="p">(</span><span class="n">rb</span><span class="o">+</span><span class="n">rt</span><span class="p">)],</span><span class="s">&#39;k&#39;</span><span class="p">)</span>
+<span class="n">plot</span><span class="p">([</span><span class="n">e</span> <span class="n">e</span><span class="p">],[</span><span class="mi">0</span> <span class="p">(</span><span class="n">rb</span><span class="o">+</span><span class="n">rt</span><span class="p">)],</span><span class="s">&#39;k--&#39;</span><span class="p">)</span>
+<span class="n">ct</span> <span class="p">=</span> <span class="nb">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="o">*</span><span class="nb">pi</span><span class="p">);</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">e</span><span class="o">+</span><span class="n">rt</span><span class="o">*</span><span class="nb">cos</span><span class="p">(</span><span class="n">ct</span><span class="p">),</span><span class="n">se</span><span class="o">+</span><span class="n">rt</span><span class="o">*</span><span class="nb">sin</span><span class="p">(</span><span class="n">ct</span><span class="p">),</span><span class="s">&#39;m&#39;</span><span class="p">)</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">xp</span><span class="p">,</span><span class="n">yp</span><span class="p">,</span><span class="s">&#39;b&#39;</span><span class="p">)</span>
+</code></pre></div><p>至此，完整的代码为</p>
+<div class="highlight"><pre class="chroma"><code class="language-matlab" data-lang="matlab"><span class="c">%定义参数</span>
+<span class="n">rb</span> <span class="p">=</span><span class="mi">50</span><span class="p">;</span><span class="c">%基圆半径</span>
+<span class="n">rt</span> <span class="p">=</span> <span class="mi">14</span><span class="p">;</span><span class="c">%滚子半径</span>
+<span class="n">e</span> <span class="p">=</span><span class="mi">10</span><span class="p">;</span><span class="c">%偏心距</span>
+<span class="n">h</span> <span class="p">=</span> <span class="mi">30</span><span class="p">;</span><span class="c">%推程最大值</span>
+<span class="n">ft</span> <span class="p">=</span><span class="mi">170</span><span class="p">;</span><span class="c">%推程运动角</span>
+<span class="n">fs</span> <span class="p">=</span> <span class="mi">70</span><span class="p">;</span><span class="c">%远休止角</span>
+<span class="n">fh</span> <span class="p">=</span><span class="mi">90</span><span class="p">;</span><span class="c">%回程运动角</span>
+<span class="n">hd</span> <span class="p">=</span><span class="nb">pi</span> <span class="o">/</span><span class="mi">180</span><span class="p">;</span>
+<span class="n">du</span> <span class="p">=</span> <span class="mi">180</span><span class="o">/</span><span class="nb">pi</span><span class="p">;</span><span class="c">%定义° 的含义</span>
+<span class="n">se</span> <span class="p">=</span><span class="nb">sqrt</span><span class="p">(</span><span class="n">rb</span>^<span class="mi">2</span><span class="o">-</span><span class="n">e</span>^<span class="mi">2</span><span class="p">);</span>
+<span class="n">d1</span> <span class="p">=</span> <span class="n">ft</span><span class="o">+</span><span class="n">fs</span><span class="p">;</span>
+<span class="n">d2</span> <span class="p">=</span> <span class="n">ft</span><span class="o">+</span><span class="n">fs</span><span class="o">+</span><span class="n">fh</span><span class="p">;</span>
+<span class="n">n</span><span class="p">=</span><span class="mi">360</span><span class="p">;</span>
+
+<span class="c">%% 初始化坐标</span>
+<span class="n">s</span><span class="p">=</span><span class="nb">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+<span class="n">ds</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+<span class="n">x</span><span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+<span class="n">y</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+<span class="n">dx</span> <span class="p">=</span><span class="nb">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+<span class="n">dy</span> <span class="p">=</span><span class="nb">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+<span class="n">xx</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+<span class="n">yy</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+<span class="n">yp</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+
+<span class="c">%% 开始计算</span>
+
+<span class="k">for</span> <span class="n">f</span><span class="p">=</span><span class="mi">1</span><span class="p">:</span><span class="n">n</span>
+    
+    <span class="c">%推程加速状态（正弦运动）</span>
+    <span class="k">if</span> <span class="n">f</span><span class="o">&lt;</span><span class="p">=</span><span class="n">ft</span>
+        <span class="c">% σ_0 ==&gt; ft  ||| σ ==&gt; f</span>
+        <span class="n">s</span><span class="p">(</span><span class="n">f</span><span class="p">)=</span><span class="n">h</span><span class="o">*</span><span class="p">((</span><span class="n">f</span><span class="o">/</span><span class="n">ft</span><span class="p">)</span><span class="o">-</span><span class="p">(</span><span class="nb">sin</span><span class="p">((</span><span class="mi">2</span><span class="o">*</span><span class="nb">pi</span><span class="o">*</span><span class="n">f</span><span class="p">)</span><span class="o">/</span><span class="n">ft</span><span class="p">))</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="nb">pi</span><span class="p">));</span><span class="n">s</span><span class="p">=</span><span class="n">s</span><span class="p">(</span><span class="n">f</span><span class="p">);</span>
+        <span class="n">ds</span><span class="p">(</span><span class="n">f</span><span class="p">)=(</span><span class="n">h</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="nb">cos</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="nb">pi</span><span class="o">/</span><span class="n">ft</span><span class="p">)))</span><span class="o">/</span><span class="n">ft</span><span class="p">;</span><span class="n">ds</span><span class="p">=</span><span class="n">ds</span><span class="p">(</span><span class="n">f</span><span class="p">);</span>
+        <span class="c">%远休止状态</span>
+    <span class="k">elseif</span> <span class="n">f</span><span class="o">&gt;</span><span class="n">ft</span> <span class="o">&amp;&amp;</span> <span class="n">f</span><span class="o">&lt;</span><span class="p">=</span><span class="n">d1</span>
+        <span class="n">s</span><span class="p">=</span><span class="n">h</span><span class="p">;</span><span class="n">ds</span><span class="p">=</span><span class="mi">0</span><span class="p">;</span>
+        <span class="c">%回程运动状态(加速度) ft==&gt; pi*f-ft-fs</span>
+    <span class="k">elseif</span> <span class="n">f</span><span class="o">&gt;</span><span class="n">d1</span> <span class="o">&amp;&amp;</span> <span class="n">f</span><span class="o">&lt;</span><span class="p">=</span><span class="n">d1</span><span class="o">+</span><span class="p">(</span><span class="n">fh</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">k</span><span class="p">=</span><span class="n">f</span><span class="o">-</span><span class="n">d1</span><span class="p">;</span> <span class="c">% k</span>
+        <span class="n">s</span><span class="p">(</span><span class="n">f</span><span class="p">)=</span><span class="n">h</span><span class="o">-</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">h</span><span class="o">*</span><span class="p">(</span><span class="n">k</span>^<span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">fh</span>^<span class="mi">2</span><span class="p">));</span><span class="n">s</span><span class="p">=</span><span class="n">s</span><span class="p">(</span><span class="n">f</span><span class="p">);</span>
+        <span class="n">ds</span><span class="p">(</span><span class="n">f</span><span class="p">)=</span><span class="o">-</span><span class="mi">4</span><span class="o">*</span><span class="n">h</span><span class="o">*</span><span class="n">k</span><span class="o">/</span><span class="p">(</span><span class="n">fh</span>^<span class="mi">2</span><span class="p">);</span><span class="n">ds</span><span class="p">=</span><span class="n">ds</span><span class="p">(</span><span class="n">f</span><span class="p">);</span>
+        <span class="c">%回程运动状态(减速度)</span>
+    <span class="k">elseif</span> <span class="n">f</span> <span class="o">&gt;</span> <span class="n">d1</span><span class="o">+</span><span class="p">(</span><span class="n">fh</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="n">f</span> <span class="o">&lt;</span><span class="p">=</span> <span class="n">d2</span>
+        <span class="n">k</span><span class="p">=</span><span class="n">f</span><span class="o">-</span><span class="n">d1</span><span class="p">;</span>
+        <span class="n">s</span><span class="p">(</span><span class="n">f</span><span class="p">)=(</span><span class="mi">2</span><span class="o">*</span><span class="n">h</span><span class="o">*</span><span class="p">((</span><span class="n">fh</span><span class="o">-</span><span class="n">k</span><span class="p">)</span>^<span class="mi">2</span><span class="p">))</span><span class="o">/</span><span class="p">(</span><span class="n">fh</span>^<span class="mi">2</span><span class="p">);</span><span class="n">s</span><span class="p">=</span><span class="n">s</span><span class="p">(</span><span class="n">f</span><span class="p">);</span>
+        <span class="n">ds</span><span class="p">(</span><span class="n">f</span><span class="p">)=(</span><span class="o">-</span><span class="mi">4</span><span class="o">*</span><span class="n">h</span><span class="o">*</span><span class="p">(</span><span class="n">fh</span><span class="o">-</span><span class="n">k</span><span class="p">))</span><span class="o">/</span><span class="p">(</span><span class="n">fh</span>^<span class="mi">2</span><span class="p">);</span><span class="n">ds</span><span class="p">=</span><span class="n">ds</span><span class="p">(</span><span class="n">f</span><span class="p">);</span>
+        <span class="c">%近休止状态</span>
+    <span class="k">elseif</span> <span class="n">f</span><span class="o">&gt;</span><span class="n">d2</span> <span class="o">&amp;&amp;</span>  <span class="n">f</span><span class="o">&lt;</span><span class="p">=</span><span class="n">n</span>
+        <span class="n">s</span><span class="p">=</span><span class="mi">0</span><span class="p">;</span><span class="n">ds</span><span class="p">=</span><span class="mi">0</span><span class="p">;</span>
+    <span class="k">end</span>
+    
+    
+    <span class="c">%计算轮廓</span>
+    <span class="n">xx</span><span class="p">(</span><span class="n">f</span><span class="p">)=(</span><span class="n">se</span><span class="o">+</span><span class="n">s</span><span class="p">)</span><span class="o">*</span><span class="nb">sin</span><span class="p">(</span><span class="n">f</span><span class="o">*</span><span class="n">hd</span><span class="p">)</span><span class="o">+</span><span class="n">e</span><span class="o">*</span><span class="nb">cos</span><span class="p">(</span><span class="n">f</span><span class="o">*</span><span class="n">hd</span><span class="p">);</span><span class="n">x</span><span class="p">=</span><span class="n">xx</span><span class="p">(</span><span class="n">f</span><span class="p">);</span>
+    <span class="n">yy</span><span class="p">(</span><span class="n">f</span><span class="p">)=(</span><span class="n">se</span><span class="o">+</span><span class="n">s</span><span class="p">)</span><span class="o">*</span><span class="nb">cos</span><span class="p">(</span><span class="n">f</span><span class="o">*</span><span class="n">hd</span><span class="p">)</span><span class="o">-</span><span class="n">e</span><span class="o">*</span><span class="nb">sin</span><span class="p">(</span><span class="n">f</span><span class="o">*</span><span class="n">hd</span><span class="p">);</span><span class="n">y</span><span class="p">=</span><span class="n">yy</span><span class="p">(</span><span class="n">f</span><span class="p">);</span>
+    <span class="n">dx</span><span class="p">(</span><span class="n">f</span><span class="p">)=(</span><span class="n">ds</span><span class="o">-</span><span class="n">e</span><span class="p">)</span><span class="o">*</span><span class="nb">sin</span><span class="p">(</span><span class="n">f</span><span class="o">*</span><span class="n">hd</span><span class="p">)</span><span class="o">+</span><span class="p">(</span><span class="n">se</span><span class="o">+</span><span class="n">s</span><span class="p">)</span><span class="o">*</span><span class="nb">cos</span><span class="p">(</span><span class="n">f</span><span class="o">*</span><span class="n">hd</span><span class="p">);</span><span class="n">dx</span><span class="p">=</span><span class="n">dx</span><span class="p">(</span><span class="n">f</span><span class="p">);</span>
+    <span class="n">dy</span><span class="p">(</span><span class="n">f</span><span class="p">)=(</span><span class="n">ds</span><span class="o">-</span><span class="n">e</span><span class="p">)</span><span class="o">*</span><span class="nb">cos</span><span class="p">(</span><span class="n">f</span><span class="o">*</span><span class="n">hd</span><span class="p">)</span><span class="o">-</span><span class="p">(</span><span class="n">se</span><span class="o">+</span><span class="n">s</span><span class="p">)</span><span class="o">*</span><span class="nb">sin</span><span class="p">(</span><span class="n">f</span><span class="o">*</span><span class="n">hd</span><span class="p">);</span><span class="n">dy</span><span class="p">=</span><span class="n">dy</span><span class="p">(</span><span class="n">f</span><span class="p">);</span>
+    <span class="n">xp</span><span class="p">(</span><span class="n">f</span><span class="p">)=</span><span class="n">x</span><span class="o">+</span><span class="n">rt</span><span class="o">*</span><span class="n">dy</span><span class="o">/</span><span class="nb">sqrt</span><span class="p">(</span><span class="n">dx</span>^<span class="mi">2</span><span class="o">+</span><span class="n">dy</span>^<span class="mi">2</span><span class="p">);</span><span class="n">xxp</span><span class="p">=</span><span class="n">xp</span><span class="p">(</span><span class="n">f</span><span class="p">);</span>
+    <span class="n">yp</span><span class="p">(</span><span class="n">f</span><span class="p">)=</span><span class="n">y</span><span class="o">-</span><span class="n">rt</span><span class="o">*</span><span class="n">dx</span><span class="o">/</span><span class="nb">sqrt</span><span class="p">(</span><span class="n">dx</span>^<span class="mi">2</span><span class="o">+</span><span class="n">dy</span>^<span class="mi">2</span><span class="p">);</span><span class="n">yyp</span><span class="p">=</span><span class="n">yp</span><span class="p">(</span><span class="n">f</span><span class="p">);</span>
+    
+<span class="k">end</span>
+
+<span class="n">plot</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span><span class="n">yy</span><span class="p">,</span><span class="s">&#39;r-.&#39;</span><span class="p">)</span>
+<span class="n">axis</span><span class="p">([</span><span class="o">-</span><span class="p">(</span><span class="n">rb</span><span class="o">+</span><span class="n">h</span><span class="o">-</span><span class="mi">10</span><span class="p">)</span> <span class="p">(</span><span class="n">rb</span><span class="o">+</span><span class="n">h</span><span class="o">+</span><span class="mi">10</span><span class="p">)</span> <span class="o">-</span><span class="p">(</span><span class="n">rb</span><span class="o">+</span><span class="n">h</span><span class="o">+</span><span class="mi">10</span><span class="p">)</span> <span class="p">(</span><span class="n">rb</span><span class="o">+</span><span class="n">rt</span><span class="o">+</span><span class="mi">10</span><span class="p">)])</span>
+
+<span class="n">axis</span> <span class="n">equal</span>
+<span class="n">text</span><span class="p">(</span><span class="n">rb</span><span class="o">+</span><span class="n">h</span><span class="o">+</span><span class="mi">3</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="s">&#39;X&#39;</span><span class="p">)</span>
+<span class="n">text</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">rb</span><span class="o">+</span><span class="n">rt</span><span class="o">+</span><span class="mi">3</span><span class="p">,</span><span class="s">&#39;Y&#39;</span><span class="p">)</span>
+<span class="n">text</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="s">&#39;O&#39;</span><span class="p">)</span>
+<span class="n">title</span><span class="p">(</span><span class="s">&#39;孙玮偏置移动从动件盘型凸轮设计&#39;</span><span class="p">)</span>
+<span class="n">hold</span> <span class="n">on</span><span class="p">;</span>
+
+<span class="n">plot</span><span class="p">([</span><span class="o">-</span><span class="p">(</span><span class="n">rb</span><span class="o">+</span><span class="n">h</span><span class="p">)</span> <span class="p">(</span><span class="n">rb</span><span class="o">+</span><span class="n">h</span><span class="p">)],[</span><span class="mi">0</span> <span class="mi">0</span><span class="p">],</span><span class="s">&#39;k&#39;</span><span class="p">)</span>
+<span class="n">plot</span><span class="p">([</span><span class="mi">0</span> <span class="mi">0</span><span class="p">],[</span><span class="o">-</span><span class="p">(</span><span class="n">rb</span><span class="o">+</span><span class="n">h</span><span class="p">)</span> <span class="p">(</span><span class="n">rb</span><span class="o">+</span><span class="n">rt</span><span class="p">)],</span><span class="s">&#39;k&#39;</span><span class="p">)</span>
+<span class="n">plot</span><span class="p">([</span><span class="n">e</span> <span class="n">e</span><span class="p">],[</span><span class="mi">0</span> <span class="p">(</span><span class="n">rb</span><span class="o">+</span><span class="n">rt</span><span class="p">)],</span><span class="s">&#39;k--&#39;</span><span class="p">)</span>
+<span class="n">ct</span> <span class="p">=</span> <span class="nb">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="o">*</span><span class="nb">pi</span><span class="p">);</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">rb</span><span class="o">*</span><span class="nb">cos</span><span class="p">(</span><span class="n">ct</span><span class="p">),</span><span class="n">rb</span><span class="o">*</span><span class="nb">sin</span><span class="p">(</span><span class="n">ct</span><span class="p">),</span><span class="s">&#39;g&#39;</span><span class="p">)</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">e</span><span class="o">*</span><span class="nb">cos</span><span class="p">(</span><span class="n">ct</span><span class="p">),</span><span class="n">e</span><span class="o">*</span><span class="nb">sin</span><span class="p">(</span><span class="n">ct</span><span class="p">),</span><span class="s">&#39;c--&#39;</span><span class="p">)</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">e</span><span class="o">+</span><span class="n">rt</span><span class="o">*</span><span class="nb">cos</span><span class="p">(</span><span class="n">ct</span><span class="p">),</span><span class="n">se</span><span class="o">+</span><span class="n">rt</span><span class="o">*</span><span class="nb">sin</span><span class="p">(</span><span class="n">ct</span><span class="p">),</span><span class="s">&#39;m&#39;</span><span class="p">)</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">xp</span><span class="p">,</span><span class="n">yp</span><span class="p">,</span><span class="s">&#39;b&#39;</span><span class="p">)</span>
+</code></pre></div><h2 id="程序框图">程序框图</h2>
+<p><img src="media/15429582214844/%E6%9C%BA%E6%A2%B0%E5%8E%9F%E7%90%86.png" alt="机械原理"  /></p>
+<h2 id="matlab-作图结果">Matlab 作图结果</h2>
+<p><figure>
+		<a href="/p/%E6%9C%BA%E6%A2%B0%E5%8E%9F%E7%90%86%E5%A4%A7%E4%BD%9C%E4%B8%9A-%E5%87%B8%E8%BD%AE%E7%94%9F%E6%88%90%E5%99%A8/media/15429582214844/buster-2018-11-28_16-44-04.jpg" data-size="840x630">
+			<img srcset="/p/%E6%9C%BA%E6%A2%B0%E5%8E%9F%E7%90%86%E5%A4%A7%E4%BD%9C%E4%B8%9A-%E5%87%B8%E8%BD%AE%E7%94%9F%E6%88%90%E5%99%A8/media/15429582214844/buster-2018-11-28_16-44-04_hu205e38d477ddec1e4154ec61bfdeecac_63014_480x0_resize_q75_box.jpg 480w, /p/%E6%9C%BA%E6%A2%B0%E5%8E%9F%E7%90%86%E5%A4%A7%E4%BD%9C%E4%B8%9A-%E5%87%B8%E8%BD%AE%E7%94%9F%E6%88%90%E5%99%A8/media/15429582214844/buster-2018-11-28_16-44-04_hu205e38d477ddec1e4154ec61bfdeecac_63014_1024x0_resize_q75_box.jpg 1024w"
+				src="/p/%E6%9C%BA%E6%A2%B0%E5%8E%9F%E7%90%86%E5%A4%A7%E4%BD%9C%E4%B8%9A-%E5%87%B8%E8%BD%AE%E7%94%9F%E6%88%90%E5%99%A8/media/15429582214844/buster-2018-11-28_16-44-04.jpg" width="840" height="630" loading="lazy"
+				alt="buster-2018-11-28_16-44-04">
+		</a>
+		
+		<figcaption>buster-2018-11-28_16-44-04</figcaption>
+		
+	</figure></p>
+<!-- raw HTML omitted -->
+<p>分析解析法的题目要求，其实所有的画的都是一类的凸轮，都为&quot;偏执滚子凸轮&rdquo;，其它不一样的东西只是运动状态和参数而已，这就决定了如果用 Matlab 画图的话，代码的整体框架是一定的，如果只配置一下参数局可以生成 Matlab 代码，对开发和调试来说方便的多，我们甚至可以遍历整个表格，得到所有的32个所要求画出的滚子的 Matlab 代码。</p>
+<h2 id="文件分布">文件分布</h2>
+<div class="highlight"><pre class="chroma"><code class="language-text" data-lang="text">├── check  # 压力角校验程序
+├── codeTemple # 模板文件
+├── data # 打包好的模板文件
+├── main.go # 入口 
+├── cmd # 接受用户信息，输出提示，交互界面
+└── sport # 运动方程替换
+
+</code></pre></div><h2 id="开发准备">开发准备</h2>
+<p>既然有了开发的想法，就开始进行需求分析:</p>
+<ul>
+<li>
+<p>Matlab 的代码骨架是一样的，所以考虑使用模板引擎</p>
+</li>
+<li>
+<p>要给一些没有编程基础的人使用，所以选取可以进行编译的语言，而不是选用解释性的语言</p>
+</li>
+<li>
+<p>编译的平台要广一些，以便跨平台使用</p>
+</li>
+</ul>
+<p>综上</p>
+<p>本次开发的语言采用 <code>Golang</code>,模板引擎使用 <code>Golang</code> 自带的 <code>Template</code> 原生包即可。</p>
+<h2 id="分析-matlab-代码">分析 Matlab 代码</h2>
+<p>就拿 20 号(我的学号为20)进行 Matlab 代码分析,分析需要发生变化的地方，使用模板引擎进行替换，暴露不需要替换的地方直接输出即可</p>
+<div class="highlight"><pre class="chroma"><code class="language-matlab" data-lang="matlab"><span class="c">%---------此部分需要进行替换------------</span>
+<span class="c">%定义参数</span>
+<span class="n">rb</span> <span class="p">=</span><span class="mi">50</span><span class="p">;</span><span class="c">%基圆半径</span>
+<span class="n">rt</span> <span class="p">=</span> <span class="mi">14</span><span class="p">;</span><span class="c">%滚子半径</span>
+<span class="n">e</span> <span class="p">=</span><span class="mi">10</span> <span class="p">;</span><span class="c">%偏心距</span>
+<span class="n">h</span> <span class="p">=</span> <span class="mi">30</span><span class="p">;</span><span class="c">%推程最大值</span>
+<span class="n">ft</span> <span class="p">=</span><span class="mi">170</span><span class="p">;</span><span class="c">%推程运动角</span>
+<span class="n">fs</span> <span class="p">=</span> <span class="mi">70</span><span class="p">;</span><span class="c">%远休止角</span>
+<span class="n">fh</span> <span class="p">=</span><span class="mi">90</span><span class="p">;</span><span class="c">%回程运动角</span>
+<span class="c">%--------end------------</span>
+</code></pre></div><p>还有运动状态的方程需要替换一下</p>
+<div class="highlight"><pre class="chroma"><code class="language-matlab" data-lang="matlab"><span class="c">%---------此部分需要进行替换------------</span>
+  <span class="c">%推程加速状态（正弦运动）</span>
+    <span class="k">if</span> <span class="n">f</span><span class="o">&lt;</span><span class="p">=</span><span class="n">ft</span>
+        <span class="c">% σ_0 ==&gt; ft  ||| σ ==&gt; f</span>
+        <span class="n">s</span><span class="p">(</span><span class="n">f</span><span class="p">)=</span><span class="n">h</span><span class="o">*</span><span class="p">((</span><span class="n">f</span><span class="o">/</span><span class="n">ft</span><span class="p">)</span><span class="o">-</span><span class="p">(</span><span class="nb">sin</span><span class="p">((</span><span class="mi">2</span><span class="o">*</span><span class="nb">pi</span><span class="o">*</span><span class="n">f</span><span class="p">)</span><span class="o">/</span><span class="n">ft</span><span class="p">))</span><span class="o">/</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="nb">pi</span><span class="p">));</span><span class="n">s</span><span class="p">=</span><span class="n">s</span><span class="p">(</span><span class="n">f</span><span class="p">);</span>
+        <span class="n">ds</span><span class="p">(</span><span class="n">f</span><span class="p">)=(</span><span class="n">h</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="nb">cos</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="nb">pi</span><span class="o">/</span><span class="n">ft</span><span class="p">)))</span><span class="o">/</span><span class="n">ft</span><span class="p">;</span><span class="n">ds</span><span class="p">=</span><span class="n">ds</span><span class="p">(</span><span class="n">f</span><span class="p">);</span>
+        <span class="c">%远休止状态</span>
+    <span class="k">elseif</span> <span class="n">f</span><span class="o">&gt;</span><span class="n">ft</span> <span class="o">&amp;&amp;</span> <span class="n">f</span><span class="o">&lt;</span><span class="p">=</span><span class="n">d1</span>
+        <span class="n">s</span><span class="p">=</span><span class="n">h</span><span class="p">;</span><span class="n">ds</span><span class="p">=</span><span class="mi">0</span><span class="p">;</span>
+        <span class="c">%回程运动状态(加速度) ft==&gt; pi*f-ft-fs</span>
+    <span class="k">elseif</span> <span class="n">f</span><span class="o">&gt;</span><span class="n">d1</span> <span class="o">&amp;&amp;</span> <span class="n">f</span><span class="o">&lt;</span><span class="p">=</span><span class="n">d1</span><span class="o">+</span><span class="p">(</span><span class="n">fh</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">k</span><span class="p">=</span><span class="n">f</span><span class="o">-</span><span class="n">d1</span><span class="p">;</span> <span class="c">% k</span>
+        <span class="n">s</span><span class="p">(</span><span class="n">f</span><span class="p">)=</span><span class="n">h</span><span class="o">-</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">h</span><span class="o">*</span><span class="p">(</span><span class="n">k</span>^<span class="mi">2</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">fh</span>^<span class="mi">2</span><span class="p">));</span><span class="n">s</span><span class="p">=</span><span class="n">s</span><span class="p">(</span><span class="n">f</span><span class="p">);</span>
+        <span class="n">ds</span><span class="p">(</span><span class="n">f</span><span class="p">)=</span><span class="o">-</span><span class="mi">4</span><span class="o">*</span><span class="n">h</span><span class="o">*</span><span class="n">k</span><span class="o">/</span><span class="p">(</span><span class="n">fh</span>^<span class="mi">2</span><span class="p">);</span><span class="n">ds</span><span class="p">=</span><span class="n">ds</span><span class="p">(</span><span class="n">f</span><span class="p">);</span>
+        <span class="c">%回程运动状态(减速度)</span>
+    <span class="k">elseif</span> <span class="n">f</span> <span class="o">&gt;</span> <span class="n">d1</span><span class="o">+</span><span class="p">(</span><span class="n">fh</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span> <span class="o">&amp;&amp;</span> <span class="n">f</span> <span class="o">&lt;</span><span class="p">=</span> <span class="n">d2</span>
+        <span class="n">k</span><span class="p">=</span><span class="n">f</span><span class="o">-</span><span class="n">d1</span><span class="p">;</span>
+        <span class="n">s</span><span class="p">(</span><span class="n">f</span><span class="p">)=(</span><span class="mi">2</span><span class="o">*</span><span class="n">h</span><span class="o">*</span><span class="p">((</span><span class="n">fh</span><span class="o">-</span><span class="n">k</span><span class="p">)</span>^<span class="mi">2</span><span class="p">))</span><span class="o">/</span><span class="p">(</span><span class="n">fh</span>^<span class="mi">2</span><span class="p">);</span><span class="n">s</span><span class="p">=</span><span class="n">s</span><span class="p">(</span><span class="n">f</span><span class="p">);</span>
+        <span class="n">ds</span><span class="p">(</span><span class="n">f</span><span class="p">)=(</span><span class="o">-</span><span class="mi">4</span><span class="o">*</span><span class="n">h</span><span class="o">*</span><span class="p">(</span><span class="n">fh</span><span class="o">-</span><span class="n">k</span><span class="p">))</span><span class="o">/</span><span class="p">(</span><span class="n">fh</span>^<span class="mi">2</span><span class="p">);</span><span class="n">ds</span><span class="p">=</span><span class="n">ds</span><span class="p">(</span><span class="n">f</span><span class="p">);</span>
+        <span class="c">%近休止状态</span>
+    <span class="k">elseif</span> <span class="n">f</span><span class="o">&gt;</span><span class="n">d2</span> <span class="o">&amp;&amp;</span>  <span class="n">f</span><span class="o">&lt;</span><span class="p">=</span><span class="n">n</span>
+        <span class="n">s</span><span class="p">=</span><span class="mi">0</span><span class="p">;</span><span class="n">ds</span><span class="p">=</span><span class="mi">0</span><span class="p">;</span>
+    <span class="k">end</span>
+<span class="c">%--------end------------</span>
+</code></pre></div><p>通过分析很容易发现，画图所需要的函数不需要替换,需要替换的仅仅就是运动方程而已，所以现在开始构建模板文件,模板文件代码如下</p>
+<div class="highlight"><pre class="chroma"><code class="language-matlab" data-lang="matlab"><span class="c">%定义参数</span>
+<span class="n">rb</span> <span class="p">={{</span> <span class="p">.</span><span class="n">Rb</span><span class="p">}};</span><span class="c">%基圆半径</span>
+<span class="n">rt</span> <span class="p">=</span> <span class="p">{{</span> <span class="p">.</span><span class="n">Rt</span><span class="p">}};</span><span class="c">%滚子半径</span>
+<span class="n">e</span> <span class="p">={{</span> <span class="p">.</span><span class="n">E</span><span class="p">}}</span> <span class="p">;</span><span class="c">%偏心距</span>
+<span class="n">h</span> <span class="p">=</span> <span class="p">{{</span> <span class="p">.</span><span class="n">H</span><span class="p">}};</span><span class="c">%推程最大值</span>
+<span class="n">ft</span> <span class="p">={{</span> <span class="p">.</span><span class="n">Ft</span><span class="p">}};</span><span class="c">%推程运动角</span>
+<span class="n">fs</span> <span class="p">=</span> <span class="p">{{</span> <span class="p">.</span><span class="n">Fs</span><span class="p">}};</span><span class="c">%远休止角</span>
+<span class="n">fh</span> <span class="p">={{</span> <span class="p">.</span><span class="n">Fh</span><span class="p">}};</span><span class="c">%回程运动角</span>
+<span class="n">hd</span> <span class="p">=</span><span class="nb">pi</span> <span class="o">/</span><span class="mi">180</span><span class="p">;</span>
+<span class="n">du</span> <span class="p">=</span> <span class="mi">180</span><span class="o">/</span><span class="nb">pi</span><span class="p">;</span><span class="c">%定义° 的含义</span>
+<span class="n">se</span> <span class="p">=</span><span class="nb">sqrt</span><span class="p">(</span><span class="n">rb</span>^<span class="mi">2</span><span class="o">-</span><span class="n">e</span>^<span class="mi">2</span><span class="p">);</span>
+<span class="n">d1</span> <span class="p">=</span> <span class="n">ft</span><span class="o">+</span><span class="n">fs</span><span class="p">;</span>
+<span class="n">d2</span> <span class="p">=</span> <span class="n">ft</span><span class="o">+</span><span class="n">fs</span><span class="o">+</span><span class="n">fh</span><span class="p">;</span>
+<span class="n">n</span><span class="p">=</span><span class="mi">360</span><span class="p">;</span>
+
+<span class="c">%% 初始化坐标</span>
+<span class="n">s</span><span class="p">=</span><span class="nb">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+<span class="n">ds</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+<span class="n">x</span><span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+<span class="n">y</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+<span class="n">dx</span> <span class="p">=</span><span class="nb">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+<span class="n">dy</span> <span class="p">=</span><span class="nb">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+<span class="n">xx</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+<span class="n">yy</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+<span class="n">yp</span> <span class="p">=</span> <span class="nb">zeros</span><span class="p">(</span><span class="n">n</span><span class="p">);</span>
+
+<span class="c">%% 开始计算</span>
+
+<span class="k">for</span> <span class="n">f</span><span class="p">=</span><span class="mi">1</span><span class="p">:</span><span class="n">n</span>
+    <span class="c">%推程加速状态（{{ .Sport.PushSportName}})</span>
+        <span class="p">{{</span> <span class="p">.</span><span class="n">Sport</span><span class="p">.</span><span class="n">Push</span><span class="p">}}</span>
+        <span class="c">%远休止状态</span>
+    <span class="p">{{</span> <span class="p">.</span><span class="n">Sport</span><span class="p">.</span><span class="n">Remote</span><span class="p">}}</span>
+         <span class="c">%回程运动状态({{ .Sport.ReturnJourneySportName}})</span>
+        <span class="p">{{</span> <span class="p">.</span><span class="n">Sport</span><span class="p">.</span><span class="n">ReturnJourney</span><span class="p">}}</span>
+        <span class="c">%近休止状态</span>
+    <span class="p">{{</span> <span class="p">.</span><span class="n">Sport</span><span class="p">.</span><span class="n">Near</span><span class="p">}}</span>
+    <span class="k">end</span>
+
+    <span class="c">%计算轮廓</span>
+    <span class="n">xx</span><span class="p">(</span><span class="n">f</span><span class="p">)=(</span><span class="n">se</span><span class="o">+</span><span class="n">s</span><span class="p">)</span><span class="o">*</span><span class="nb">sin</span><span class="p">(</span><span class="n">f</span><span class="o">*</span><span class="n">hd</span><span class="p">)</span><span class="o">+</span><span class="n">e</span><span class="o">*</span><span class="nb">cos</span><span class="p">(</span><span class="n">f</span><span class="o">*</span><span class="n">hd</span><span class="p">);</span><span class="n">x</span><span class="p">=</span><span class="n">xx</span><span class="p">(</span><span class="n">f</span><span class="p">);</span>
+    <span class="n">yy</span><span class="p">(</span><span class="n">f</span><span class="p">)=(</span><span class="n">se</span><span class="o">+</span><span class="n">s</span><span class="p">)</span><span class="o">*</span><span class="nb">cos</span><span class="p">(</span><span class="n">f</span><span class="o">*</span><span class="n">hd</span><span class="p">)</span><span class="o">-</span><span class="n">e</span><span class="o">*</span><span class="nb">sin</span><span class="p">(</span><span class="n">f</span><span class="o">*</span><span class="n">hd</span><span class="p">);</span><span class="n">y</span><span class="p">=</span><span class="n">yy</span><span class="p">(</span><span class="n">f</span><span class="p">);</span>
+    <span class="n">dx</span><span class="p">(</span><span class="n">f</span><span class="p">)=(</span><span class="n">ds</span><span class="o">-</span><span class="n">e</span><span class="p">)</span><span class="o">*</span><span class="nb">sin</span><span class="p">(</span><span class="n">f</span><span class="o">*</span><span class="n">hd</span><span class="p">)</span><span class="o">+</span><span class="p">(</span><span class="n">se</span><span class="o">+</span><span class="n">s</span><span class="p">)</span><span class="o">*</span><span class="nb">cos</span><span class="p">(</span><span class="n">f</span><span class="o">*</span><span class="n">hd</span><span class="p">);</span><span class="n">dx</span><span class="p">=</span><span class="n">dx</span><span class="p">(</span><span class="n">f</span><span class="p">);</span>
+    <span class="n">dy</span><span class="p">(</span><span class="n">f</span><span class="p">)=(</span><span class="n">ds</span><span class="o">-</span><span class="n">e</span><span class="p">)</span><span class="o">*</span><span class="nb">cos</span><span class="p">(</span><span class="n">f</span><span class="o">*</span><span class="n">hd</span><span class="p">)</span><span class="o">-</span><span class="p">(</span><span class="n">se</span><span class="o">+</span><span class="n">s</span><span class="p">)</span><span class="o">*</span><span class="nb">sin</span><span class="p">(</span><span class="n">f</span><span class="o">*</span><span class="n">hd</span><span class="p">);</span><span class="n">dy</span><span class="p">=</span><span class="n">dy</span><span class="p">(</span><span class="n">f</span><span class="p">);</span>
+    <span class="n">xp</span><span class="p">(</span><span class="n">f</span><span class="p">)=</span><span class="n">x</span><span class="o">+</span><span class="n">rt</span><span class="o">*</span><span class="n">dy</span><span class="o">/</span><span class="nb">sqrt</span><span class="p">(</span><span class="n">dx</span>^<span class="mi">2</span><span class="o">+</span><span class="n">dy</span>^<span class="mi">2</span><span class="p">);</span><span class="n">xxp</span><span class="p">=</span><span class="n">xp</span><span class="p">(</span><span class="n">f</span><span class="p">);</span>
+    <span class="n">yp</span><span class="p">(</span><span class="n">f</span><span class="p">)=</span><span class="n">y</span><span class="o">-</span><span class="n">rt</span><span class="o">*</span><span class="n">dx</span><span class="o">/</span><span class="nb">sqrt</span><span class="p">(</span><span class="n">dx</span>^<span class="mi">2</span><span class="o">+</span><span class="n">dy</span>^<span class="mi">2</span><span class="p">);</span><span class="n">yyp</span><span class="p">=</span><span class="n">yp</span><span class="p">(</span><span class="n">f</span><span class="p">);</span>
+
+<span class="k">end</span>
+
+<span class="n">plot</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span><span class="n">yy</span><span class="p">,</span><span class="s">&#39;r-.&#39;</span><span class="p">)</span>
+<span class="n">axis</span><span class="p">([</span><span class="o">-</span><span class="p">(</span><span class="n">rb</span><span class="o">+</span><span class="n">h</span><span class="o">-</span><span class="mi">10</span><span class="p">)</span> <span class="p">(</span><span class="n">rb</span><span class="o">+</span><span class="n">h</span><span class="o">+</span><span class="mi">10</span><span class="p">)</span> <span class="o">-</span><span class="p">(</span><span class="n">rb</span><span class="o">+</span><span class="n">h</span><span class="o">+</span><span class="mi">10</span><span class="p">)</span> <span class="p">(</span><span class="n">rb</span><span class="o">+</span><span class="n">rt</span><span class="o">+</span><span class="mi">10</span><span class="p">)])</span>
+
+<span class="n">axis</span> <span class="n">equal</span>
+<span class="n">text</span><span class="p">(</span><span class="n">rb</span><span class="o">+</span><span class="n">h</span><span class="o">+</span><span class="mi">3</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="s">&#39;X&#39;</span><span class="p">)</span>
+<span class="n">text</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">rb</span><span class="o">+</span><span class="n">rt</span><span class="o">+</span><span class="mi">3</span><span class="p">,</span><span class="s">&#39;Y&#39;</span><span class="p">)</span>
+<span class="n">text</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="s">&#39;O&#39;</span><span class="p">)</span>
+<span class="n">title</span><span class="p">(</span><span class="s">&#39;偏置移动从动件盘型凸轮设计&#39;</span><span class="p">)</span>
+<span class="n">hold</span> <span class="n">on</span><span class="p">;</span>
+
+<span class="n">plot</span><span class="p">([</span><span class="o">-</span><span class="p">(</span><span class="n">rb</span><span class="o">+</span><span class="n">h</span><span class="p">)</span> <span class="p">(</span><span class="n">rb</span><span class="o">+</span><span class="n">h</span><span class="p">)],[</span><span class="mi">0</span> <span class="mi">0</span><span class="p">],</span><span class="s">&#39;k&#39;</span><span class="p">)</span>
+<span class="n">plot</span><span class="p">([</span><span class="mi">0</span> <span class="mi">0</span><span class="p">],[</span><span class="o">-</span><span class="p">(</span><span class="n">rb</span><span class="o">+</span><span class="n">h</span><span class="p">)</span> <span class="p">(</span><span class="n">rb</span><span class="o">+</span><span class="n">rt</span><span class="p">)],</span><span class="s">&#39;k&#39;</span><span class="p">)</span>
+<span class="n">plot</span><span class="p">([</span><span class="n">e</span> <span class="n">e</span><span class="p">],[</span><span class="mi">0</span> <span class="p">(</span><span class="n">rb</span><span class="o">+</span><span class="n">rt</span><span class="p">)],</span><span class="s">&#39;k--&#39;</span><span class="p">)</span>
+<span class="n">ct</span> <span class="p">=</span> <span class="nb">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="o">*</span><span class="nb">pi</span><span class="p">);</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">e</span><span class="o">+</span><span class="n">rt</span><span class="o">*</span><span class="nb">cos</span><span class="p">(</span><span class="n">ct</span><span class="p">),</span><span class="n">se</span><span class="o">+</span><span class="n">rt</span><span class="o">*</span><span class="nb">sin</span><span class="p">(</span><span class="n">ct</span><span class="p">),</span><span class="s">&#39;m&#39;</span><span class="p">)</span>
+<span class="n">plot</span><span class="p">(</span><span class="n">xp</span><span class="p">,</span><span class="n">yp</span><span class="p">,</span><span class="s">&#39;b&#39;</span><span class="p">)</span>
+</code></pre></div><p>至此，凸轮生成的程序模板骨架我们已经分析出来了，要考虑程序使用的方便性，模板文件如果要使用的话就必须保存在在用户的电脑中，如果没有找到，程序就会报错，这样非常不友好，所以用 Go 的一些工具将它打包成了 go 文件，这样就可以直接编译到程序当中</p>
+<p>在Go 环境下运行</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash">go-bindata -o<span class="o">=</span>data/data.go -pkg<span class="o">=</span>Matlab template/code.tpl
+</code></pre></div><p>即可打包为 Go 文件</p>
+<h2 id="golang-处理模板文件">Golang 处理模板文件</h2>
+<p>接下来只需要调用打包好的 Go 文件即可使用处理模板。因为 Go 的原生模板引擎是 HTML 的模板引擎，所以他会对某些字符(比如 &gt;,&lt;,“”)等字符进行转义，所以这里需要阻止它对我们的模板引擎进行转义。</p>
+<p>接下来需要编写进行替换的那些变量,储存在结构体中可以更好的方便我们进行调用</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">sport</span>
+
+<span class="c1">//推程
+</span><span class="c1"></span><span class="kd">type</span> <span class="nx">SportPush</span> <span class="kd">struct</span> <span class="p">{</span>
+	<span class="c1">//推程Sin
+</span><span class="c1"></span>	<span class="nx">Sin</span> <span class="kt">string</span>
+	<span class="c1">//推程Cos
+</span><span class="c1"></span>	<span class="nx">Cos</span> <span class="kt">string</span>
+	<span class="c1">//推程加减速
+</span><span class="c1"></span>	<span class="nx">Normal</span> <span class="kt">string</span>
+	<span class="c1">//推程五次多项式
+</span><span class="c1"></span>	<span class="nx">Complex</span> <span class="kt">string</span>
+<span class="p">}</span>
+<span class="c1">//回程公式
+</span><span class="c1"></span><span class="kd">type</span> <span class="nx">SportReturn</span> <span class="kd">struct</span> <span class="p">{</span>
+	<span class="c1">//回程Sin
+</span><span class="c1"></span>	<span class="nx">Sin</span> <span class="kt">string</span>
+	<span class="c1">//回程Cos
+</span><span class="c1"></span>	<span class="nx">Cos</span> <span class="kt">string</span>
+	<span class="c1">//回程加减速
+</span><span class="c1"></span>	<span class="nx">Normal</span> <span class="kt">string</span>
+	<span class="c1">//回程五次多项式
+</span><span class="c1"></span>	<span class="nx">Complex</span> <span class="kt">string</span>
+<span class="p">}</span>
+
+<span class="c1">//防止转义使用此结构体
+</span><span class="c1"></span><span class="kd">type</span> <span class="nx">Comment</span> <span class="kd">struct</span> <span class="p">{</span>
+	<span class="c1">//远休止
+</span><span class="c1"></span>	<span class="nx">Remote</span> <span class="kt">string</span>
+	<span class="c1">//近休止
+</span><span class="c1"></span>	<span class="nx">Near</span> <span class="kt">string</span>
+<span class="p">}</span>
+
+
+<span class="kd">func</span> <span class="nf">Go</span><span class="p">()</span> <span class="o">*</span><span class="nx">SportPush</span> <span class="p">{</span>
+	<span class="c1">//初始化
+</span><span class="c1"></span>	<span class="nx">data</span> <span class="o">:=&amp;</span><span class="nx">SportPush</span><span class="p">{}</span>
+
+	<span class="c1">//Sin 公式
+</span><span class="c1"></span>	<span class="nx">data</span><span class="p">.</span><span class="nx">Sin</span> <span class="p">=</span> <span class="s">`
+</span><span class="s">		if f&lt;=ft
+</span><span class="s">        s(f)=h*((f/ft)-(sin((2*pi*f)/ft))/(2*pi));s=s(f);
+</span><span class="s">        ds(f)=(h*(1-cos(2*pi*f/ft)))/ft;ds=ds(f);`</span>
+
+    <span class="nx">data</span><span class="p">.</span><span class="nx">Cos</span> <span class="p">=</span> <span class="s">`
+</span><span class="s">		if f&lt;=ft
+</span><span class="s">		s(f)=(h*(1-cos(pi*f/ft)))/2;s=s(f);
+</span><span class="s">        ds(f)=(pi*h*sin(pi*f/ft)*f)/(2*ft);ds=ds(f);`</span>
+
+    <span class="nx">data</span><span class="p">.</span><span class="nx">Normal</span> <span class="p">=</span> <span class="s">`
+</span><span class="s">		if f&lt;=ft/2
+</span><span class="s">        s(f) = 2*h*f^2/ft^2; s=s(f);
+</span><span class="s">        ds(f) = 4*h*f*hd/(ft*hd)^2;ds=ds(f);
+</span><span class="s">    elseif f&gt;ft/2 &amp;&amp; f&lt;=ft
+</span><span class="s">        s(f)=h-2*h*(ft-f)^2/ft^2;s=s(f);
+</span><span class="s">        ds(f) = 4*h*(ft-f)*hd/(ft*hd)^2;ds=ds(f);`</span>
+
+     <span class="nx">data</span><span class="p">.</span><span class="nx">Complex</span><span class="p">=</span><span class="s">`
+</span><span class="s">	if f&lt;=ft
+</span><span class="s">		s(f)=((10*h*(f^3)/(ft^3))-(15*h*(f^4)/(ft^4))+(6*h*(f^5)/(ft^5)));s=s(f);
+</span><span class="s">		ds(f)=(3*10*h/(ft^3)+(4*(-15)*h/(ft^4))+(5*6*h/(ft^5)));ds=ds(f);`</span>
+
+	<span class="k">return</span> <span class="nx">data</span>
+<span class="p">}</span>
+<span class="kd">func</span> <span class="nf">Back</span><span class="p">()</span> <span class="o">*</span><span class="nx">SportReturn</span> <span class="p">{</span>
+	<span class="c1">//初始化
+</span><span class="c1"></span>	<span class="nx">data</span> <span class="o">:=&amp;</span><span class="nx">SportReturn</span><span class="p">{}</span>
+
+	<span class="nx">data</span><span class="p">.</span><span class="nx">Sin</span> <span class="p">=</span> <span class="s">`
+</span><span class="s">	elseif f&gt;d1 &amp;&amp; f&lt;=d2
+</span><span class="s">        k=f-d1;
+</span><span class="s">        s(f)=h*(1-(k/fh)+(sin(2*pi*k/fh)/(2*pi)));s=s(f);
+</span><span class="s">        ds(f)=(h*(cos(2*pi*k/fh)-1))/fh;ds=ds(f);`</span>
+
+	<span class="nx">data</span><span class="p">.</span><span class="nx">Cos</span> <span class="p">=</span> <span class="s">`
+</span><span class="s">	elseif f&gt;d1 &amp;&amp; f&lt;=d2
+</span><span class="s">        k=f-d1;
+</span><span class="s">        s(f)=.5*h*(1+cos(pi*k/fh));s=s(f);
+</span><span class="s">        ds(f)=-.5*pi*h*sin(pi*k/fh)/(fh*hd);ds=ds(f);`</span>
+
+    <span class="nx">data</span><span class="p">.</span><span class="nx">Normal</span> <span class="p">=</span><span class="s">`
+</span><span class="s">	elseif f&gt;d1 &amp;&amp; f&lt;=d1+(fh/2)
+</span><span class="s">        k=f-d1; % k
+</span><span class="s">        s(f)=h-(2*h*(k^2)/(fh^2));s=s(f);
+</span><span class="s">        ds(f)=-4*h*k/(fh^2);ds=ds(f);
+</span><span class="s">    elseif f &gt; d1+(fh/2) &amp;&amp; f &lt;= d2
+</span><span class="s">        k=f-d1;
+</span><span class="s">        s(f)=(2*h*((fh-k)^2))/(fh^2);s=s(f);
+</span><span class="s">        ds(f)=(-4*h*(fh-k))/(fh^2);ds=ds(f);`</span>
+
+    <span class="nx">data</span><span class="p">.</span><span class="nx">Complex</span><span class="p">=</span><span class="s">`
+</span><span class="s">	elseif f&gt;d1 &amp;&amp; f&lt;=d2
+</span><span class="s">		k=f-d1;
+</span><span class="s">		s(f)=h-((10*h*(k^3)/(fh^3))-(15*h*(k^4)/(fh^4))+(6*h*(k^5)/(fh^5)));s=s(f);
+</span><span class="s">		ds(f)=-(3*10*h/(fh^3)+(4*(-15)*h/(fh^4))+(5*6*h/(fh^5)))ds=ds(f);
+</span><span class="s">`</span>
+	<span class="k">return</span> <span class="nx">data</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">C</span><span class="p">()</span> <span class="o">*</span><span class="nx">Comment</span> <span class="p">{</span>
+	<span class="nx">data</span> <span class="o">:=&amp;</span><span class="nx">Comment</span><span class="p">{}</span>
+
+	<span class="nx">data</span><span class="p">.</span><span class="nx">Near</span> <span class="p">=</span> <span class="s">`
+</span><span class="s">	elseif f&gt;d2 &amp;&amp;  f&lt;=n
+</span><span class="s">        s=0;ds=0;`</span>
+
+	<span class="nx">data</span><span class="p">.</span><span class="nx">Remote</span><span class="p">=</span> <span class="s">`
+</span><span class="s">	elseif f&gt;ft &amp;&amp; f&lt;=d1
+</span><span class="s">        s=h;ds=0;`</span>
+
+	<span class="k">return</span> <span class="nx">data</span>
+<span class="p">}</span>
+</code></pre></div><p>编写完成变量处理以后，我们需要获取用户的输入，接下来需要编写从键盘中获取用户的输入，并且需要一个友好的交互界面,在这里会保存那些输入的变量，用于主函数的调用</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">cmd</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+	<span class="s">&#34;Matlab/sport&#34;</span>
+	<span class="s">&#34;fmt&#34;</span>
+	<span class="s">&#34;github.com/daviddengcn/go-colortext&#34;</span>
+	<span class="s">&#34;html/template&#34;</span>
+	<span class="s">&#34;strconv&#34;</span>
+	<span class="s">&#34;strings&#34;</span>
+<span class="p">)</span>
+
+<span class="kd">type</span> <span class="nx">MatlabValue</span> <span class="kd">struct</span> <span class="p">{</span>
+	<span class="nx">Rb</span> <span class="kt">int</span>
+	<span class="nx">Rt</span> <span class="kt">int</span>
+	<span class="nx">E</span> <span class="kt">int</span>
+	<span class="nx">H</span> <span class="kt">int</span>
+	<span class="nx">Ft</span> <span class="kt">int</span>
+	<span class="nx">Fs</span> <span class="kt">int</span>
+	<span class="nx">Fh</span> <span class="kt">int</span>
+	<span class="nx">Sport</span> <span class="nx">SportStatus</span>
+<span class="p">}</span>
+
+<span class="kd">type</span> <span class="nx">SportStatus</span> <span class="kd">struct</span> <span class="p">{</span>
+	<span class="nx">Push</span> <span class="nx">template</span><span class="p">.</span><span class="nx">HTML</span>
+	<span class="nx">ReturnJourney</span> <span class="nx">template</span><span class="p">.</span><span class="nx">HTML</span>
+	<span class="nx">PushSportName</span> <span class="nx">template</span><span class="p">.</span><span class="nx">HTML</span>
+	<span class="nx">ReturnJourneySportName</span> <span class="nx">template</span><span class="p">.</span><span class="nx">HTML</span>
+	<span class="nx">Remote</span> <span class="nx">template</span><span class="p">.</span><span class="nx">HTML</span>
+	<span class="nx">Near</span> <span class="nx">template</span><span class="p">.</span><span class="nx">HTML</span>
+<span class="p">}</span>
+<span class="kd">var</span><span class="p">(</span>
+	<span class="nx">Rb</span> <span class="kt">int</span>
+	<span class="nx">Rt</span> <span class="kt">int</span>
+	<span class="nx">E</span> <span class="kt">int</span>
+	<span class="nx">H</span> <span class="kt">int</span>
+	<span class="nx">Ft</span> <span class="kt">int</span>
+	<span class="nx">Fs</span> <span class="kt">int</span>
+	<span class="nx">Fh</span> <span class="kt">int</span>
+	<span class="c1">//Push
+</span><span class="c1"></span>	<span class="nx">P</span> <span class="kt">int</span>
+	<span class="c1">//Back
+</span><span class="c1"></span>	<span class="nx">B</span> <span class="kt">int</span>
+	<span class="c1">//Config
+</span><span class="c1"></span>	<span class="nx">C</span> <span class="kd">interface</span><span class="p">{}</span>
+<span class="p">)</span>
+
+<span class="kd">func</span> <span class="nf">init</span><span class="p">()</span>  <span class="p">{</span>
+	<span class="nx">ct</span><span class="p">.</span><span class="nf">Foreground</span><span class="p">(</span><span class="nx">ct</span><span class="p">.</span><span class="nx">Green</span><span class="p">,</span><span class="kc">true</span><span class="p">)</span>
+	<span class="nx">welcome</span> <span class="o">:=</span><span class="s">`
+</span><span class="s">		##########################################
+</span><span class="s">		# Project :解析法画凸轮 Matlab 代码生成器#
+</span><span class="s">		# Class: 车辆工程 167         		 #
+</span><span class="s">		# Author : 孙玮                          #
+</span><span class="s">		##########################################`</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="nx">welcome</span><span class="p">)</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Print</span><span class="p">(</span><span class="s">&#34;\n\n&#34;</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">GetContent</span><span class="p">()</span> <span class="o">*</span><span class="nx">MatlabValue</span> <span class="p">{</span>
+	<span class="nx">ct</span><span class="p">.</span><span class="nf">Foreground</span><span class="p">(</span><span class="nx">ct</span><span class="p">.</span><span class="nx">Cyan</span><span class="p">,</span><span class="kc">false</span><span class="p">)</span>
+	<span class="nx">s</span> <span class="o">:=</span><span class="p">[]</span><span class="kt">string</span><span class="p">{</span><span class="s">&#34;等加等减速度运动&#34;</span><span class="p">,</span><span class="s">&#34;余弦加速度运动&#34;</span><span class="p">,</span><span class="s">&#34;正弦加速度运动&#34;</span><span class="p">,</span><span class="s">&#34;五次多项式运动&#34;</span><span class="p">}</span>
+	<span class="nx">data</span> <span class="o">:=</span> <span class="o">&amp;</span><span class="nx">MatlabValue</span><span class="p">{}</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;		==请输入基圆半径==&#34;</span><span class="p">)</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Scanln</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">Rb</span><span class="p">)</span>
+
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;		==请输入滚子半径==&#34;</span><span class="p">)</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Scanln</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">Rt</span><span class="p">)</span>
+
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;		==请输入偏心距==&#34;</span><span class="p">)</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Scanln</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">E</span><span class="p">)</span>
+
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;		==请输入推程==&#34;</span><span class="p">)</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Scanln</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">H</span><span class="p">)</span>
+
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;		==请输入推程运动角==&#34;</span><span class="p">)</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Scanln</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">Ft</span><span class="p">)</span>
+
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;		==请输入远休止角==&#34;</span><span class="p">)</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Scanln</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">Fs</span><span class="p">)</span>
+
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;		==请输入回程运动角==&#34;</span><span class="p">)</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Scanln</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">Fh</span><span class="p">)</span>
+
+	<span class="c1">//选择推程
+</span><span class="c1"></span>	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;		===请输入您所需要的 *推程* 运动的序号，按回车确定(只能选一项)===&#34;</span><span class="p">)</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Print</span><span class="p">(</span><span class="s">&#34;		1.&#34;</span><span class="o">+</span><span class="nx">s</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="s">&#34;\n&#34;</span><span class="p">)</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Print</span><span class="p">(</span><span class="s">&#34;		2.&#34;</span><span class="o">+</span><span class="nx">s</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="s">&#34;\n&#34;</span><span class="p">)</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Print</span><span class="p">(</span><span class="s">&#34;		3.&#34;</span><span class="o">+</span><span class="nx">s</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">+</span><span class="s">&#34;\n&#34;</span><span class="p">)</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Print</span><span class="p">(</span><span class="s">&#34;		4.&#34;</span><span class="o">+</span><span class="nx">s</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">+</span><span class="s">&#34;\n&#34;</span><span class="p">)</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Scanln</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">P</span><span class="p">)</span>
+
+	<span class="c1">//选择回程
+</span><span class="c1"></span>	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;		===请输入您所需要的 *回程* 运动的序号，按回车确定(只能选一项)===&#34;</span><span class="p">)</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Print</span><span class="p">(</span><span class="s">&#34;		1.&#34;</span><span class="o">+</span><span class="nx">s</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">+</span><span class="s">&#34;\n&#34;</span><span class="p">)</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Print</span><span class="p">(</span><span class="s">&#34;		2.&#34;</span><span class="o">+</span><span class="nx">s</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="s">&#34;\n&#34;</span><span class="p">)</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Print</span><span class="p">(</span><span class="s">&#34;		3.&#34;</span><span class="o">+</span><span class="nx">s</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">+</span><span class="s">&#34;\n&#34;</span><span class="p">)</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Print</span><span class="p">(</span><span class="s">&#34;		4.&#34;</span><span class="o">+</span><span class="nx">s</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span><span class="o">+</span><span class="s">&#34;\n&#34;</span><span class="p">)</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Scanln</span><span class="p">(</span><span class="o">&amp;</span><span class="nx">B</span><span class="p">)</span>
+
+	<span class="c1">//开始对推程和回程进行选择
+</span><span class="c1"></span>	<span class="k">switch</span> <span class="nx">P</span> <span class="p">{</span>
+	<span class="k">case</span> <span class="mi">1</span><span class="p">:</span>
+		<span class="nx">data</span><span class="p">.</span><span class="nx">Sport</span><span class="p">.</span><span class="nx">Push</span> <span class="p">=</span>  <span class="nx">template</span><span class="p">.</span><span class="nf">HTML</span><span class="p">(</span><span class="nx">strings</span><span class="p">.</span><span class="nf">Join</span><span class="p">(</span><span class="nx">strings</span><span class="p">.</span><span class="nf">Split</span><span class="p">(</span><span class="nx">sport</span><span class="p">.</span><span class="nf">Go</span><span class="p">().</span><span class="nx">Normal</span><span class="p">,</span> <span class="s">&#34;&lt;&#34;</span><span class="p">),</span> <span class="s">&#34;&lt;&#34;</span><span class="p">))</span>
+		<span class="nx">data</span><span class="p">.</span><span class="nx">Sport</span><span class="p">.</span><span class="nx">PushSportName</span> <span class="p">=</span> <span class="s">&#34;等加等减速运动&#34;</span>
+	<span class="k">case</span> <span class="mi">2</span><span class="p">:</span>
+		<span class="nx">data</span><span class="p">.</span><span class="nx">Sport</span><span class="p">.</span><span class="nx">Push</span> <span class="p">=</span> <span class="nx">template</span><span class="p">.</span><span class="nf">HTML</span><span class="p">(</span><span class="nx">strings</span><span class="p">.</span><span class="nf">Join</span><span class="p">(</span><span class="nx">strings</span><span class="p">.</span><span class="nf">Split</span><span class="p">(</span><span class="nx">sport</span><span class="p">.</span><span class="nf">Go</span><span class="p">().</span><span class="nx">Cos</span><span class="p">,</span> <span class="s">&#34;&lt;&#34;</span><span class="p">),</span> <span class="s">&#34;&lt;&#34;</span><span class="p">))</span>
+		<span class="nx">data</span><span class="p">.</span><span class="nx">Sport</span><span class="p">.</span><span class="nx">PushSportName</span> <span class="p">=</span> <span class="s">&#34;余弦加速度运动&#34;</span>
+	<span class="k">case</span> <span class="mi">3</span><span class="p">:</span>
+		<span class="nx">data</span><span class="p">.</span><span class="nx">Sport</span><span class="p">.</span><span class="nx">Push</span> <span class="p">=</span>  <span class="nx">template</span><span class="p">.</span><span class="nf">HTML</span><span class="p">(</span><span class="nx">strings</span><span class="p">.</span><span class="nf">Join</span><span class="p">(</span><span class="nx">strings</span><span class="p">.</span><span class="nf">Split</span><span class="p">(</span><span class="nx">sport</span><span class="p">.</span><span class="nf">Go</span><span class="p">().</span><span class="nx">Sin</span><span class="p">,</span> <span class="s">&#34;&lt;&#34;</span><span class="p">),</span> <span class="s">&#34;&lt;&#34;</span><span class="p">))</span>
+		<span class="nx">data</span><span class="p">.</span><span class="nx">Sport</span><span class="p">.</span><span class="nx">PushSportName</span> <span class="p">=</span> <span class="s">&#34;正弦加速度运动&#34;</span>
+	<span class="k">case</span> <span class="mi">4</span><span class="p">:</span>
+		<span class="nx">data</span><span class="p">.</span><span class="nx">Sport</span><span class="p">.</span><span class="nx">Push</span> <span class="p">=</span>  <span class="nx">template</span><span class="p">.</span><span class="nf">HTML</span><span class="p">(</span><span class="nx">strings</span><span class="p">.</span><span class="nf">Join</span><span class="p">(</span><span class="nx">strings</span><span class="p">.</span><span class="nf">Split</span><span class="p">(</span><span class="nx">sport</span><span class="p">.</span><span class="nf">Go</span><span class="p">().</span><span class="nx">Complex</span><span class="p">,</span> <span class="s">&#34;&lt;&#34;</span><span class="p">),</span> <span class="s">&#34;&lt;&#34;</span><span class="p">))</span>
+		<span class="nx">data</span><span class="p">.</span><span class="nx">Sport</span><span class="p">.</span><span class="nx">PushSportName</span> <span class="p">=</span> <span class="s">&#34;五次多项式运动&#34;</span>
+	<span class="k">default</span><span class="p">:</span>
+		<span class="nx">fmt</span><span class="p">.</span><span class="nf">Print</span><span class="p">(</span><span class="s">&#34;		输入的编码不正确，程序退出&#34;</span><span class="p">)</span>
+	<span class="p">}</span>
+	<span class="k">switch</span> <span class="nx">B</span> <span class="p">{</span>
+	<span class="k">case</span> <span class="mi">1</span><span class="p">:</span>
+		<span class="nx">data</span><span class="p">.</span><span class="nx">Sport</span><span class="p">.</span><span class="nx">ReturnJourneySportName</span> <span class="p">=</span> <span class="s">&#34;等加速减速运动&#34;</span>
+		<span class="nx">data</span><span class="p">.</span><span class="nx">Sport</span><span class="p">.</span><span class="nx">ReturnJourney</span> <span class="p">=</span>  <span class="nx">template</span><span class="p">.</span><span class="nf">HTML</span><span class="p">(</span><span class="nx">strings</span><span class="p">.</span><span class="nf">Join</span><span class="p">(</span><span class="nx">strings</span><span class="p">.</span><span class="nf">Split</span><span class="p">(</span><span class="nx">sport</span><span class="p">.</span><span class="nf">Back</span><span class="p">().</span><span class="nx">Normal</span><span class="p">,</span> <span class="s">&#34;&lt;&#34;</span><span class="p">),</span> <span class="s">&#34;&lt;&#34;</span><span class="p">))</span>
+	<span class="k">case</span> <span class="mi">2</span><span class="p">:</span>
+		<span class="nx">data</span><span class="p">.</span><span class="nx">Sport</span><span class="p">.</span><span class="nx">ReturnJourneySportName</span> <span class="p">=</span> <span class="s">&#34;余弦加速度运动&#34;</span>
+		<span class="nx">data</span><span class="p">.</span><span class="nx">Sport</span><span class="p">.</span><span class="nx">ReturnJourney</span> <span class="p">=</span> <span class="nx">template</span><span class="p">.</span><span class="nf">HTML</span><span class="p">(</span><span class="nx">strings</span><span class="p">.</span><span class="nf">Join</span><span class="p">(</span><span class="nx">strings</span><span class="p">.</span><span class="nf">Split</span><span class="p">(</span><span class="nx">sport</span><span class="p">.</span><span class="nf">Back</span><span class="p">().</span><span class="nx">Cos</span><span class="p">,</span> <span class="s">&#34;&lt;&#34;</span><span class="p">),</span> <span class="s">&#34;&lt;&#34;</span><span class="p">))</span>
+	<span class="k">case</span> <span class="mi">3</span><span class="p">:</span>
+		<span class="nx">data</span><span class="p">.</span><span class="nx">Sport</span><span class="p">.</span><span class="nx">ReturnJourneySportName</span> <span class="p">=</span> <span class="s">&#34;正弦加速度运动&#34;</span>
+		<span class="nx">data</span><span class="p">.</span><span class="nx">Sport</span><span class="p">.</span><span class="nx">ReturnJourney</span> <span class="p">=</span>  <span class="nx">template</span><span class="p">.</span><span class="nf">HTML</span><span class="p">(</span><span class="nx">strings</span><span class="p">.</span><span class="nf">Join</span><span class="p">(</span><span class="nx">strings</span><span class="p">.</span><span class="nf">Split</span><span class="p">(</span><span class="nx">sport</span><span class="p">.</span><span class="nf">Back</span><span class="p">().</span><span class="nx">Sin</span><span class="p">,</span> <span class="s">&#34;&lt;&#34;</span><span class="p">),</span> <span class="s">&#34;&lt;&#34;</span><span class="p">))</span>
+	<span class="k">case</span> <span class="mi">4</span><span class="p">:</span>
+		<span class="nx">data</span><span class="p">.</span><span class="nx">Sport</span><span class="p">.</span><span class="nx">ReturnJourneySportName</span> <span class="p">=</span> <span class="s">&#34;五次多项式运动&#34;</span>
+		<span class="nx">data</span><span class="p">.</span><span class="nx">Sport</span><span class="p">.</span><span class="nx">ReturnJourney</span> <span class="p">=</span>  <span class="nx">template</span><span class="p">.</span><span class="nf">HTML</span><span class="p">(</span><span class="nx">strings</span><span class="p">.</span><span class="nf">Join</span><span class="p">(</span><span class="nx">strings</span><span class="p">.</span><span class="nf">Split</span><span class="p">(</span><span class="nx">sport</span><span class="p">.</span><span class="nf">Back</span><span class="p">().</span><span class="nx">Complex</span><span class="p">,</span> <span class="s">&#34;&lt;&#34;</span><span class="p">),</span> <span class="s">&#34;&lt;&#34;</span><span class="p">))</span>
+	<span class="k">default</span><span class="p">:</span>
+		<span class="nx">fmt</span><span class="p">.</span><span class="nf">Print</span><span class="p">(</span><span class="s">&#34;		输入的编码不正确，程序退出&#34;</span><span class="p">)</span>
+	<span class="p">}</span>
+
+	<span class="c1">//开始赋值给结构体
+</span><span class="c1"></span>	<span class="nx">data</span><span class="p">.</span><span class="nx">Ft</span> <span class="p">=</span> <span class="nx">Ft</span>
+	<span class="nx">data</span><span class="p">.</span><span class="nx">Rb</span> <span class="p">=</span> <span class="nx">Rb</span>
+	<span class="nx">data</span><span class="p">.</span><span class="nx">E</span> <span class="p">=</span> <span class="nx">E</span>
+	<span class="nx">data</span><span class="p">.</span><span class="nx">H</span> <span class="p">=</span> <span class="nx">H</span>
+	<span class="nx">data</span><span class="p">.</span><span class="nx">Fh</span> <span class="p">=</span> <span class="nx">Fh</span>
+	<span class="nx">data</span><span class="p">.</span><span class="nx">Fs</span> <span class="p">=</span> <span class="nx">Fs</span>
+	<span class="nx">data</span><span class="p">.</span><span class="nx">Rt</span> <span class="p">=</span> <span class="nx">Rt</span>
+
+	<span class="nx">backStr</span> <span class="o">:=</span> <span class="s">&#34;		##########################################\n&#34;</span><span class="o">+</span>
+		<span class="s">&#34;		#	您的作图需求为:			 #\n&#34;</span><span class="o">+</span>
+		<span class="s">&#34;		#	推程运动为: &#34;</span><span class="o">+</span><span class="nx">s</span><span class="p">[</span><span class="nx">P</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="s">&#34;	 #\n&#34;</span><span class="o">+</span>
+		<span class="s">&#34;		#	回程运动为: &#34;</span><span class="o">+</span><span class="nx">s</span><span class="p">[</span><span class="nx">B</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="o">+</span><span class="s">&#34;	 #\n&#34;</span><span class="o">+</span>
+		<span class="s">&#34;		#############&lt;==各项数据为==&gt;#############\n&#34;</span><span class="o">+</span>
+		<span class="s">&#34;		#	基圆半径: &#34;</span><span class="o">+</span><span class="nx">strconv</span><span class="p">.</span><span class="nf">Itoa</span><span class="p">(</span><span class="nx">Rb</span><span class="p">)</span><span class="o">+</span><span class="s">&#34;			 #\n&#34;</span><span class="o">+</span>
+		<span class="s">&#34;		#	滚子半径: &#34;</span><span class="o">+</span><span class="nx">strconv</span><span class="p">.</span><span class="nf">Itoa</span><span class="p">(</span><span class="nx">Rt</span><span class="p">)</span><span class="o">+</span><span class="s">&#34;			 #\n&#34;</span><span class="o">+</span>
+		<span class="s">&#34;		#	偏心距: &#34;</span><span class="o">+</span><span class="nx">strconv</span><span class="p">.</span><span class="nf">Itoa</span><span class="p">(</span><span class="nx">E</span><span class="p">)</span><span class="o">+</span><span class="s">&#34;			 #\n&#34;</span><span class="o">+</span>
+		<span class="s">&#34;		#	最大推程: &#34;</span><span class="o">+</span><span class="nx">strconv</span><span class="p">.</span><span class="nf">Itoa</span><span class="p">(</span><span class="nx">H</span><span class="p">)</span><span class="o">+</span><span class="s">&#34;			 #\n&#34;</span><span class="o">+</span>
+		<span class="s">&#34;		#	推程运动角: &#34;</span><span class="o">+</span><span class="nx">strconv</span><span class="p">.</span><span class="nf">Itoa</span><span class="p">(</span><span class="nx">Ft</span><span class="p">)</span><span class="o">+</span><span class="s">&#34;			 #\n&#34;</span><span class="o">+</span>
+		<span class="s">&#34;		#	远休止角: &#34;</span><span class="o">+</span><span class="nx">strconv</span><span class="p">.</span><span class="nf">Itoa</span><span class="p">(</span><span class="nx">Fs</span><span class="p">)</span><span class="o">+</span><span class="s">&#34;			 #\n&#34;</span><span class="o">+</span>
+		<span class="s">&#34;		#	回程运动角: &#34;</span><span class="o">+</span><span class="nx">strconv</span><span class="p">.</span><span class="nf">Itoa</span><span class="p">(</span><span class="nx">Fh</span><span class="p">)</span><span class="o">+</span><span class="s">&#34;			 #\n&#34;</span><span class="o">+</span>
+		<span class="s">&#34;		##########################################\n&#34;</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Print</span><span class="p">(</span><span class="nx">backStr</span><span class="p">)</span>
+	<span class="nx">ct</span><span class="p">.</span><span class="nf">Foreground</span><span class="p">(</span><span class="nx">ct</span><span class="p">.</span><span class="nx">Yellow</span><span class="p">,</span><span class="kc">true</span><span class="p">)</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Print</span><span class="p">(</span><span class="s">&#34;========================生成 MatLab 代码============================\n&#34;</span><span class="p">)</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;&#34;</span><span class="p">)</span>
+	<span class="nx">ct</span><span class="p">.</span><span class="nf">Foreground</span><span class="p">(</span><span class="nx">ct</span><span class="p">.</span><span class="nx">Blue</span><span class="p">,</span><span class="kc">true</span><span class="p">)</span>
+	<span class="k">return</span> <span class="nx">data</span>
+
+<span class="p">}</span>
+
+</code></pre></div><p>最后进行主函数的编写，主函数只需要调用 <code>cmd</code> 包中的已经保存好的用户变量，然后进行模板引擎的替换即可</p>
+<div class="highlight"><pre class="chroma"><code class="language-go" data-lang="go"><span class="kn">package</span> <span class="nx">main</span>
+
+<span class="kn">import</span> <span class="p">(</span>
+	<span class="s">&#34;Matlab/cmd&#34;</span>
+	<span class="s">&#34;Matlab/data&#34;</span>
+	<span class="s">&#34;Matlab/sport&#34;</span>
+	<span class="s">&#34;fmt&#34;</span>
+	<span class="s">&#34;github.com/daviddengcn/go-colortext&#34;</span>
+	<span class="s">&#34;html/template&#34;</span>
+	<span class="s">&#34;os&#34;</span>
+	<span class="s">&#34;strings&#34;</span>
+<span class="p">)</span>
+
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+
+   <span class="c1">//从用户键盘中读取相应的内容
+</span><span class="c1"></span>	<span class="nx">valueData</span> <span class="o">:=</span> <span class="nx">cmd</span><span class="p">.</span><span class="nf">GetContent</span><span class="p">()</span>
+	<span class="c1">//阻止转义
+</span><span class="c1"></span>	<span class="nx">valueData</span><span class="p">.</span><span class="nx">Sport</span><span class="p">.</span><span class="nx">Near</span> <span class="p">=</span> <span class="nx">template</span><span class="p">.</span><span class="nf">HTML</span><span class="p">(</span><span class="nx">strings</span><span class="p">.</span><span class="nf">Join</span><span class="p">(</span><span class="nx">strings</span><span class="p">.</span><span class="nf">Split</span><span class="p">(</span><span class="nx">sport</span><span class="p">.</span><span class="nf">C</span><span class="p">().</span><span class="nx">Near</span><span class="p">,</span> <span class="s">&#34;&lt;&#34;</span><span class="p">),</span> <span class="s">&#34;&lt;&#34;</span><span class="p">))</span>
+	<span class="nx">valueData</span><span class="p">.</span><span class="nx">Sport</span><span class="p">.</span><span class="nx">Remote</span> <span class="p">=</span> <span class="nx">template</span><span class="p">.</span><span class="nf">HTML</span><span class="p">(</span><span class="nx">strings</span><span class="p">.</span><span class="nf">Join</span><span class="p">(</span><span class="nx">strings</span><span class="p">.</span><span class="nf">Split</span><span class="p">(</span><span class="nx">sport</span><span class="p">.</span><span class="nf">C</span><span class="p">().</span><span class="nx">Remote</span><span class="p">,</span> <span class="s">&#34;&lt;&#34;</span><span class="p">),</span> <span class="s">&#34;&lt;&#34;</span><span class="p">))</span>
+
+   <span class="c1">//引入模板文件
+</span><span class="c1"></span>	<span class="nx">bytes</span><span class="p">,</span><span class="nx">err</span> <span class="o">:=</span> <span class="nx">AimerMatlab</span><span class="p">.</span><span class="nf">Asset</span><span class="p">(</span><span class="s">&#34;codeTemple/matlab.tpl&#34;</span><span class="p">)</span>
+	<span class="nx">t</span> <span class="o">:=</span> <span class="nx">template</span><span class="p">.</span><span class="nf">New</span><span class="p">(</span><span class="s">&#34;matlab.tpl&#34;</span><span class="p">)</span>
+	<span class="nx">t</span><span class="p">,</span> <span class="nx">_</span> <span class="p">=</span> <span class="nx">t</span><span class="p">.</span><span class="nf">Parse</span><span class="p">(</span><span class="nb">string</span><span class="p">(</span><span class="nx">bytes</span><span class="p">))</span>
+	<span class="nx">err</span> <span class="p">=</span> <span class="nx">t</span><span class="p">.</span><span class="nf">Execute</span><span class="p">(</span><span class="nx">os</span><span class="p">.</span><span class="nx">Stdout</span><span class="p">,</span> <span class="nx">valueData</span><span class="p">)</span>
+	<span class="c1">//生成 io.Writer
+</span><span class="c1"></span>	<span class="nx">file</span><span class="p">,</span><span class="nx">err</span> <span class="o">:=</span> <span class="nx">os</span><span class="p">.</span><span class="nf">OpenFile</span><span class="p">(</span><span class="s">&#34;matlab 代码.txt&#34;</span><span class="p">,</span><span class="nx">os</span><span class="p">.</span><span class="nx">O_CREATE</span><span class="p">|</span><span class="nx">os</span><span class="p">.</span><span class="nx">O_WRONLY</span><span class="p">,</span> <span class="mo">0755</span><span class="p">)</span>
+	<span class="k">if</span> <span class="nx">err</span> <span class="o">!=</span> <span class="kc">nil</span> <span class="p">{</span>
+		<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;error&#34;</span><span class="p">,</span> <span class="nx">err</span><span class="p">)</span>
+	<span class="p">}</span>
+	<span class="c1">//执行替换，并且写入文件，输出到终端
+</span><span class="c1"></span>	<span class="nx">t</span><span class="p">.</span><span class="nf">Execute</span><span class="p">(</span><span class="nx">file</span><span class="p">,</span><span class="nx">valueData</span><span class="p">)</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">()</span>
+	<span class="nx">ct</span><span class="p">.</span><span class="nf">Foreground</span><span class="p">(</span><span class="nx">ct</span><span class="p">.</span><span class="nx">Yellow</span><span class="p">,</span><span class="kc">true</span><span class="p">)</span>
+	<span class="c1">//运行完成以后输出完成提示信息
+</span><span class="c1"></span>	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;### Matlab代码输出完毕，请到本程序的统计目录可找到 《matlab 代码.txt》 打开就是 matlab 代码 ###&#34;</span><span class="p">)</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">()</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;### 或者您也可以直接复制上面的代码,到 matlab 中粘贴, 既可以运行生成您的凸轮 ###&#34;</span><span class="p">)</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Print</span><span class="p">()</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;### 如果想要退出程序，请直接关闭窗口即可 ###&#34;</span><span class="p">)</span>
+	<span class="k">for</span><span class="p">{}</span>
+<span class="p">}</span>
+
+</code></pre></div><p>最终就完成了一个简单的 Matlab 代码生成器，接下来把程序编译成可以执行的二进制文件即可，Go 特有的交叉编译</p>
+<div class="highlight"><pre class="chroma"><code class="language-bash" data-lang="bash"><span class="c1">#Mac/Windows环境编译成 Linux 程序</span> 
+<span class="nv">GOOS</span><span class="o">=</span>linux <span class="nv">GOARCH</span><span class="o">=</span>amd64 go build main.go
+<span class="c1">#Mac/Linux 环境编译 Windows 程序</span>
+<span class="nv">GOOS</span><span class="o">=</span>windows <span class="nv">GOARCH</span><span class="o">=</span>amd64 go build main.go
+<span class="c1">#Windows/Linux 编译 Mac 程序</span>
+<span class="nv">GOOS</span><span class="o">=</span>darwin <span class="nv">GOARCH</span><span class="o">=</span>amd64 go build main.go
+<span class="c1"># 编译本机环境的程序只需要运行 go build 即可</span>
+go build main.go
+</code></pre></div><p>然后就可以给各个操作系统使用了</p>
+<h2 id="运行截图">运行截图</h2>
+<p><figure>
+		<a href="/p/%E6%9C%BA%E6%A2%B0%E5%8E%9F%E7%90%86%E5%A4%A7%E4%BD%9C%E4%B8%9A-%E5%87%B8%E8%BD%AE%E7%94%9F%E6%88%90%E5%99%A8/media/15429582214844/Snipaste_2018-11-23_16-18-10.png" data-size="983x702">
+			<img srcset="/p/%E6%9C%BA%E6%A2%B0%E5%8E%9F%E7%90%86%E5%A4%A7%E4%BD%9C%E4%B8%9A-%E5%87%B8%E8%BD%AE%E7%94%9F%E6%88%90%E5%99%A8/media/15429582214844/Snipaste_2018-11-23_16-18-10_hude199e5bf89776135e621e7fbad15eae_37451_480x0_resize_box_2.png 480w, /p/%E6%9C%BA%E6%A2%B0%E5%8E%9F%E7%90%86%E5%A4%A7%E4%BD%9C%E4%B8%9A-%E5%87%B8%E8%BD%AE%E7%94%9F%E6%88%90%E5%99%A8/media/15429582214844/Snipaste_2018-11-23_16-18-10_hude199e5bf89776135e621e7fbad15eae_37451_1024x0_resize_box_2.png 1024w"
+				src="/p/%E6%9C%BA%E6%A2%B0%E5%8E%9F%E7%90%86%E5%A4%A7%E4%BD%9C%E4%B8%9A-%E5%87%B8%E8%BD%AE%E7%94%9F%E6%88%90%E5%99%A8/media/15429582214844/Snipaste_2018-11-23_16-18-10.png" width="983" height="702" loading="lazy"
+				alt="Snipaste_2018-11-23_16-18-10">
+		</a>
+		
+		<figcaption>Snipaste_2018-11-23_16-18-10</figcaption>
+		
+	</figure></p>
+<p><figure>
+		<a href="/p/%E6%9C%BA%E6%A2%B0%E5%8E%9F%E7%90%86%E5%A4%A7%E4%BD%9C%E4%B8%9A-%E5%87%B8%E8%BD%AE%E7%94%9F%E6%88%90%E5%99%A8/media/15429582214844/Snipaste_2018-11-23_16-19-08.png" data-size="987x707">
+			<img srcset="/p/%E6%9C%BA%E6%A2%B0%E5%8E%9F%E7%90%86%E5%A4%A7%E4%BD%9C%E4%B8%9A-%E5%87%B8%E8%BD%AE%E7%94%9F%E6%88%90%E5%99%A8/media/15429582214844/Snipaste_2018-11-23_16-19-08_hu4746d47c55f81938ead0a0325dc71e8b_100655_480x0_resize_box_2.png 480w, /p/%E6%9C%BA%E6%A2%B0%E5%8E%9F%E7%90%86%E5%A4%A7%E4%BD%9C%E4%B8%9A-%E5%87%B8%E8%BD%AE%E7%94%9F%E6%88%90%E5%99%A8/media/15429582214844/Snipaste_2018-11-23_16-19-08_hu4746d47c55f81938ead0a0325dc71e8b_100655_1024x0_resize_box_2.png 1024w"
+				src="/p/%E6%9C%BA%E6%A2%B0%E5%8E%9F%E7%90%86%E5%A4%A7%E4%BD%9C%E4%B8%9A-%E5%87%B8%E8%BD%AE%E7%94%9F%E6%88%90%E5%99%A8/media/15429582214844/Snipaste_2018-11-23_16-19-08.png" width="987" height="707" loading="lazy"
+				alt="Snipaste_2018-11-23_16-19-08">
+		</a>
+		
+		<figcaption>Snipaste_2018-11-23_16-19-08</figcaption>
+		
+	</figure></p>
+<p><figure>
+		<a href="/p/%E6%9C%BA%E6%A2%B0%E5%8E%9F%E7%90%86%E5%A4%A7%E4%BD%9C%E4%B8%9A-%E5%87%B8%E8%BD%AE%E7%94%9F%E6%88%90%E5%99%A8/media/15429582214844/Snipaste_2018-11-13_22-50-28.png" data-size="982x703">
+			<img srcset="/p/%E6%9C%BA%E6%A2%B0%E5%8E%9F%E7%90%86%E5%A4%A7%E4%BD%9C%E4%B8%9A-%E5%87%B8%E8%BD%AE%E7%94%9F%E6%88%90%E5%99%A8/media/15429582214844/Snipaste_2018-11-13_22-50-28_hu4fe1d377853e5e9fee107910d3a3b1d9_100473_480x0_resize_box_2.png 480w, /p/%E6%9C%BA%E6%A2%B0%E5%8E%9F%E7%90%86%E5%A4%A7%E4%BD%9C%E4%B8%9A-%E5%87%B8%E8%BD%AE%E7%94%9F%E6%88%90%E5%99%A8/media/15429582214844/Snipaste_2018-11-13_22-50-28_hu4fe1d377853e5e9fee107910d3a3b1d9_100473_1024x0_resize_box_2.png 1024w"
+				src="/p/%E6%9C%BA%E6%A2%B0%E5%8E%9F%E7%90%86%E5%A4%A7%E4%BD%9C%E4%B8%9A-%E5%87%B8%E8%BD%AE%E7%94%9F%E6%88%90%E5%99%A8/media/15429582214844/Snipaste_2018-11-13_22-50-28.png" width="982" height="703" loading="lazy"
+				alt="Snipaste_2018-11-13_22-50-28">
+		</a>
+		
+		<figcaption>Snipaste_2018-11-13_22-50-28</figcaption>
+		
+	</figure></p>
+<h2 id="程序详情">程序详情</h2>
+<p>程序已经开源到了 Github 老师可以访问下面的链接查看程序详情</p>
+<p><a href="https://github.com/aimerforreimu/MechanicalPrinciplesHomework">https://github.com/aimerforreimu/MechanicalPrinciplesHomework</a></p>
+<p>如果想要运行程序，可以直接下载</p>
+<p>链接: <a href="https://pan.baidu.com/s/1c4fKvLtQWXCTNxlgkNoesQ">https://pan.baidu.com/s/1c4fKvLtQWXCTNxlgkNoesQ</a>
+提取码: hwb2</p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+    <section class="article-tags">
+        
+            <a href="https://sunwei.blog/tags/golang/">golang</a>
+        
+            <a href="https://sunwei.blog/tags/matlab/">matlab</a>
+        
+    </section>
+
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+    
+</article>
+
+    <aside class="related-contents--wrapper">
+    
+    
+        <h2 class="section-title">相关文章</h2>
+        <div class="related-contents">
+            <div class="flex article-list--tile">
+                
+                    
+<article class="">
+    <a href="https://sunwei.blog/p/auxpi%E5%AF%B9%E6%8E%A5-flicker-%E7%9A%84%E4%B8%80%E4%BA%9B%E5%9D%91/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">AUXPI对接 flicker 的一些坑</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="has-image">
+    <a href="https://sunwei.blog/p/auxpi-%E5%9B%BE%E5%BA%8A/">
+        
+        
+            <div class="article-image">
+                <img src="/p/auxpi-%E5%9B%BE%E5%BA%8A/cover_hueb0766070fc2955c280311d243791276_14363_250x150_fill_box_smart1_2.png" width="250" height="150" 
+                        loading="lazy" data-key="" data-hash="md5-hGw5NB8QcM8Lupc8zDCh7Q==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">AUXPI 图床</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="has-image">
+    <a href="https://sunwei.blog/p/%E5%B9%B4%E8%BD%BB%E4%BA%BA%E7%9A%84%E7%AC%AC%E4%BA%8C%E5%8F%B0%E9%BB%91%E8%8B%B9%E6%9E%9C/">
+        
+        
+            <div class="article-image">
+                <img src="/p/%E5%B9%B4%E8%BD%BB%E4%BA%BA%E7%9A%84%E7%AC%AC%E4%BA%8C%E5%8F%B0%E9%BB%91%E8%8B%B9%E6%9E%9C/cover_hu9587307df3b0a528bff40458715a7575_87846_250x150_fill_box_smart1_2.png" width="250" height="150" 
+                        loading="lazy" data-key="" data-hash="md5-dS0/fDtGlSnjIaP5o&#43;W0hQ==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">年轻人的第二台黑苹果</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="has-image">
+    <a href="https://sunwei.blog/p/docker-%E4%B8%AD-mysql-%E8%BF%9B%E8%A1%8C%E4%B8%BB%E4%BB%8E%E5%90%8C%E6%AD%A5/">
+        
+        
+            <div class="article-image">
+                <img src="/p/docker-%E4%B8%AD-mysql-%E8%BF%9B%E8%A1%8C%E4%B8%BB%E4%BB%8E%E5%90%8C%E6%AD%A5/cover_hu81200c1cba70a189fc5075fa6ae62b86_24632_250x150_fill_box_smart1_2.png" width="250" height="150" 
+                        loading="lazy" data-key="" data-hash="md5-ZpeE8kpFWvQ3y9HqJ4LuQg==">
+                
+            </div>
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Docker 中 MySQL 进行主从同步</h2>
+        </div>
+    </a>
+</article>
+                
+                    
+<article class="">
+    <a href="https://sunwei.blog/p/mac-%E5%BF%AB%E9%80%9F%E7%BC%96%E8%AF%91-swoole/">
+        
+        
+
+        <div class="article-details">
+            <h2 class="article-title">Mac 快速编译 swoole</h2>
+        </div>
+    </a>
+</article>
+                
+            </div>
+        </div>
+    
+</aside>
+
+    
+        
+    <script src="https://utteranc.es/client.js" 
+        repo="0xDkd/comment"
+        issue-term="pathname"
+        theme="preferred-color-scheme" 
+        
+        crossorigin="anonymous" 
+        async>
+</script>
+
+<style>
+    .utterances {
+        max-width: unset;
+    }
+</style>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">&copy; 2020 A桑的杂货箱</section>
+    <section class="powerby">
+        Built with <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> <br />
+        Theme <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="1.0.5">Stack</a></b> designed by
+        <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>
+    </section>
+</footer>
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true" style="display:none">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+            </main>
+        </div>
+        <script src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.5/dist/vibrant.min.js"
+    integrity="sha256-5NovOZc4iwiAWTYIFiIM7DxKUXKWvpVEuMEPLzcm5/g=" crossorigin="anonymous"></script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+<link rel="stylesheet" href="/css/highlight/light.min.css" media="(prefers-color-scheme: light)">
+<link rel="stylesheet" href="/css/highlight/dark.min.css" media="(prefers-color-scheme: dark)">
+
+    </body>
+</html>

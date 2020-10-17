@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>opencore on A桑的杂货箱</title>
+    <link>https://sunwei.blog/tags/opencore/</link>
+    <description>Recent content in opencore on A桑的杂货箱</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-CN</language>
+    <lastBuildDate>Sun, 23 Aug 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://sunwei.blog/tags/opencore/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>年轻人的第二台黑苹果</title>
+      <link>https://sunwei.blog/p/%E5%B9%B4%E8%BD%BB%E4%BA%BA%E7%9A%84%E7%AC%AC%E4%BA%8C%E5%8F%B0%E9%BB%91%E8%8B%B9%E6%9E%9C/</link>
+      <pubDate>Sun, 23 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://sunwei.blog/p/%E5%B9%B4%E8%BD%BB%E4%BA%BA%E7%9A%84%E7%AC%AC%E4%BA%8C%E5%8F%B0%E9%BB%91%E8%8B%B9%E6%9E%9C/</guid>
+      <description>咋回事呢？ 好久没有更新博客了，最近刚刚从上海学习回来，学到了很多东西，我第一次认为自己的大学所学的东西不枯燥，甚至还挺有意思的。 可能这就是实际的工作和纯理论学习的区别吧，实地的去见识到了轨道车辆这种庞然大物，心中不免有些小兴奋，大学里面学的那点贫瘠的知识也疯狂的被回忆起来， 感觉跑题了🤣
+在参加工作之前我就给自己选好了电脑的配置，一直期待来深圳自己组装起来并且安装好超级生产力系统 MacOS（Windows 能玩的游戏多真香！）
+这是我的配置：
+ 主板：arous-z490-version-D CPU：i7-10700k 散片 GPU：蓝宝石超白金 5700xt 内存：威刚 16G 3200 * 4 固态：WD_Black sn750 2t 和 1t 散热：堡垒水冷 240 机箱：陈睿同款 nzxt 710i 电源：安钛克 850w 网卡：FVT919（黑苹果无线上网用）  这一套买下来我基本上被掏空了，一想到我要给强哥打工 2 年还债我就想再多买点东西
+  想成为和先辈一样的屑 
+开整 钱都花了，就不要再心疼了，快点黑苹果整起来。
+目前看来引导黑苹果的工具常用的有两种，一种是 clover，另一种是 opencore    随着 OpenCore 日渐成熟、acidanthera 团队宣布放弃旗下绝大部分内核驱动（包括 Lilu、VirtualSMC、WhateverGreen、AppleALC 等）对 Clover 的兼容性支持，与其届时被迫换到 OpenCore，不如主动开始迁移。 所以这一次我选择使用 Opencore 对黑苹果进行引导。
+这是我整理好的 opencore 的目录，我所用的版本是 0.58 。
+  
+这里需要着重说一下，由于 arous-z490-version-D 这块主板自身带着蓝牙和 wifi，安装上 FV-T919 网卡之后都会冲突，在 Windows 下面需要重新安装 Fenvi 家的蓝牙和 Wifi 驱动。在黑苹果下就比较重要了，需要增加两个 kext，否则的话蓝牙功能和隔空投递的功能都是没有办法使用的，需要增添的两个包是 intelBlueTootooth*** 这两个包，加入之后就可以屏蔽掉主板自带的蓝牙，防止主板蓝牙和 Fenvi 网卡蓝牙产生冲突而导致蓝牙无法使用，当然解决了蓝牙问题隔空投递问题自己就化解了。</description>
+    </item>
+    
+  </channel>
+</rss>
