@@ -3,16 +3,16 @@
     <meta charset='utf-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='第一次体验在 docker 中的主从同步，用完之后感觉不错'><title>Docker 中 MySQL 进行主从同步</title>
     
-    <link rel='canonical' href='https://sunwei.blog/p/docker-%E4%B8%AD-mysql-%E8%BF%9B%E8%A1%8C%E4%B8%BB%E4%BB%8E%E5%90%8C%E6%AD%A5/'>
+    <link rel='canonical' href='https://aimerzz.github.io/p/docker-%E4%B8%AD-mysql-%E8%BF%9B%E8%A1%8C%E4%B8%BB%E4%BB%8E%E5%90%8C%E6%AD%A5/'>
 
 <link rel="stylesheet" href="/scss/style.min.css"><meta property='og:title' content='Docker 中 MySQL 进行主从同步'>
 <meta property='og:description' content='第一次体验在 docker 中的主从同步，用完之后感觉不错'>
-<meta property='og:url' content='https://sunwei.blog/p/docker-%E4%B8%AD-mysql-%E8%BF%9B%E8%A1%8C%E4%B8%BB%E4%BB%8E%E5%90%8C%E6%AD%A5/'>
+<meta property='og:url' content='https://aimerzz.github.io/p/docker-%E4%B8%AD-mysql-%E8%BF%9B%E8%A1%8C%E4%B8%BB%E4%BB%8E%E5%90%8C%E6%AD%A5/'>
 <meta property='og:site_name' content='A桑的杂货箱'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='docker' /><meta property='article:tag' content='mysql' /><meta property='article:tag' content='主从同步' /><meta property='article:published_time' content='2019-12-13T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2019-12-13T00:00:00&#43;00:00'/><meta property='og:image' content='https://sunwei.blog/p/docker-%E4%B8%AD-mysql-%E8%BF%9B%E8%A1%8C%E4%B8%BB%E4%BB%8E%E5%90%8C%E6%AD%A5/cover.png' />
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='docker' /><meta property='article:tag' content='mysql' /><meta property='article:tag' content='主从同步' /><meta property='article:published_time' content='2019-12-13T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2019-12-13T00:00:00&#43;00:00'/><meta property='og:image' content='https://aimerzz.github.io/p/docker-%E4%B8%AD-mysql-%E8%BF%9B%E8%A1%8C%E4%B8%BB%E4%BB%8E%E5%90%8C%E6%AD%A5/cover.png' />
 <meta name="twitter:title" content="Docker 中 MySQL 进行主从同步">
 <meta name="twitter:description" content="第一次体验在 docker 中的主从同步，用完之后感觉不错"><meta name="twitter:card" content="summary_large_image">
-	<meta name="twitter:image" content='https://sunwei.blog/p/docker-%E4%B8%AD-mysql-%E8%BF%9B%E8%A1%8C%E4%B8%BB%E4%BB%8E%E5%90%8C%E6%AD%A5/cover.png' /></head><body class="">
+	<meta name="twitter:image" content='https://aimerzz.github.io/p/docker-%E4%B8%AD-mysql-%E8%BF%9B%E8%A1%8C%E4%B8%BB%E4%BB%8E%E5%90%8C%E6%AD%A5/cover.png' /></head><body class="">
         <div class="container flex on-phone--column align-items--flex-start extended article-page with-toolbar">
             <aside class="sidebar left-sidebar sticky">
     <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
@@ -35,7 +35,7 @@
                 <span class="emoji">🍥</span>
             </figure>
         
-        <h1 class="site-name"><a href="https://sunwei.blog/">A桑的杂货箱</a></h1>
+        <h1 class="site-name"><a href="https://aimerzz.github.io">A桑的杂货箱</a></h1>
         <h2 class="site-description">有时候回头看看自己做的东西，感觉充实且鬼畜😂</h2>
     </header>
 
@@ -45,7 +45,7 @@
         
 
         <li >
-            <a href='https://sunwei.blog/'>
+            <a href='https://aimerzz.github.io/'>
                 
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
@@ -64,7 +64,7 @@
         
 
         <li >
-            <a href='https://sunwei.blog/about'>
+            <a href='https://aimerzz.github.io/about'>
                 
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
@@ -82,7 +82,7 @@
         
 
         <li >
-            <a href='https://sunwei.blog/archives'>
+            <a href='https://aimerzz.github.io/archives'>
                 
                     <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
@@ -102,7 +102,7 @@
 </aside>
             <main class="main full-width">
     <div id="article-toolbar">
-        <a href="https://sunwei.blog/" class="back-home">
+        <a href="https://aimerzz.github.io" class="back-home">
             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <polyline points="15 6 9 12 15 18" />
@@ -128,7 +128,7 @@
     
     <header class="article-category">
         
-            <a href="https://sunwei.blog/categories/%E6%8A%98%E8%85%BE/" 
+            <a href="https://aimerzz.github.io/categories/%E6%8A%98%E8%85%BE/" 
                     class="color-tag"
                     data-image="/p/docker-%E4%B8%AD-mysql-%E8%BF%9B%E8%A1%8C%E4%B8%BB%E4%BB%8E%E5%90%8C%E6%AD%A5/cover_hu81200c1cba70a189fc5075fa6ae62b86_24632_20x20_fill_box_smart1_2.png" 
                     data-key="" 
@@ -137,7 +137,7 @@
                 </a>
             
         
-            <a href="https://sunwei.blog/categories/%E6%97%A5%E5%B8%B8/" 
+            <a href="https://aimerzz.github.io/categories/%E6%97%A5%E5%B8%B8/" 
                     class="color-tag"
                     data-image="/p/docker-%E4%B8%AD-mysql-%E8%BF%9B%E8%A1%8C%E4%B8%BB%E4%BB%8E%E5%90%8C%E6%AD%A5/cover_hu81200c1cba70a189fc5075fa6ae62b86_24632_20x20_fill_box_smart1_2.png" 
                     data-key="" 
@@ -150,7 +150,7 @@
     
 
     <h2 class="article-title">
-        <a href="https://sunwei.blog/p/docker-%E4%B8%AD-mysql-%E8%BF%9B%E8%A1%8C%E4%B8%BB%E4%BB%8E%E5%90%8C%E6%AD%A5/">Docker 中 MySQL 进行主从同步</a>
+        <a href="https://aimerzz.github.io/p/docker-%E4%B8%AD-mysql-%E8%BF%9B%E8%A1%8C%E4%B8%BB%E4%BB%8E%E5%90%8C%E6%AD%A5/">Docker 中 MySQL 进行主从同步</a>
     </h2>
 
     
@@ -272,11 +272,11 @@ server-id=2
     
     <section class="article-tags">
         
-            <a href="https://sunwei.blog/tags/docker/">docker</a>
+            <a href="https://aimerzz.github.io/tags/docker/">docker</a>
         
-            <a href="https://sunwei.blog/tags/mysql/">mysql</a>
+            <a href="https://aimerzz.github.io/tags/mysql/">mysql</a>
         
-            <a href="https://sunwei.blog/tags/%E4%B8%BB%E4%BB%8E%E5%90%8C%E6%AD%A5/">主从同步</a>
+            <a href="https://aimerzz.github.io/tags/%E4%B8%BB%E4%BB%8E%E5%90%8C%E6%AD%A5/">主从同步</a>
         
     </section>
 
@@ -307,7 +307,7 @@ server-id=2
                 
                     
 <article class="has-image">
-    <a href="https://sunwei.blog/p/%E5%B9%B4%E8%BD%BB%E4%BA%BA%E7%9A%84%E7%AC%AC%E4%BA%8C%E5%8F%B0%E9%BB%91%E8%8B%B9%E6%9E%9C/">
+    <a href="https://aimerzz.github.io/p/%E5%B9%B4%E8%BD%BB%E4%BA%BA%E7%9A%84%E7%AC%AC%E4%BA%8C%E5%8F%B0%E9%BB%91%E8%8B%B9%E6%9E%9C/">
         
         
             <div class="article-image">
@@ -325,7 +325,7 @@ server-id=2
                 
                     
 <article class="">
-    <a href="https://sunwei.blog/p/auxpi%E5%AF%B9%E6%8E%A5-flicker-%E7%9A%84%E4%B8%80%E4%BA%9B%E5%9D%91/">
+    <a href="https://aimerzz.github.io/p/auxpi%E5%AF%B9%E6%8E%A5-flicker-%E7%9A%84%E4%B8%80%E4%BA%9B%E5%9D%91/">
         
         
 
@@ -337,7 +337,7 @@ server-id=2
                 
                     
 <article class="has-image">
-    <a href="https://sunwei.blog/p/%E6%9C%BA%E6%A2%B0%E5%8E%9F%E7%90%86%E5%A4%A7%E4%BD%9C%E4%B8%9A-%E5%87%B8%E8%BD%AE%E7%94%9F%E6%88%90%E5%99%A8/">
+    <a href="https://aimerzz.github.io/p/%E6%9C%BA%E6%A2%B0%E5%8E%9F%E7%90%86%E5%A4%A7%E4%BD%9C%E4%B8%9A-%E5%87%B8%E8%BD%AE%E7%94%9F%E6%88%90%E5%99%A8/">
         
         
             <div class="article-image">
@@ -355,7 +355,7 @@ server-id=2
                 
                     
 <article class="has-image">
-    <a href="https://sunwei.blog/p/%E6%A0%91%E8%8E%93%E6%B4%BE%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB%E7%B3%BB%E7%BB%9F/">
+    <a href="https://aimerzz.github.io/p/%E6%A0%91%E8%8E%93%E6%B4%BE%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB%E7%B3%BB%E7%BB%9F/">
         
         
             <div class="article-image">

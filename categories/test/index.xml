@@ -2,12 +2,12 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Test on A桑的杂货箱</title>
-    <link>https://sunwei.blog/categories/test/</link>
+    <link>https://aimerzz.github.io/categories/test/</link>
     <description>Recent content in Test on A桑的杂货箱</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     
-	<atom:link href="https://sunwei.blog/categories/test/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://aimerzz.github.io/categories/test/index.xml" rel="self" type="application/rss+xml" />
     
     
   </channel>
