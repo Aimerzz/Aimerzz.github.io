@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>日常 on A桑的杂货箱</title>
-    <link>https://aimerzz.github.io/categories/%E6%97%A5%E5%B8%B8/</link>
+    <link>https://sunwei.blog/categories/%E6%97%A5%E5%B8%B8/</link>
     <description>Recent content in 日常 on A桑的杂货箱</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <lastBuildDate>Fri, 13 Dec 2019 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://aimerzz.github.io/categories/%E6%97%A5%E5%B8%B8/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://sunwei.blog/categories/%E6%97%A5%E5%B8%B8/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Docker 中 MySQL 进行主从同步</title>
-      <link>https://aimerzz.github.io/p/docker-%E4%B8%AD-mysql-%E8%BF%9B%E8%A1%8C%E4%B8%BB%E4%BB%8E%E5%90%8C%E6%AD%A5/</link>
+      <link>https://sunwei.blog/p/docker-%E4%B8%AD-mysql-%E8%BF%9B%E8%A1%8C%E4%B8%BB%E4%BB%8E%E5%90%8C%E6%AD%A5/</link>
       <pubDate>Fri, 13 Dec 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://aimerzz.github.io/p/docker-%E4%B8%AD-mysql-%E8%BF%9B%E8%A1%8C%E4%B8%BB%E4%BB%8E%E5%90%8C%E6%AD%A5/</guid>
+      <guid>https://sunwei.blog/p/docker-%E4%B8%AD-mysql-%E8%BF%9B%E8%A1%8C%E4%B8%BB%E4%BB%8E%E5%90%8C%E6%AD%A5/</guid>
       <description>Docker &amp;amp;&amp;amp; Mysql 问题 1.MySQL 8 无法使用第三方软件登录 首先进入 mysql 中
 use mysql; select user,host,plugin,authentication_string from user; 查一下输出，如果加密方式是：caching_sha2_password 则需要修改一下加密方式成为 mysql_native_password
 /*使用默认的 mysql 认证模式*/ ALTER USER &amp;#39;root&amp;#39;@&amp;#39;%&amp;#39; IDENTIFIED WITH mysql_native_password BY &amp;#39;root&amp;#39;; 2.MySQL 主从模式配置 2.1 创建 MySQL 容器 首先使用 docker 创建两个容器。
