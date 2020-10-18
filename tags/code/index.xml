@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>code on A桑的杂货箱</title>
-    <link>https://sunwei.blog/tags/code/</link>
+    <link>https://aimerzz.github.io/tags/code/</link>
     <description>Recent content in code on A桑的杂货箱</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <lastBuildDate>Thu, 13 Dec 2018 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://sunwei.blog/tags/code/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://aimerzz.github.io/tags/code/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>AUXPI对接 flicker 的一些坑</title>
-      <link>https://sunwei.blog/p/auxpi%E5%AF%B9%E6%8E%A5-flicker-%E7%9A%84%E4%B8%80%E4%BA%9B%E5%9D%91/</link>
+      <link>https://aimerzz.github.io/p/auxpi%E5%AF%B9%E6%8E%A5-flicker-%E7%9A%84%E4%B8%80%E4%BA%9B%E5%9D%91/</link>
       <pubDate>Thu, 13 Dec 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://sunwei.blog/p/auxpi%E5%AF%B9%E6%8E%A5-flicker-%E7%9A%84%E4%B8%80%E4%BA%9B%E5%9D%91/</guid>
+      <guid>https://aimerzz.github.io/p/auxpi%E5%AF%B9%E6%8E%A5-flicker-%E7%9A%84%E4%B8%80%E4%BA%9B%E5%9D%91/</guid>
       <description>在开发 auxpi 图床的时候踩了不少坑，特别是用 flickr 的时候，简直调试到内心崩溃，我再 github 上找了一个 flickr 的第三方SDK，Go 的 SDK 并不多，而且说明很少，只能去看源码。那种简直看到心态爆炸 QAQ
  multipart.File to os.File 使用 beego上传文件的时候，默认接受到的文件格式是 multipart.File ，但是我发现第三方 Flickr 的 SDK所提供的文件上传类型其实是 os.File 的类型。他是用一个 io.Reader 做为参数传入进去的。通过阅读源代码
 func UploadFile(client *FlickrClient, path string, optionalParams *UploadParams) (*UploadResponse, error) { file, err := os.Open(path) if err != nil { return nil, err } defer file.Close() return UploadReader(client, file, file.Name(), optionalParams) } 我们可以发现，这个 io.Reader  其实是一个 os.File 的指针类型，即为 *os.File 我们可以直接调用 UploadReader 这个函数，直接将已经构造好的 client传入进去就可以或获得结果。</description>
