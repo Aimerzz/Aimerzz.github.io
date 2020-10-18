@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>vue on A桑的杂货箱</title>
-    <link>https://aimerzz.github.io/tags/vue/</link>
+    <link>https://www.sunwei.blog/tags/vue/</link>
     <description>Recent content in vue on A桑的杂货箱</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <lastBuildDate>Wed, 17 Apr 2019 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://aimerzz.github.io/tags/vue/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://www.sunwei.blog/tags/vue/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>AUXPI 图床</title>
-      <link>https://aimerzz.github.io/p/auxpi-%E5%9B%BE%E5%BA%8A/</link>
+      <link>https://www.sunwei.blog/p/auxpi-%E5%9B%BE%E5%BA%8A/</link>
       <pubDate>Wed, 17 Apr 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://aimerzz.github.io/p/auxpi-%E5%9B%BE%E5%BA%8A/</guid>
+      <guid>https://www.sunwei.blog/p/auxpi-%E5%9B%BE%E5%BA%8A/</guid>
       <description>前情提要 这个是参加全国计算机设计大赛的时候写的，现在已经比完了，三等奖有点不开心，果然还是不应该讲太多技术方面的东西，应该多讲一些细节方面的东西。不过好消息是这个项目参加互联网+的成绩还不错
 第二章概要设计 一．各个模块功能 系统的开发是前后端分离的，后端采用的架构模式为 MVC ，后端的开发所用的各个目录的功能和作用如下图所示。
 为了保证高复用，我们加入了 Server 层作为可以拔插的插件进行配置和使用，下面是后端的文件分布目录

@@ -2,48 +2,48 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on A桑的杂货箱</title>
-    <link>https://aimerzz.github.io/categories/</link>
+    <link>https://www.sunwei.blog/categories/</link>
     <description>Recent content in Categories on A桑的杂货箱</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <lastBuildDate>Sun, 23 Aug 2020 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://aimerzz.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://www.sunwei.blog/categories/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>折腾</title>
-      <link>https://aimerzz.github.io/categories/%E6%8A%98%E8%85%BE/</link>
+      <link>https://www.sunwei.blog/categories/%E6%8A%98%E8%85%BE/</link>
       <pubDate>Sun, 23 Aug 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://aimerzz.github.io/categories/%E6%8A%98%E8%85%BE/</guid>
+      <guid>https://www.sunwei.blog/categories/%E6%8A%98%E8%85%BE/</guid>
       <description></description>
     </item>
     
     <item>
       <title>日常</title>
-      <link>https://aimerzz.github.io/categories/%E6%97%A5%E5%B8%B8/</link>
+      <link>https://www.sunwei.blog/categories/%E6%97%A5%E5%B8%B8/</link>
       <pubDate>Fri, 13 Dec 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://aimerzz.github.io/categories/%E6%97%A5%E5%B8%B8/</guid>
+      <guid>https://www.sunwei.blog/categories/%E6%97%A5%E5%B8%B8/</guid>
       <description></description>
     </item>
     
     <item>
       <title>分享</title>
-      <link>https://aimerzz.github.io/categories/%E5%88%86%E4%BA%AB/</link>
+      <link>https://www.sunwei.blog/categories/%E5%88%86%E4%BA%AB/</link>
       <pubDate>Wed, 17 Apr 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://aimerzz.github.io/categories/%E5%88%86%E4%BA%AB/</guid>
+      <guid>https://www.sunwei.blog/categories/%E5%88%86%E4%BA%AB/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Test</title>
-      <link>https://aimerzz.github.io/categories/test/</link>
+      <link>https://www.sunwei.blog/categories/test/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://aimerzz.github.io/categories/test/</guid>
+      <guid>https://www.sunwei.blog/categories/test/</guid>
       <description></description>
     </item>
     

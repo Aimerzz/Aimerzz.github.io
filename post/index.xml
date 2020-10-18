@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on A桑的杂货箱</title>
-    <link>https://aimerzz.github.io/post/</link>
+    <link>https://www.sunwei.blog/post/</link>
     <description>Recent content in Posts on A桑的杂货箱</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-CN</language>
     <lastBuildDate>Sun, 23 Aug 2020 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://aimerzz.github.io/post/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://www.sunwei.blog/post/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>年轻人的第二台黑苹果</title>
-      <link>https://aimerzz.github.io/p/%E5%B9%B4%E8%BD%BB%E4%BA%BA%E7%9A%84%E7%AC%AC%E4%BA%8C%E5%8F%B0%E9%BB%91%E8%8B%B9%E6%9E%9C/</link>
+      <link>https://www.sunwei.blog/p/%E5%B9%B4%E8%BD%BB%E4%BA%BA%E7%9A%84%E7%AC%AC%E4%BA%8C%E5%8F%B0%E9%BB%91%E8%8B%B9%E6%9E%9C/</link>
       <pubDate>Sun, 23 Aug 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://aimerzz.github.io/p/%E5%B9%B4%E8%BD%BB%E4%BA%BA%E7%9A%84%E7%AC%AC%E4%BA%8C%E5%8F%B0%E9%BB%91%E8%8B%B9%E6%9E%9C/</guid>
+      <guid>https://www.sunwei.blog/p/%E5%B9%B4%E8%BD%BB%E4%BA%BA%E7%9A%84%E7%AC%AC%E4%BA%8C%E5%8F%B0%E9%BB%91%E8%8B%B9%E6%9E%9C/</guid>
       <description>咋回事呢？ 好久没有更新博客了，最近刚刚从上海学习回来，学到了很多东西，我第一次认为自己的大学所学的东西不枯燥，甚至还挺有意思的。 可能这就是实际的工作和纯理论学习的区别吧，实地的去见识到了轨道车辆这种庞然大物，心中不免有些小兴奋，大学里面学的那点贫瘠的知识也疯狂的被回忆起来， 感觉跑题了🤣
 在参加工作之前我就给自己选好了电脑的配置，一直期待来深圳自己组装起来并且安装好超级生产力系统 MacOS（Windows 能玩的游戏多真香！）
 这是我的配置：
@@ -31,10 +31,10 @@
     
     <item>
       <title>Docker 中 MySQL 进行主从同步</title>
-      <link>https://aimerzz.github.io/p/docker-%E4%B8%AD-mysql-%E8%BF%9B%E8%A1%8C%E4%B8%BB%E4%BB%8E%E5%90%8C%E6%AD%A5/</link>
+      <link>https://www.sunwei.blog/p/docker-%E4%B8%AD-mysql-%E8%BF%9B%E8%A1%8C%E4%B8%BB%E4%BB%8E%E5%90%8C%E6%AD%A5/</link>
       <pubDate>Fri, 13 Dec 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://aimerzz.github.io/p/docker-%E4%B8%AD-mysql-%E8%BF%9B%E8%A1%8C%E4%B8%BB%E4%BB%8E%E5%90%8C%E6%AD%A5/</guid>
+      <guid>https://www.sunwei.blog/p/docker-%E4%B8%AD-mysql-%E8%BF%9B%E8%A1%8C%E4%B8%BB%E4%BB%8E%E5%90%8C%E6%AD%A5/</guid>
       <description>Docker &amp;amp;&amp;amp; Mysql 问题 1.MySQL 8 无法使用第三方软件登录 首先进入 mysql 中
 use mysql; select user,host,plugin,authentication_string from user; 查一下输出，如果加密方式是：caching_sha2_password 则需要修改一下加密方式成为 mysql_native_password
 /*使用默认的 mysql 认证模式*/ ALTER USER &amp;#39;root&amp;#39;@&amp;#39;%&amp;#39; IDENTIFIED WITH mysql_native_password BY &amp;#39;root&amp;#39;; 2.MySQL 主从模式配置 2.1 创建 MySQL 容器 首先使用 docker 创建两个容器。
@@ -44,10 +44,10 @@ no - 容器退出时，不重启容器； on-failure - 只有在非0状态退出
     
     <item>
       <title>AUXPI 图床</title>
-      <link>https://aimerzz.github.io/p/auxpi-%E5%9B%BE%E5%BA%8A/</link>
+      <link>https://www.sunwei.blog/p/auxpi-%E5%9B%BE%E5%BA%8A/</link>
       <pubDate>Wed, 17 Apr 2019 00:00:00 +0000</pubDate>
       
-      <guid>https://aimerzz.github.io/p/auxpi-%E5%9B%BE%E5%BA%8A/</guid>
+      <guid>https://www.sunwei.blog/p/auxpi-%E5%9B%BE%E5%BA%8A/</guid>
       <description>前情提要 这个是参加全国计算机设计大赛的时候写的，现在已经比完了，三等奖有点不开心，果然还是不应该讲太多技术方面的东西，应该多讲一些细节方面的东西。不过好消息是这个项目参加互联网+的成绩还不错
 第二章概要设计 一．各个模块功能 系统的开发是前后端分离的，后端采用的架构模式为 MVC ，后端的开发所用的各个目录的功能和作用如下图所示。
 为了保证高复用，我们加入了 Server 层作为可以拔插的插件进行配置和使用，下面是后端的文件分布目录
@@ -56,10 +56,10 @@ no - 容器退出时，不重启容器； on-failure - 只有在非0状态退出
     
     <item>
       <title>Mac 快速编译 swoole</title>
-      <link>https://aimerzz.github.io/p/mac-%E5%BF%AB%E9%80%9F%E7%BC%96%E8%AF%91-swoole/</link>
+      <link>https://www.sunwei.blog/p/mac-%E5%BF%AB%E9%80%9F%E7%BC%96%E8%AF%91-swoole/</link>
       <pubDate>Tue, 25 Dec 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://aimerzz.github.io/p/mac-%E5%BF%AB%E9%80%9F%E7%BC%96%E8%AF%91-swoole/</guid>
+      <guid>https://www.sunwei.blog/p/mac-%E5%BF%AB%E9%80%9F%E7%BC%96%E8%AF%91-swoole/</guid>
       <description>brew install php cd /usr/local/opt/ git clone https://gitee.com/swoole/swoole.git cd swoole phpize ./configure brew install autoconf make &amp;amp;&amp;amp; make install 编译完成的.so文件在 modules/ 目录下面
 cd /usr/local/etc/php/7.2/conf.d/ touch ext-swoole.ini 写入
 [swoole] extension=&amp;#34;/usr/local/opt/swoole/modules/swoole.so&amp;#34; 重载 php
@@ -70,10 +70,10 @@ php -i |grep swoole 如下输出
     
     <item>
       <title>AUXPI对接 flicker 的一些坑</title>
-      <link>https://aimerzz.github.io/p/auxpi%E5%AF%B9%E6%8E%A5-flicker-%E7%9A%84%E4%B8%80%E4%BA%9B%E5%9D%91/</link>
+      <link>https://www.sunwei.blog/p/auxpi%E5%AF%B9%E6%8E%A5-flicker-%E7%9A%84%E4%B8%80%E4%BA%9B%E5%9D%91/</link>
       <pubDate>Thu, 13 Dec 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://aimerzz.github.io/p/auxpi%E5%AF%B9%E6%8E%A5-flicker-%E7%9A%84%E4%B8%80%E4%BA%9B%E5%9D%91/</guid>
+      <guid>https://www.sunwei.blog/p/auxpi%E5%AF%B9%E6%8E%A5-flicker-%E7%9A%84%E4%B8%80%E4%BA%9B%E5%9D%91/</guid>
       <description>在开发 auxpi 图床的时候踩了不少坑，特别是用 flickr 的时候，简直调试到内心崩溃，我再 github 上找了一个 flickr 的第三方SDK，Go 的 SDK 并不多，而且说明很少，只能去看源码。那种简直看到心态爆炸 QAQ
  multipart.File to os.File 使用 beego上传文件的时候，默认接受到的文件格式是 multipart.File ，但是我发现第三方 Flickr 的 SDK所提供的文件上传类型其实是 os.File 的类型。他是用一个 io.Reader 做为参数传入进去的。通过阅读源代码
 func UploadFile(client *FlickrClient, path string, optionalParams *UploadParams) (*UploadResponse, error) { file, err := os.Open(path) if err != nil { return nil, err } defer file.Close() return UploadReader(client, file, file.Name(), optionalParams) } 我们可以发现，这个 io.Reader  其实是一个 os.File 的指针类型，即为 *os.File 我们可以直接调用 UploadReader 这个函数，直接将已经构造好的 client传入进去就可以或获得结果。</description>
@@ -81,10 +81,10 @@ func UploadFile(client *FlickrClient, path string, optionalParams *UploadParams)
     
     <item>
       <title>机械原理大作业-凸轮生成器</title>
-      <link>https://aimerzz.github.io/p/%E6%9C%BA%E6%A2%B0%E5%8E%9F%E7%90%86%E5%A4%A7%E4%BD%9C%E4%B8%9A-%E5%87%B8%E8%BD%AE%E7%94%9F%E6%88%90%E5%99%A8/</link>
+      <link>https://www.sunwei.blog/p/%E6%9C%BA%E6%A2%B0%E5%8E%9F%E7%90%86%E5%A4%A7%E4%BD%9C%E4%B8%9A-%E5%87%B8%E8%BD%AE%E7%94%9F%E6%88%90%E5%99%A8/</link>
       <pubDate>Fri, 23 Nov 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://aimerzz.github.io/p/%E6%9C%BA%E6%A2%B0%E5%8E%9F%E7%90%86%E5%A4%A7%E4%BD%9C%E4%B8%9A-%E5%87%B8%E8%BD%AE%E7%94%9F%E6%88%90%E5%99%A8/</guid>
+      <guid>https://www.sunwei.blog/p/%E6%9C%BA%E6%A2%B0%E5%8E%9F%E7%90%86%E5%A4%A7%E4%BD%9C%E4%B8%9A-%E5%87%B8%E8%BD%AE%E7%94%9F%E6%88%90%E5%99%A8/</guid>
       <description>引言 众所周知，我们小清华在大三上学期的时候机械类专业的学生需要经历机械原理的大作业：“用电脑使用解析法画一个凸轮，并且还要打印对应的报告”。最近正好在学 Golang 于是稍微研究了一下解析法生成的原理， 发现只需要变换运动方程即可，不需要更改轮廓公式，于是可以使用 Golang 的模板去生成 matlab 代码。
 我用这篇文章记录一下当时的思考和实现过程，希望能帮上同学和以后学弟学妹的忙😂
 另外不要直接用啊，得研究一下到底是什么原理，要不被老师提问就难受了
@@ -95,10 +95,10 @@ func UploadFile(client *FlickrClient, path string, optionalParams *UploadParams)
     
     <item>
       <title>树莓派人脸识别系统</title>
-      <link>https://aimerzz.github.io/p/%E6%A0%91%E8%8E%93%E6%B4%BE%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB%E7%B3%BB%E7%BB%9F/</link>
+      <link>https://www.sunwei.blog/p/%E6%A0%91%E8%8E%93%E6%B4%BE%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB%E7%B3%BB%E7%BB%9F/</link>
       <pubDate>Fri, 18 May 2018 00:00:00 +0000</pubDate>
       
-      <guid>https://aimerzz.github.io/p/%E6%A0%91%E8%8E%93%E6%B4%BE%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB%E7%B3%BB%E7%BB%9F/</guid>
+      <guid>https://www.sunwei.blog/p/%E6%A0%91%E8%8E%93%E6%B4%BE%E4%BA%BA%E8%84%B8%E8%AF%86%E5%88%AB%E7%B3%BB%E7%BB%9F/</guid>
       <description>引言 学了一阵子 php 了，这次自己用 php 练了一下手，更加熟悉了 Linux 的操作，感觉用起来已经得心应手了。
 其实这个 OpenCV 的环境当时我配置了 1 个多星期，最后在抹茶家里面蹭网配置出来的，太难了。
 项目概览   23333 
